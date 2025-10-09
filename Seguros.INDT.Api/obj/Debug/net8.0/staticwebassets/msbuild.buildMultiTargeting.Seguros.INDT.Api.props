@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Seguros.INDT.Api.props" />
+</Project>
