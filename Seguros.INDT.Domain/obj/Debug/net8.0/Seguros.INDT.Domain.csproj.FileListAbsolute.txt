@@ -1,0 +1,11 @@
+C:\Juliano\INDT\Seguros.INDT.Domain\bin\Debug\net8.0\Seguros.INDT.Domain.deps.json
+C:\Juliano\INDT\Seguros.INDT.Domain\bin\Debug\net8.0\Seguros.INDT.Domain.dll
+C:\Juliano\INDT\Seguros.INDT.Domain\bin\Debug\net8.0\Seguros.INDT.Domain.pdb
+C:\Juliano\INDT\Seguros.INDT.Domain\obj\Debug\net8.0\Seguros.INDT.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Juliano\INDT\Seguros.INDT.Domain\obj\Debug\net8.0\Seguros.INDT.Domain.AssemblyInfoInputs.cache
+C:\Juliano\INDT\Seguros.INDT.Domain\obj\Debug\net8.0\Seguros.INDT.Domain.AssemblyInfo.cs
+C:\Juliano\INDT\Seguros.INDT.Domain\obj\Debug\net8.0\Seguros.INDT.Domain.csproj.CoreCompileInputs.cache
+C:\Juliano\INDT\Seguros.INDT.Domain\obj\Debug\net8.0\Seguros.INDT.Domain.dll
+C:\Juliano\INDT\Seguros.INDT.Domain\obj\Debug\net8.0\refint\Seguros.INDT.Domain.dll
+C:\Juliano\INDT\Seguros.INDT.Domain\obj\Debug\net8.0\Seguros.INDT.Domain.pdb
+C:\Juliano\INDT\Seguros.INDT.Domain\obj\Debug\net8.0\ref\Seguros.INDT.Domain.dll
