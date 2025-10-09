@@ -5,13 +5,13 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.Proposal.INDT.Api", "Seguros.INDT.Api\Insurance.Proposal.INDT.Api.csproj", "{0FDBB521-81C1-42E0-90DC-7303C17A5BDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.INDT.Domain", "Seguros.INDT.Domain\Insurance.INDT.Domain.csproj", "{3A4D624B-9517-4336-8710-E20BEEFA3580}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Domain", "Seguros.INDT.Domain\Insurance.INDT.Domain.csproj", "{3A4D624B-9517-4336-8710-E20BEEFA3580}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.INDT.Application", "Insurance.INDT.Application\Insurance.INDT.Application.csproj", "{54F02D2E-F6C2-4B0F-8BE9-9551D6F0AC81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Application", "Insurance.INDT.Application\Insurance.INDT.Application.csproj", "{54F02D2E-F6C2-4B0F-8BE9-9551D6F0AC81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.INDT.Dto", "Insurance.INDT.Dto\Insurance.INDT.Dto.csproj", "{2141F3E1-D313-4478-9D09-ADC77BB7DF11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Dto", "Insurance.INDT.Dto\Insurance.INDT.Dto.csproj", "{2141F3E1-D313-4478-9D09-ADC77BB7DF11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.INDT.Repository", "Insurance.INDT.Repository\Insurance.INDT.Repository.csproj", "{35E8F668-C063-49C6-8668-A6054DE6D7BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.MongoDb.Repository", "Insurance.INDT.Repository\Insurance.INDT.MongoDb.Repository.csproj", "{35E8F668-C063-49C6-8668-A6054DE6D7BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
