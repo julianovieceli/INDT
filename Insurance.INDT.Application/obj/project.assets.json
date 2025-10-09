@@ -95,11 +95,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Juliano\\INDT\\Insurance.INDT.Application\\Insurance.INDT.Application.csproj",
+      "projectUniqueName": "C:\\Juliano\\INDT2\\INDT\\Insurance.INDT.Application\\Insurance.INDT.Application.csproj",
       "projectName": "Insurance.INDT.Application",
-      "projectPath": "C:\\Juliano\\INDT\\Insurance.INDT.Application\\Insurance.INDT.Application.csproj",
+      "projectPath": "C:\\Juliano\\INDT2\\INDT\\Insurance.INDT.Application\\Insurance.INDT.Application.csproj",
       "packagesPath": "C:\\Users\\julianov\\.nuget\\packages\\",
-      "outputPath": "C:\\Juliano\\INDT\\Insurance.INDT.Application\\obj\\",
+      "outputPath": "C:\\Juliano\\INDT2\\INDT\\Insurance.INDT.Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\julianov\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -116,11 +116,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Juliano\\INDT\\Insurance.INDT.Dto\\Insurance.INDT.Dto.csproj": {
-              "projectPath": "C:\\Juliano\\INDT\\Insurance.INDT.Dto\\Insurance.INDT.Dto.csproj"
+            "C:\\Juliano\\INDT2\\INDT\\Insurance.INDT.Dto\\Insurance.INDT.Dto.csproj": {
+              "projectPath": "C:\\Juliano\\INDT2\\INDT\\Insurance.INDT.Dto\\Insurance.INDT.Dto.csproj"
             },
-            "C:\\Juliano\\INDT\\Seguros.INDT.Domain\\Insurance.INDT.Domain.csproj": {
-              "projectPath": "C:\\Juliano\\INDT\\Seguros.INDT.Domain\\Insurance.INDT.Domain.csproj"
+            "C:\\Juliano\\INDT2\\INDT\\Seguros.INDT.Domain\\Insurance.INDT.Domain.csproj": {
+              "projectPath": "C:\\Juliano\\INDT2\\INDT\\Seguros.INDT.Domain\\Insurance.INDT.Domain.csproj"
             }
           }
         }
