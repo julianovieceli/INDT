@@ -54,7 +54,7 @@ namespace Insurance.INDT.Application.Services
         public async Task<Result> GetAll()
         {
             
-            IList<Client> clientList = await _clientRepository.GetAll();
+            var clientList = await _clientRepository.GetAll();
 
             if (clientList is null)
                 return Result.Failure("999");

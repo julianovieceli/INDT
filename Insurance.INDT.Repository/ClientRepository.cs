@@ -1,10 +1,18 @@
-﻿using Insurance.INDT.Domain;
+﻿using Dapper;
+using Insurance.INDT.Domain;
 using Insurance.INDT.Domain.Interfaces.Repository;
 
 namespace Insurance.INDT.Repository
 {
     public class ClientRepository: IClientRepository
     {
+        private readonly IDbContext _dbContext;
+
+        public ClientRepository(IDbContext dbContext)
+        {
+                _dbContext = dbContext;
+        }
+
         public Task<Client> GetByDocto(string docto)
         {
             try
@@ -22,9 +30,22 @@ namespace Insurance.INDT.Repository
             return Task.FromResult(true);
         }
 
-        public Task<List<Client>> GetAll()
+        public async Task<List<Client>> GetAll()
         {
-            return Task.FromResult(new List<Client>());
+            try
+            {
+                var connection = _dbContext.Connect();
+                
+                string sql = "select * from Client; ";
+                
+                var result = await connection.QueryAsync<Client>(sql);;
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
         }
     }
 }

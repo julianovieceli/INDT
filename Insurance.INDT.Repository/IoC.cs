@@ -1,4 +1,5 @@
 ﻿using Insurance.INDT.Domain.Interfaces.Repository;
+using Insurance.INDT.Mysql.Repository;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Insurance.INDT.Repository
@@ -7,7 +8,10 @@ namespace Insurance.INDT.Repository
     {
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-            return services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<IClientRepository, ClientRepository>();
+
+            
+            return services.AddScoped<IDbContext, MySqlDbcontext>();
         }
     }
 }
