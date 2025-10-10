@@ -3,9 +3,13 @@
     public class Insurance: BaseClass
     {
         public string Name { get; set; }
-        public DateTime CreationDate { get; set; }  
+        public DateTime CreationDate { get; set; }
 
-        
+
+        public Insurance()
+        {
+                
+        }
 
         public Insurance(string name)
         {

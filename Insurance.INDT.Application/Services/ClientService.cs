@@ -45,7 +45,7 @@ namespace Insurance.INDT.Application.Services
 
                 }
 
-                return Result.Failure("400");//Erro q usuario ja existe com este documento.
+                return Result.Failure("400", "Ja existe cliente com este documento");//Erro q usuario ja existe com este documento.
             }
             catch
             {

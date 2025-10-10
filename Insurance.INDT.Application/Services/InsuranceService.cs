@@ -18,7 +18,7 @@ namespace Insurance.INDT.Application.Services
         public InsuranceService(IInsuranceRepository insuranceRepository, IValidator<RegisterInsuranceDto> insuranceValidator, IMapper dataMapper)
         {
             _insuranceRepository = insuranceRepository;
-            _insuranceValidator = _insuranceValidator;
+            _insuranceValidator = insuranceValidator;
             _dataMapper = dataMapper;
         }
         public async Task<Result> Register(RegisterInsuranceDto registerInsurance)
@@ -45,7 +45,7 @@ namespace Insurance.INDT.Application.Services
 
                 }
 
-                return Result.Failure("400");//Erro q seguro ja existe com este nome
+                return Result.Failure("400", "Ja existe seguro com este nome");//Erro q seguro ja existe com este nome
             }
             catch
             {
@@ -81,15 +81,15 @@ namespace Insurance.INDT.Application.Services
         public async Task<Result> GetAll()
         {
 
-            var clientList = await _insuranceRepository.GetAll();
+            var insuranceList = await _insuranceRepository.GetAll();
 
-            if (clientList is null)
+            if (insuranceList is null)
                 return Result.Failure("999");
-            else if (clientList.Count == 0)
+            else if (insuranceList.Count == 0)
                 return Result.Failure("404", System.Net.HttpStatusCode.NotFound);
 
 
-            IList<InsuranceDto> list = clientList.Select(c => _dataMapper.Map<InsuranceDto>(c)).ToList();
+            IList<InsuranceDto> list = insuranceList.Select(c => _dataMapper.Map<InsuranceDto>(c)).ToList();
 
             return Result<IList<InsuranceDto>>.Success(list);
         }
