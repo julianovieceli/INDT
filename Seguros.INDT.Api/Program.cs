@@ -1,6 +1,6 @@
 using Insurance.INDT.Application;
-using Insurance.INDT.Mysql.Repository.Settings;
 using Insurance.INDT.Repository;
+using Insurance.Proposal.INDT.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-builder.Services.Configure<MySqlDbcontextSettings>(builder.Configuration.GetSection("MySqlDbcontext"));
-
-
+builder.Services.AddSettings(builder.Configuration);
 builder.Services.AddApplicationServices();
 builder.Services.AddRepositories();
 

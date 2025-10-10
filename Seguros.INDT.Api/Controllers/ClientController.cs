@@ -41,7 +41,11 @@ namespace Insurance.Proposal.INDT.Api.Controllers
             if (result.IsFailure)
             {
                 _logger.LogError($"Error{result.ErrorCode}");
-                return BadRequest(result);
+
+                if(result.ErrorCode == "404")
+                    return NotFound("Empty");
+
+                return BadRequest(result.ErrorCode);
             }
             _logger.LogInformation("Ok");
             return Ok(result);

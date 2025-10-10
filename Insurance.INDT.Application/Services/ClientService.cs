@@ -58,6 +58,8 @@ namespace Insurance.INDT.Application.Services
 
             if (clientList is null)
                 return Result.Failure("999");
+            else if (clientList.Count == 0)
+                return Result.Failure("404", System.Net.HttpStatusCode.NotFound);
 
             return Result<IList<Client>>.Success(clientList);
         }
