@@ -10,7 +10,7 @@
         public Client()
         {
         }
-        public Client(string id, string name, string docto, int age) : base(id)
+        public Client(string name, string docto, int age) 
         {
             ArgumentException.ThrowIfNullOrEmpty(name, nameof(name));
             ArgumentException.ThrowIfNullOrEmpty(docto, nameof(docto));

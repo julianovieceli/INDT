@@ -2,18 +2,14 @@
 {
     public abstract class BaseClass
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         protected BaseClass()
         {
             
         }
 
-        protected BaseClass(string id)
-        {
-         ArgumentNullException.ThrowIfNullOrWhiteSpace(id, nameof(id)); 
-            this.Id = id;
-        }
+        
     }
 
 }

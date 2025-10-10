@@ -8,12 +8,13 @@
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	  <PackageReference Include="AutoMapper" Version="14.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Insurance.INDT.Application\Insurance.INDT.Application.csproj" />
     <ProjectReference Include="..\Insurance.INDT.Dto\Insurance.INDT.Dto.csproj" />
-    <ProjectReference Include="..\Insurance.INDT.Repository\Insurance.INDT.Mysql.Repository.csproj" />
+    <ProjectReference Include="..\Insurance.INDT.Repository\Insurance.INDT.Infra.Mysql.Repository.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using AutoMapper;
+using FluentValidation;
 using Insurance.INDT.Application.Services.Interfaces;
 using Insurance.INDT.Domain;
 using Insurance.INDT.Domain.Interfaces.Repository;
@@ -12,10 +13,13 @@ namespace Insurance.INDT.Application.Services
         private readonly IClientRepository _clientRepository;
         private readonly IValidator<RegisterClientDto> _clientValidator;
 
-        public ClientService(IClientRepository clientRepository, IValidator<RegisterClientDto> clientValidator)
+        private readonly IMapper _dataMapper;
+
+        public ClientService(IClientRepository clientRepository, IValidator<RegisterClientDto> clientValidator, IMapper dataMapper)
         {
             _clientRepository = clientRepository;
             _clientValidator = clientValidator;
+            _dataMapper = dataMapper;
         }
         public async Task<Result> Register(RegisterClientDto registerClient )
         {
@@ -31,9 +35,8 @@ namespace Insurance.INDT.Application.Services
 
                 if (await _clientRepository.GetCountByDocto(registerClient.Docto) == 0)
                 {
-                    string idClient = Guid.NewGuid().ToString();
-
-                    Client client = new Client(idClient, registerClient.Name, registerClient.Docto, registerClient.Age);
+                    
+                    Client client = new Client( registerClient.Name, registerClient.Docto, registerClient.Age);
 
                     if (!await _clientRepository.Register(client))
                         return Result.Failure("999");
@@ -63,13 +66,8 @@ namespace Insurance.INDT.Application.Services
                     return Result.Failure("404"); //erro nao encontrado
                 else
                 {
-                    ClientDto clientDto = new ClientDto()
-                    {
-                        Id = client.Id,
-                        Age = client.Age,
-                        Docto = client.Docto,
-                        Name = client.Name
-                    };
+                    var clientDto = _dataMapper.Map<ClientDto>(client);
+
                     return Result<ClientDto>.Success(clientDto);
                 }
             }catch
@@ -90,13 +88,7 @@ namespace Insurance.INDT.Application.Services
                 return Result.Failure("404", System.Net.HttpStatusCode.NotFound);
 
 
-            IList<ClientDto> list = clientList.Select(c => new ClientDto()
-            {
-                Id = c.Id,
-                Age = c.Age,
-                Docto = c.Docto,
-                Name = c.Name
-            }).ToList();
+            IList<ClientDto> list = clientList.Select(c =>_dataMapper.Map<ClientDto>(c)).ToList();
 
             return Result<IList<ClientDto>>.Success(list);
         }

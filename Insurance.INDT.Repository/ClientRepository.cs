@@ -64,11 +64,10 @@ namespace Insurance.INDT.Repository
             {
                 var connection = _dbContext.Connect();
 
-                string sql = "insert into Client(id, name, docto, age) values(@id, @name, @docto, @age); ";
+                string sql = "insert into Client(name, docto, age) values( @name, @docto, @age); ";
 
                 var param = new 
                 { 
-                    id = client.Id, 
                     name = client.Name,
                     docto = client.Docto,
                     age = client.Age

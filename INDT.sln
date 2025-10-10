@@ -11,7 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Application"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Dto", "Insurance.INDT.Dto\Insurance.INDT.Dto.csproj", "{2141F3E1-D313-4478-9D09-ADC77BB7DF11}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Mysql.Repository", "Insurance.INDT.Repository\Insurance.INDT.Mysql.Repository.csproj", "{35E8F668-C063-49C6-8668-A6054DE6D7BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Infra.Mysql.Repository", "Insurance.INDT.Repository\Insurance.INDT.Infra.Mysql.Repository.csproj", "{35E8F668-C063-49C6-8668-A6054DE6D7BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BCAAF928-A6E5-480A-969E-EF849D4C2BFF}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.txt = Readme.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

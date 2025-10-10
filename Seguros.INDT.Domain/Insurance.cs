@@ -8,7 +8,7 @@
         public decimal Value { get; set; }
 
 
-        public Insurance(string id, string name, decimal value): base(id)
+        public Insurance(string id, string name, decimal value)
         {
             ArgumentException.ThrowIfNullOrEmpty(name, nameof(name));
             if (value <= 0)

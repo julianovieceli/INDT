@@ -16,6 +16,9 @@ builder.Services.AddSettings(builder.Configuration);
 builder.Services.AddApplicationServices();
 builder.Services.AddRepositories();
 builder.Services.AddValidators();
+builder.Services.InitializeDataMapper();
+
+
 
 
 var app = builder.Build();

@@ -12,7 +12,7 @@ namespace Insurance.INDT.Domain
 
         public InsuranceStatus Status { get; set; }
 
-        public Proposal(string id, Insurance insurance, Client client): base(id)
+        public Proposal(string id, Insurance insurance, Client client)
         {
             ArgumentNullException.ThrowIfNull(insurance, nameof(insurance));
             ArgumentNullException.ThrowIfNull(client, nameof(client));
