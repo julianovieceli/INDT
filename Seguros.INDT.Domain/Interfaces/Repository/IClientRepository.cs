@@ -4,6 +4,8 @@
     {
         Task<Client> GetByDocto(string docto);
 
+        Task<int> GetCountByDocto(string docto);
+
         Task<bool> Register(Client client);
 
         Task<List<Client>> GetAll();

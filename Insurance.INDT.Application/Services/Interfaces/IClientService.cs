@@ -1,4 +1,5 @@
-﻿using Insurance.INDT.Dto.Request;
+﻿using Insurance.INDT.Domain;
+using Insurance.INDT.Dto.Request;
 
 namespace Insurance.INDT.Application.Services.Interfaces
 {

@@ -2,6 +2,7 @@
 using Insurance.INDT.Domain;
 using Insurance.INDT.Domain.Interfaces.Repository;
 using Insurance.INDT.Dto.Request;
+using Insurance.INDT.Dto.Response;
 
 namespace Insurance.INDT.Application.Services
 {
@@ -16,38 +17,57 @@ namespace Insurance.INDT.Application.Services
         }
         public async Task<Result> Register(RegisterClientDto registerClient)
         {
-            ArgumentNullException.ThrowIfNull(registerClient, "registerClient");
-
-            Client client = await _clientRepository.GetByDocto(registerClient.Docto);
-
-            if (client is null)
+            try
             {
+                ArgumentNullException.ThrowIfNull(registerClient, "registerClient");
 
-                string idClient = Guid.NewGuid().ToString();
+                if (await _clientRepository.GetCountByDocto(registerClient.Docto) == 0)
+                {
+                    string idClient = Guid.NewGuid().ToString();
 
-                client = new Client(idClient, registerClient.Name, registerClient.Docto, registerClient.Age);
+                    Client client = new Client(idClient, registerClient.Name, registerClient.Docto, registerClient.Age);
 
-                if (!await _clientRepository.Register(client))
-                    return Result.Failure("999");
+                    if (!await _clientRepository.Register(client))
+                        return Result.Failure("999");
 
-                return Result.Success;
+                    return Result.Success;
 
+                }
+
+                return Result.Failure("400");//Erro q usuario ja existe com este documento.
             }
-
-            return Result.Failure("999");
+            catch
+            {
+                return Result.Failure("999", System.Net.HttpStatusCode.InternalServerError);
+            }
         }
 
         public async Task<Result> GetByDocto(string docto)
         {
-            ArgumentNullException.ThrowIfNull(docto, "docto");
+            try
+            {
+                ArgumentNullException.ThrowIfNull(docto, "docto");
 
 
-            Client client = await _clientRepository.GetByDocto(docto);
+                Client client = await _clientRepository.GetByDocto(docto);
 
-            if (client is null)
-                return Result.Failure("999");
-
-            return Result<Client>.Success(client);
+                if (client is null)
+                    return Result.Failure("404"); //erro nao encontrado
+                else
+                {
+                    ClientDto clientDto = new ClientDto()
+                    {
+                        Id = client.Id,
+                        Age = client.Age,
+                        Docto = client.Docto,
+                        Name = client.Name
+                    };
+                    return Result<ClientDto>.Success(clientDto);
+                }
+            }catch
+            {
+                return Result.Failure("999", System.Net.HttpStatusCode.InternalServerError);
+            }
         }
 
 
@@ -61,7 +81,16 @@ namespace Insurance.INDT.Application.Services
             else if (clientList.Count == 0)
                 return Result.Failure("404", System.Net.HttpStatusCode.NotFound);
 
-            return Result<IList<Client>>.Success(clientList);
+
+            IList<ClientDto> list = clientList.Select(c => new ClientDto()
+            {
+                Id = c.Id,
+                Age = c.Age,
+                Docto = c.Docto,
+                Name = c.Name
+            }).ToList();
+
+            return Result<IList<ClientDto>>.Success(list);
         }
     }
 }
