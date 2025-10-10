@@ -11,3 +11,9 @@ use INDT;
    docto varchar(14),  
    age int);
 
+   
+create table Insurance
+   (id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   name varchar(200), 
+   creationDate datetime);
+

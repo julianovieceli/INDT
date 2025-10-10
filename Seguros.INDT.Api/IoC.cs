@@ -21,6 +21,7 @@ namespace Insurance.Proposal.INDT.Api
            var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<ClientProfile>();
+                cfg.AddProfile<InsuranceProfile>();
             });
 
             IMapper mapper = config.CreateMapper();

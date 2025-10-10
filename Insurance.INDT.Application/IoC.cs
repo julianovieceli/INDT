@@ -11,13 +11,15 @@ namespace Insurance.INDT.Application
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddScoped<IInsuranceService, InsuranceService>();
             return services.AddScoped<IClientService, ClientService>();
         }
 
 
         public static IServiceCollection AddValidators(this IServiceCollection services)
         {
-            return services.AddScoped<IValidator<RegisterClientDto>, RegisterClientDtoValidator>();
+            services.AddScoped<IValidator<RegisterClientDto>, RegisterClientDtoValidator>();
+            return services.AddScoped<IValidator<RegisterInsuranceDto>, RegisterInsuranceDtoValidator>();
         }
     }
 }
