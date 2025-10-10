@@ -33,6 +33,8 @@ namespace Insurance.Proposal.INDT.Api.Controllers
             return Ok(result);
         }
 
+
+
         [HttpGet("fetch-all")]
         public async Task<IActionResult> GetAll()
         {
@@ -51,6 +53,8 @@ namespace Insurance.Proposal.INDT.Api.Controllers
             return Ok(result);
         }
 
+
+
         [HttpPost(Name = "PostClient")]
         public async Task<IActionResult> RegisterClient(RegisterClientDto registerClient) 
         {
@@ -62,7 +66,7 @@ namespace Insurance.Proposal.INDT.Api.Controllers
                 return BadRequest(result);  
             }
             _logger.LogInformation("Ok");
-            return Ok(result);
+            return StatusCode(StatusCodes.Status201Created);
         }
     }
 }

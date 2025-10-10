@@ -28,14 +28,16 @@ namespace Insurance.INDT.Mysql.Repository
                 {
                     _connection = new MySqlConnection(_mySqlDbcontextSettings.ConnectionUrl);
                     _connection.Open();
+                    _logger.LogInformation("Connected");
                 }
                 else
                 if (_connection.State is not ConnectionState.Open)
                 {
                     _connection.Open();
+                    _logger.LogInformation("Connected");
                 }
 
-                _logger.LogInformation("Conneccted");
+                
 
                 return _connection;
 
@@ -52,6 +54,8 @@ namespace Insurance.INDT.Mysql.Repository
         {
             if (_connection is not null)
                 _connection.Close();
+
+            _logger.LogInformation("Connection disposed");
         }
 
     }

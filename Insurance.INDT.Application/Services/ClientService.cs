@@ -1,4 +1,5 @@
-﻿using Insurance.INDT.Application.Services.Interfaces;
+﻿using FluentValidation;
+using Insurance.INDT.Application.Services.Interfaces;
 using Insurance.INDT.Domain;
 using Insurance.INDT.Domain.Interfaces.Repository;
 using Insurance.INDT.Dto.Request;
@@ -9,17 +10,24 @@ namespace Insurance.INDT.Application.Services
     public class ClientService: IClientService
     {
         private readonly IClientRepository _clientRepository;
+        private readonly IValidator<RegisterClientDto> _clientValidator;
 
-
-        public ClientService(IClientRepository clientRepository)
+        public ClientService(IClientRepository clientRepository, IValidator<RegisterClientDto> clientValidator)
         {
             _clientRepository = clientRepository;
+            _clientValidator = clientValidator;
         }
-        public async Task<Result> Register(RegisterClientDto registerClient)
+        public async Task<Result> Register(RegisterClientDto registerClient )
         {
             try
             {
                 ArgumentNullException.ThrowIfNull(registerClient, "registerClient");
+
+                var validatorResult = _clientValidator.Validate(registerClient);
+                if (!validatorResult.IsValid) 
+                {
+                    return Result.Failure("400", validatorResult.Errors.FirstOrDefault().ErrorMessage);//Erro q usuario ja existe com este documento.
+                }
 
                 if (await _clientRepository.GetCountByDocto(registerClient.Docto) == 0)
                 {
