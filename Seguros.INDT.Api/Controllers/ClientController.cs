@@ -19,6 +19,34 @@ namespace Insurance.Proposal.INDT.Api.Controllers
             _clientService = clientService; 
         }
 
+        [HttpGet("fetch")]
+        public async Task<IActionResult> GetClient([FromQuery] string docto)
+        {
+            var result = await _clientService.GetByDocto(docto);
+
+            if (result.IsFailure)
+            {
+                _logger.LogError($"Error{result.ErrorCode}");
+                return BadRequest(result);
+            }
+            _logger.LogInformation("Ok");
+            return Ok(result);
+        }
+
+        [HttpGet("fetch-all")]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await _clientService.GetAll();
+
+            if (result.IsFailure)
+            {
+                _logger.LogError($"Error{result.ErrorCode}");
+                return BadRequest(result);
+            }
+            _logger.LogInformation("Ok");
+            return Ok(result);
+        }
+
         [HttpPost(Name = "PostClient")]
         public async Task<IActionResult> RegisterClient(RegisterClientDto registerClient) 
         {

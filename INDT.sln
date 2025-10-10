@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Application"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Dto", "Insurance.INDT.Dto\Insurance.INDT.Dto.csproj", "{2141F3E1-D313-4478-9D09-ADC77BB7DF11}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.MongoDb.Repository", "Insurance.INDT.Repository\Insurance.INDT.MongoDb.Repository.csproj", "{35E8F668-C063-49C6-8668-A6054DE6D7BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Mysql.Repository", "Insurance.INDT.Repository\Insurance.INDT.Mysql.Repository.csproj", "{35E8F668-C063-49C6-8668-A6054DE6D7BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

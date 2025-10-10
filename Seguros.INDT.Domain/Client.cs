@@ -7,6 +7,9 @@
         public string Docto { get; set; }
         public int Age { get; set; }
 
+        public Client()
+        {
+        }
         public Client(string id, string name, string docto, int age) : base(id)
         {
             ArgumentException.ThrowIfNullOrEmpty(name, nameof(name));

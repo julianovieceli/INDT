@@ -4,6 +4,11 @@
     {
         public string Id { get; set; }
 
+        protected BaseClass()
+        {
+            
+        }
+
         protected BaseClass(string id)
         {
          ArgumentNullException.ThrowIfNullOrWhiteSpace(id, nameof(id)); 

@@ -2,6 +2,10 @@
 {
     public interface IClientRepository
     {
-        Task<bool> GetByDocto(string docto);
+        Task<Client> GetByDocto(string docto);
+
+        Task<bool> Register(Client client);
+
+        Task<List<Client>> GetAll();
     }
 }

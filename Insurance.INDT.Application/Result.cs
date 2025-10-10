@@ -37,4 +37,16 @@ public class Result
 
 }
 
+public class Result<T> : Result
+{
+    public T Value { get; set; }
+
+    protected Result(T value) 
+    {
+        this.Value = value;
+    }
+
+    public static Result<T> Success(T value) => new(value);
+}
+
 

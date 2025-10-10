@@ -18,17 +18,48 @@ namespace Insurance.INDT.Application.Services
         {
             ArgumentNullException.ThrowIfNull(registerClient, "registerClient");
 
-            if (!await _clientRepository.GetByDocto(registerClient.Docto))
+            Client client = await _clientRepository.GetByDocto(registerClient.Docto);
+
+            if (client is null)
             {
 
                 string idClient = Guid.NewGuid().ToString();
 
-                Client client = new Client(idClient, registerClient.Name, registerClient.Docto, registerClient.Age);
+                client = new Client(idClient, registerClient.Name, registerClient.Docto, registerClient.Age);
+
+                if (!await _clientRepository.Register(client))
+                    return Result.Failure("999");
 
                 return Result.Success;
+
             }
 
             return Result.Failure("999");
+        }
+
+        public async Task<Result> GetByDocto(string docto)
+        {
+            ArgumentNullException.ThrowIfNull(docto, "docto");
+
+
+            Client client = await _clientRepository.GetByDocto(docto);
+
+            if (client is null)
+                return Result.Failure("999");
+
+            return Result<Client>.Success(client);
+        }
+
+
+        public async Task<Result> GetAll()
+        {
+            
+            IList<Client> clientList = await _clientRepository.GetAll();
+
+            if (clientList is null)
+                return Result.Failure("999");
+
+            return Result<IList<Client>>.Success(clientList);
         }
     }
 }
