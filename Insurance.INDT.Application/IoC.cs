@@ -12,6 +12,7 @@ namespace Insurance.INDT.Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IInsuranceService, InsuranceService>();
+            services.AddScoped<IProposalService, ProposalService>();
             return services.AddScoped<IClientService, ClientService>();
         }
 

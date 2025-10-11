@@ -14,6 +14,8 @@ namespace Insurance.INDT.Repository
 
             services.AddScoped<IInsuranceRepository, InsuranceRepository>();
 
+            services.AddScoped<IProposalRepository, ProposalRepository>();
+
             return services.AddScoped<IDbContext, MySqlDbcontext>();
         }
     }
