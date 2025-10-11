@@ -6,6 +6,7 @@ namespace Insurance.INDT.Domain.Interfaces.Repository
     {
         Task<Insurance> GetByName(string name);
 
+        Task<Domain.Insurance> GetById(int id);
         Task<int> GetCountByName(string name);
 
         Task<bool> Register(Insurance insurance);

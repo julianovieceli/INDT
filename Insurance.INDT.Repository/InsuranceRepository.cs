@@ -36,6 +36,28 @@ namespace Insurance.INDT.Repository
                 throw;
             }
         }
+
+        public async Task<Domain.Insurance> GetById(int id)
+        {
+            try
+            {
+                var connection = _dbContext.Connect();
+
+                string sql = "select * from Insurance where id = @id; ";
+
+                var param = new { id };
+
+                var insurance = await connection.QueryFirstOrDefaultAsync<Domain.Insurance>(sql, param); ;
+
+                return insurance;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro ao consultar um Seguro");
+                throw;
+            }
+        }
+
         public async Task<int> GetCountByName(string name)
         {
             try

@@ -20,6 +20,7 @@ namespace Insurance.INDT.Application
         public static IServiceCollection AddValidators(this IServiceCollection services)
         {
             services.AddScoped<IValidator<RegisterClientDto>, RegisterClientDtoValidator>();
+            services.AddScoped<IValidator<RegisterProposalDto>, RegisterProposalValidator>();
             return services.AddScoped<IValidator<RegisterInsuranceDto>, RegisterInsuranceDtoValidator>();
         }
     }

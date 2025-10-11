@@ -1,13 +1,18 @@
-﻿namespace Insurance.INDT.Domain.Interfaces.Repository
+﻿using Insurance.INDT.Domain.Enums;
+
+namespace Insurance.INDT.Domain.Interfaces.Repository
 {
     public interface IProposalRepository
     {
+        Task<Domain.Proposal> GetByClientIdAndInsuranceId(int clientId, int insuranceId);
+
         Task<Domain.Proposal> GetById(int id);
 
-        //Task<int> GetCountByName(string name);
+        Task<List<Domain.Proposal>> GetAll();
 
-        //Task<bool> Register(Insurance insurance);
+        Task<bool> Register(Proposal proposal);
 
-        //Task<List<Insurance>> GetAll();
+        Task<bool> UpdateStatus(int proposalId, ProposalStatus statusId);
+
     }
 }

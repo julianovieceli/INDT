@@ -33,40 +33,56 @@ namespace Insurance.Proposal.INDT.Api.Controllers
             return Ok(result);
         }
 
+        [HttpPost(Name = "PostProposal")]
+        public async Task<IActionResult> RegisterProposal(RegisterProposalDto proposal)
+        {
+            var result = await _proposalService.Register(proposal);
+
+            if (result.IsFailure)
+            {
+                _logger.LogError($"Error{result.ErrorCode}");
+                return BadRequest(result);
+            }
+            _logger.LogInformation("Ok");
+            return StatusCode(StatusCodes.Status201Created);
+        }
+
+        [HttpPatch(Name = "PatchStatus")]
+        public async Task<IActionResult> UpdateStatus(UpdateProposalDto updateProposalDto)
+        {
+            var result = await _proposalService.UpdateStatus(updateProposalDto);
+
+            if (result.IsFailure)
+            {
+                _logger.LogError($"Error{result.ErrorCode}");
+                return BadRequest(result);
+            }
+            _logger.LogInformation("Ok");
+            return StatusCode(StatusCodes.Status200OK);
+        }
 
 
-        //[HttpGet("fetch-all")]
-        //public async Task<IActionResult> GetAll()
-        //{
-        //    var result = await _insuranceService.GetAll();
 
-        //    if (result.IsFailure)
-        //    {
-        //        _logger.LogError($"Error{result.ErrorCode}");
+        [HttpGet("fetch-all")]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await _proposalService.GetAll();
 
-        //        if(result.ErrorCode == "404")
-        //            return NotFound("Empty");
+            if (result.IsFailure)
+            {
+                _logger.LogError($"Error{result.ErrorCode}");
 
-        //        return BadRequest(result.ErrorCode);
-        //    }
-        //    _logger.LogInformation("Ok");
-        //    return Ok(result);
-        //}
+                if (result.ErrorCode == "404")
+                    return NotFound("Empty");
+
+                return BadRequest(result.ErrorCode);
+            }
+            _logger.LogInformation("Ok");
+            return Ok(result);
+        }
 
 
 
-        //[HttpPost(Name = "PostInsurance")]
-        //public async Task<IActionResult> RegisterInsurance(RegisterInsuranceDto registerInsurance) 
-        //{
-        //     var result = await _insuranceService.Register(registerInsurance);
 
-        //    if(result.IsFailure)
-        //    {
-        //        _logger.LogError($"Error{result.ErrorCode}");
-        //        return BadRequest(result);  
-        //    }
-        //    _logger.LogInformation("Ok");
-        //    return StatusCode(StatusCodes.Status201Created);
-        //}
     }
 }

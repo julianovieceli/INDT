@@ -102,5 +102,26 @@ namespace Insurance.INDT.Repository
             }
 
         }
+
+        public async Task<Domain.Client> GetById(int id)
+        {
+            try
+            {
+                var connection = _dbContext.Connect();
+
+                string sql = "select * from Client where id = @id; ";
+
+                var param = new { id };
+
+                var client = await connection.QueryFirstOrDefaultAsync<Domain.Client>(sql, param); ;
+
+                return client;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro ao consultar um Cliente");
+                throw;
+            }
+        }
     }
 }

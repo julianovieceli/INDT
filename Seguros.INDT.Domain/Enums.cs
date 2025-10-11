@@ -1,10 +1,10 @@
 ﻿namespace Insurance.INDT.Domain.Enums
 {
-    public enum InsuranceStatus
+    public enum ProposalStatus
     {
-        Analysing = 0,
-        Approved = 1,
-        Rejecrted =2
+        Analysing = 1,
+        Approved = 2,
+        Rejected =3
 
     }
 }

@@ -2,7 +2,7 @@
 {
     public class ProposalDto
     {
-        public string Name { get; set; }
+        public int Id { get; set; }
         public DateTime CreationDate { get; set; }
 
         public DateTime ExpirationDate { get; set; }
@@ -12,5 +12,9 @@
         public string ClientName { get; set; }
 
         public string InsuranceName { get; set; }
+
+        public int InsuranceId { get; set; }
+
+        public string Status { get; set; }
     }
 }

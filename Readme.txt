@@ -27,12 +27,12 @@ create table Insurance
    creationDate datetime);
 
 
-
-create table Proposal
+ create table Proposal
    (id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
    clientId int not null, 
    insuranceId int not null,
    value DECIMAL(10, 2) NOT NULL,
+   statusId smallint not null  CHECK (statusId IN (1,2,3)),
    creationDate datetime,
    expirationDate datetime,
    FOREIGN KEY (clientId) REFERENCES Client(id),

@@ -10,9 +10,9 @@ namespace Insurance.INDT.Domain
 
         public DateTime ExpirationDate { get; set; }
 
-        public Client client { get; set; }
+        public Client Client { get; set; }
 
-        public InsuranceStatus Status { get; set; }
+        public ProposalStatus StatusId { get; set; }
 
         public decimal Value {  get; set; }
 
@@ -25,7 +25,7 @@ namespace Insurance.INDT.Domain
             ArgumentNullException.ThrowIfNull(insurance, nameof(insurance));
             ArgumentNullException.ThrowIfNull(client, nameof(client));
 
-            this.client = client;
+            this.Client = client;
             this.Insurance = insurance;
 
             Value = value;
@@ -35,7 +35,9 @@ namespace Insurance.INDT.Domain
 
             ExpirationDate = expirationDate;
 
-            Status = InsuranceStatus.Analysing;
+            StatusId = ProposalStatus.Analysing;
+
+            this.CreationDate = System.DateTime.Now.ToUniversalTime();
         }
 
     }

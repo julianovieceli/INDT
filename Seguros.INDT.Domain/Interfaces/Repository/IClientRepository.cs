@@ -9,5 +9,7 @@
         Task<bool> Register(Client client);
 
         Task<List<Client>> GetAll();
+
+        Task<Domain.Client> GetById(int id);
     }
 }

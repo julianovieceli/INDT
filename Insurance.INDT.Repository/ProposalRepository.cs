@@ -1,8 +1,10 @@
 ﻿using Dapper;
 using Insurance.INDT.Domain;
+using Insurance.INDT.Domain.Enums;
 using Insurance.INDT.Domain.Interfaces.Repository;
 using Insurance.INDT.Mysql.Repository;
 using Microsoft.Extensions.Logging;
+
 
 namespace Insurance.INDT.Repository
 {
@@ -17,20 +19,20 @@ namespace Insurance.INDT.Repository
             _logger = logger;
         }
 
-        public async Task<Domain.Proposal> GetById(int id)
+        public async Task<Domain.Proposal> GetByClientIdAndInsuranceId(int clientId, int insuranceId)
         {
             try
             {
                 var connection = _dbContext.Connect();
 
-                string sql = "select p.*, c.name as clientName, i.name as insuranceName from Proposal p join Client c on (p.clientId = c.id)" +
-                    " join Insurance i on (p.insuranceId = i.id) where p.id = @id; ";
+                string sql = "select p.id, p.value, p.statusId, p.expirationDate, p.clientId, c.id, c.name, c.age, c.docto, p.insuranceId, i.id, i.name  from Proposal p join Client c on (p.clientId = c.id)" +
+                    " join Insurance i on (p.insuranceId = i.id) where p.clientId = @clientId and p.insuranceId = @insuranceId; ";
 
-                var param = new {id };
+                var param = new { clientId , insuranceId };
 
                 var proposal = await connection.QueryAsync<Proposal, Client, Domain.Insurance, Proposal>
                     (sql, map: (prop, cl, ins) => {
-                        prop.client = cl;
+                        prop.Client = cl;
                         prop.Insurance = ins;
                         return prop;
                     }, param:param, splitOn: "clientId, insuranceId");
@@ -43,69 +45,117 @@ namespace Insurance.INDT.Repository
                 throw;
             }
         }
-        //public async Task<int> GetCountByName(string name)
-        //{
-        //    try
-        //    {
-        //        var connection = _dbContext.Connect();
 
-        //        string sql = "select count(*) from Insurance where name = @name; ";
+        public async Task<Domain.Proposal> GetById(int id)
+        {
+            try
+            {
+                var connection = _dbContext.Connect();
 
-        //        var param = new { name };
+                string sql = "select p.id, p.value, p.statusId, p.creationDate, p.expirationDate, p.clientId, c.id, c.name, c.age, c.docto, p.insuranceId, i.id, i.name  from Proposal p join Client c on (p.clientId = c.id)" +
+                 " join Insurance i on (p.insuranceId = i.id) where p.id = @id";
 
-        //        var total = await connection.ExecuteScalarAsync<int>(sql, param); ;
 
-        //        return total;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError(ex, "Erro ao consultar um Seguro");
-        //        throw;
-        //    }
-        //}
+                var param = new { id };
 
-        //public async Task<bool> Register(Domain.Insurance insurance)
-        //{
-        //    try
-        //    {
-        //        var connection = _dbContext.Connect();
+                var proposal = await connection.QueryAsync<Proposal, Client, Domain.Insurance, Proposal>
+                    (sql, map: (prop, cl, ins) => {
+                        prop.Client = cl;
+                        prop.Insurance = ins;
+                        return prop;
+                    }, param: param, splitOn: "clientId, insuranceId");
 
-        //        string sql = "insert into Insurance(name, creationDate) values( @name, @creationDate); ";
+                return proposal.FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro ao consultar uma proposta");
+                throw;
+            }
+        }
 
-        //        var param = new 
-        //        { 
-        //            name = insurance.Name,
-        //            creationDate = insurance.CreationDate
-        //        };
+        public async Task<bool> Register(Domain.Proposal proposal)
+        {
+            try
+            {
+                var connection = _dbContext.Connect();
 
-        //        var result = await connection.ExecuteAsync(sql, param);
+                string sql = "insert into Proposal(clientId, insuranceId, value, statusId, expirationDate, creationDate) " +
+                    "values( @clientId, @insuranceId, @value, @statusId, @expirationDate, @creationDate); ";
 
-        //        return result > 0;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError(ex, "Erro ao cadastrar um Seguro");
-        //        throw;
-        //    }
-        //}
+                var param = new
+                {
+                    clientId = proposal.Client.Id,
+                    insuranceId = proposal.Insurance.Id,
+                    creationDate = proposal.CreationDate,
+                    value = proposal.Value,
+                    expirationDate = proposal.ExpirationDate,
+                    statusId = proposal.StatusId
+                };
 
-        //public async Task<List<Domain.Insurance>> GetAll()
-        //{
-        //    try
-        //    {
-        //        var connection = _dbContext.Connect();
-                
-        //        string sql = "select * from Insurance; ";
-                
-        //        var result = await connection.QueryAsync<Domain.Insurance>(sql);;
-        //        return result.ToList();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError(ex, "Erro ao consultar seguros");
-        //        return null;
-        //    }
+                var result = await connection.ExecuteAsync(sql, param);
 
-        //}
+                return result > 0;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro ao criar uma proposta");
+                throw;
+            }
+        }
+
+
+        public async Task<List<Domain.Proposal>> GetAll()
+        {
+            try
+            {
+                var connection = _dbContext.Connect();
+
+                string sql = "select p.id, p.value, p.statusId, p.creationDate, p.expirationDate, p.clientId, c.id, c.name, c.age, c.docto, p.insuranceId, i.id, i.name  from Proposal p join Client c on (p.clientId = c.id)" +
+                    " join Insurance i on (p.insuranceId = i.id)";
+
+
+                var proposal = await connection.QueryAsync<Proposal, Domain.Client, Domain.Insurance, Proposal>
+                    (sql, map: (prop, cl, ins) => {
+                        prop.Client = cl;
+                        prop.Insurance = ins;
+                        return prop;
+                    },  splitOn: "clientId, insuranceId");
+
+                return proposal.ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro ao consultar uma proposta");
+                throw;
+            }
+
+        }
+
+
+        public async Task<bool> UpdateStatus(int proposalId, ProposalStatus statusId)
+        {
+            try
+            {
+                var connection = _dbContext.Connect();
+
+                string sql = "update Proposal set statusId = @statusId where id = @id";
+
+                var param = new
+                {
+                    id = proposalId,
+                    statusId
+                };
+
+                var result = await connection.ExecuteAsync(sql, param);
+
+                return result > 0;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro ao atualizar o status de  uma proposta");
+                throw;
+            }
+        }
     }
 }

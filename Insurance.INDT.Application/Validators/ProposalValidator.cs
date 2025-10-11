@@ -1,13 +1,16 @@
 ﻿using FluentValidation;
-using Insurance.INDT.Dto.Response;
+using Insurance.INDT.Dto.Request;
 
 namespace Insurance.INDT.Application.Validators
 {
-    //public class ProposalValidator : AbstractValidator<ProposalDto>
-    //{
-    //    public RegisterInsuranceDtoValidator()
-    //    {
-    //        RuleFor(client => client.Name).NotNull().NotEmpty().WithMessage("Nome obrigatório");
-    //    }
-    //}
+    public class RegisterProposalValidator : AbstractValidator<RegisterProposalDto>
+    {
+        public RegisterProposalValidator()
+        {
+            RuleFor(proposal => proposal.ClientId).GreaterThan(0).WithMessage("Codigo cliente deve ser valido");
+            RuleFor(proposal => proposal.InsuranceId).GreaterThan(0).WithMessage("Codigo do seguro deve ser valido");
+            RuleFor(proposal => proposal.Value).GreaterThan(0).WithMessage("Valor deve ser maior que zero");
+            RuleFor(proposal => proposal.ExpirationDate).GreaterThan(System.DateTime.UtcNow).WithMessage("Data deve ser maior q atual");
+        }
+    }
 }
