@@ -57,7 +57,7 @@ namespace Insurance.INDT.Application.Services
         {
             try
             {
-                ArgumentNullException.ThrowIfNull(docto, "docto");
+                ArgumentNullException.ThrowIfNullOrWhiteSpace(docto, "docto");
 
 
                 Client client = await _clientRepository.GetByDocto(docto);
