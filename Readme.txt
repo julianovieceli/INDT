@@ -1,4 +1,4 @@
-Primeiramente subir o container da imagem do mysql:
+ /* Passo 1 Primeiramente subir o container da imagem do mysql: */
 
 /* se noa tiver a imagem na maquina*/
 docker run --name teste-INDT -e MYSQL_ROOT_PASSWORD=admin -p 3306:3306 -d mysql:latest
@@ -7,7 +7,7 @@ docker run --name teste-INDT -e MYSQL_ROOT_PASSWORD=admin -p 3306:3306 -d mysql:
 docker start teste-INDT
 
 
--- Script
+/* Passo 2 Rodar o seguinte Script de BD no MySQL Workbench ou outro cliente MySQL conectado na container */
 
 CREATE DATABASE INDT
     DEFAULT CHARACTER SET = 'utf8mb4';
@@ -46,3 +46,20 @@ create table Insurance
    creationDate datetime,
    expirationDate datetime,
    FOREIGN KEY (proposalId) REFERENCES Proposal(id));
+
+
+/* Passo 3 rodar a aplicacao(a mesma ira subir os dois servicos)*/
+
+
+/* Passo 4 criar nesta nesta ordem no servico Insurance.INDT.Api */
+ 1- Criar um seguro
+ 2- Criar um cliente
+ 3- Criar uma proposta para o cliente e seguro criado
+
+/* Passo 5 Contratar uma proposta no servico Insurance.ProposalHire.INDT.Api */
+    1- Contratar uma proposta para o cliente e seguro criado no passo 4
+    2- Listar propostas contratadas
+
+
+
+
