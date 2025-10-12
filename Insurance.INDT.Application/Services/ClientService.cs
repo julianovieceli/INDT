@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using INDT.Common.Insurance.Dto.Request;
+using INDT.Common.Insurance.Dto.Response;
 using Insurance.INDT.Application.Services.Interfaces;
 using Insurance.INDT.Domain;
 using Insurance.INDT.Domain.Interfaces.Repository;
-using Insurance.INDT.Dto.Request;
-using Insurance.INDT.Dto.Response;
 
 namespace Insurance.INDT.Application.Services
 {

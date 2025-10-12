@@ -5,10 +5,10 @@ using Insurance.INDT.Application.Services;
 using Insurance.INDT.Application.Services.Interfaces;
 using Insurance.INDT.Domain;
 using Insurance.INDT.Domain.Interfaces.Repository;
-using Insurance.INDT.Dto.Request;
-using Insurance.INDT.Dto.Response;
 using Moq;
 using Insurance.Proposal.INDT.Application.Mapping;
+using INDT.Common.Insurance.Dto.Response;
+using INDT.Common.Insurance.Dto.Request;
 
 namespace Insurance.Proposal.INDT.Tests
 {

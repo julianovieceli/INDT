@@ -1,4 +1,4 @@
-﻿namespace Insurance.INDT.Dto.Response
+﻿namespace INDT.Common.Insurance.Dto.Response
 {
     public class InsuranceDto
     {

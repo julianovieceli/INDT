@@ -1,8 +1,7 @@
-﻿namespace Insurance.INDT.Dto.Response
+﻿namespace INDT.Common.Insurance.Dto.Request
 {
-    public class ClientDto
+    public class RegisterClientDto
     {
-        public int Id { get; set; }
         public string Name { get; set; }
 
         public string Docto { get; set; }

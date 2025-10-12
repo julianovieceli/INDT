@@ -1,5 +1,5 @@
+using INDT.Common.Insurance.Dto.Request;
 using Insurance.INDT.Application.Services.Interfaces;
-using Insurance.INDT.Dto.Request;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Insurance.Proposal.INDT.Api.Controllers

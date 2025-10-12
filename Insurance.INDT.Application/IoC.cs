@@ -2,8 +2,9 @@
 using Insurance.INDT.Application.Services;
 using Insurance.INDT.Application.Services.Interfaces;
 using Insurance.INDT.Application.Validators;
-using Insurance.INDT.Dto.Request;
+using INDT.Common.Insurance.Dto.Request;
 using Microsoft.Extensions.DependencyInjection;
+using INDT.Common.Insurance.Application.Validators;
 
 namespace Insurance.INDT.Application
 {

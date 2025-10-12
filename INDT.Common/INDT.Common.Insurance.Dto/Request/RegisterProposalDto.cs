@@ -1,4 +1,4 @@
-﻿namespace Insurance.INDT.Dto.Request
+﻿namespace INDT.Common.Insurance.Dto.Request
 {
     public class RegisterProposalDto
     {

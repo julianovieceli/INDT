@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using INDT.Common.Insurance.Dto.Response;
 using Insurance.INDT.Domain;
-using Insurance.INDT.Dto.Response;
 
 namespace Insurance.Proposal.INDT.Application.Mapping
 {

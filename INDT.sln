@@ -20,7 +20,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.Proposal.INDT.Api
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{93AFB0E6-645D-40F2-A882-80DA96ECD3DC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "INDT.Dto", "INDT.Common\INDT.Dto\INDT.Dto.csproj", "{7F478699-39F5-4479-81BA-08EF33E7CA1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "INDT.Common.Insurance.Dto", "INDT.Common\INDT.Common.Insurance.Dto\INDT.Common.Insurance.Dto.csproj", "{22CC0058-E300-4633-9DBD-0538494D7289}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,16 +48,16 @@ Global
 		{FA64B4B3-2441-4AF8-B190-395B46C57EE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA64B4B3-2441-4AF8-B190-395B46C57EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA64B4B3-2441-4AF8-B190-395B46C57EE2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7F478699-39F5-4479-81BA-08EF33E7CA1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7F478699-39F5-4479-81BA-08EF33E7CA1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7F478699-39F5-4479-81BA-08EF33E7CA1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7F478699-39F5-4479-81BA-08EF33E7CA1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22CC0058-E300-4633-9DBD-0538494D7289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22CC0058-E300-4633-9DBD-0538494D7289}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22CC0058-E300-4633-9DBD-0538494D7289}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22CC0058-E300-4633-9DBD-0538494D7289}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{7F478699-39F5-4479-81BA-08EF33E7CA1F} = {93AFB0E6-645D-40F2-A882-80DA96ECD3DC}
+		{22CC0058-E300-4633-9DBD-0538494D7289} = {93AFB0E6-645D-40F2-A882-80DA96ECD3DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {25FF1BB3-D5DC-4802-8CC7-CF48703B6BBB}

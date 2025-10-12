@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Insurance.INDT.Dto.Request;
+using INDT.Common.Insurance.Dto.Request;
 
 namespace Insurance.INDT.Application.Validators
 {

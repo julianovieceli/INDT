@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\INDT.Common\INDT.Dto\INDT.Dto.csproj" />
+    <ProjectReference Include="..\INDT.Common\INDT.Common.Insurance.Dto\INDT.Common.Insurance.Dto.csproj" />
     <ProjectReference Include="..\Insurance.INDT.Domain\Insurance.INDT.Domain.csproj" />
   </ItemGroup>
 

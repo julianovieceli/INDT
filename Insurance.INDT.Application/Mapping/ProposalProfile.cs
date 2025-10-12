@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Insurance.INDT.Dto.Response;
+using INDT.Common.Insurance.Dto.Response;
 
 namespace Insurance.Proposal.INDT.Application.Mapping
 {
