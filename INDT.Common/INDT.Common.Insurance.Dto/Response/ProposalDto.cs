@@ -16,5 +16,7 @@
         public int InsuranceId { get; set; }
 
         public string Status { get; set; }
+
+        public int StatusId { get; set; }
     }
 }

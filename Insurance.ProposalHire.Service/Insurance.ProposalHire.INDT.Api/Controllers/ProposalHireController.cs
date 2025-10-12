@@ -22,9 +22,9 @@ namespace Insurance.HireProposal.INDT.Api.Controllers
 
 
         [HttpPost("hire")]
-        public async Task<IActionResult> Hire([FromQuery] int id)
+        public async Task<IActionResult> Hire(HireProposalDto hireProposalDto)
         {
-            var result = await _proposalHireService.Register(id);
+            var result = await _proposalHireService.Register(hireProposalDto);
 
             if (result.IsFailure)
             {
@@ -32,7 +32,7 @@ namespace Insurance.HireProposal.INDT.Api.Controllers
                 return BadRequest(result);
             }
             _logger.LogInformation("Ok");
-            return StatusCode(StatusCodes.Status201Created);
+            return StatusCode(StatusCodes.Status200OK);
         }
 
 

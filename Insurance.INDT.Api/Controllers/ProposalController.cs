@@ -1,4 +1,6 @@
+using INDT.Common.Insurance.Domain;
 using INDT.Common.Insurance.Dto.Request;
+using INDT.Common.Insurance.Dto.Response;
 using Insurance.INDT.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,7 +32,7 @@ namespace Insurance.Proposal.INDT.Api.Controllers
                 return BadRequest(result);
             }
             _logger.LogInformation("Ok");
-            return Ok(result);
+            return Ok(((Result < ProposalDto > )result).Value);
         }
 
         [HttpPost(Name = "PostProposal")]

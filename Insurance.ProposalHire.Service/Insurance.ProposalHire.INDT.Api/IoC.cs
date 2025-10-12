@@ -20,6 +20,7 @@ public static class Ioc
         var config = new MapperConfiguration(cfg =>
         {
             cfg.AddProfile<ProposalHireProfile>();
+            cfg.AddProfile<ProposalProfile>();
         });
 
         IMapper mapper = config.CreateMapper();

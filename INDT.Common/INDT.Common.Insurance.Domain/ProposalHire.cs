@@ -22,9 +22,7 @@ namespace INDT.Common.Insurance.Domain
             
             this.Proposal = proposal;
             
-            if(expirationDate <= proposal.ExpirationDate)
-                throw new Exception("Hire Proposal Expiration date must be greather than Proposal exirationDate");
-
+            
             if (string.IsNullOrWhiteSpace(description))
                 throw new Exception("Hire Proposal description required!");
 
