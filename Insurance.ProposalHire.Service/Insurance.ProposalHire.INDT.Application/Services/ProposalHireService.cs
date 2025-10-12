@@ -4,6 +4,7 @@ using INDT.Common.Insurance.Domain.Interfaces.Repository;
 using INDT.Common.Insurance.Dto.Response;
 using Insurance.ProposalHire.INDT.Application.Api;
 using Insurance.ProposalHire.INDT.Application.Services.Interfaces;
+using System.Net;
 
 namespace Insurance.INDT.Application.Services
 {
@@ -16,9 +17,10 @@ namespace Insurance.INDT.Application.Services
         private readonly IApiProposalService _apiProposalService;
 
 
-        public ProposalHireService(IProposalHireRepository proposalHireRepository, IMapper dataMapper)
+        public ProposalHireService(IApiProposalService apiProposalService, IProposalHireRepository proposalHireRepository, IMapper dataMapper)
         {
             _proposalHireRepository = proposalHireRepository;
+            _apiProposalService = apiProposalService;   
             _dataMapper = dataMapper;
         }
 
@@ -26,9 +28,13 @@ namespace Insurance.INDT.Application.Services
         {
             try
             {
-                ArgumentNullException.ThrowIfNull(proposalId);
+                if (proposalId <= 0)
+                    throw new ArgumentOutOfRangeException();
 
-                var t = await _apiProposalService.GetProposalById(proposalId);
+
+                var proposalResponse = await _apiProposalService.GetProposalById(proposalId);
+                if(proposalResponse.IsFailure)
+                    return Result.Failure(proposalResponse.ErrorCode, proposalResponse.ErrorMessage, (HttpStatusCode)proposalResponse.StatusCode);
 
 
                 //var validatorResult = _proposalValidator.Validate(proposalDto);

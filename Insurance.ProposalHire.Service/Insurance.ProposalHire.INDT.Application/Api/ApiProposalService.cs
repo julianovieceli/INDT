@@ -2,6 +2,7 @@
 using INDT.Common.Insurance.Dto.Response;
 using Insurance.ProposalHire.INDT.Application.Api;
 using Insurance.ProposalHire.INDT.Application.Settings;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Text;
 using System.Text.Json;
@@ -12,14 +13,17 @@ public class ApiProposalService : IApiProposalService
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly ProposalUrlSettings _proposalUrlSettings;
+    private readonly ILogger<ApiProposalService> _logger;
 
     public ApiProposalService(
         IHttpClientFactory httpClientFactory,
-        IOptions<ProposalUrlSettings> proposalUrlSettings
+        IOptions<ProposalUrlSettings> proposalUrlSettings,
+        ILogger<ApiProposalService> logger
     )
     {
         _httpClientFactory = httpClientFactory;
         _proposalUrlSettings = proposalUrlSettings.Value;
+        _logger = logger;
     }
 
     public async Task<Result> GetProposalById(int id)
@@ -31,7 +35,6 @@ public class ApiProposalService : IApiProposalService
             
             string url = _proposalUrlSettings.ProposalUrl + $"?id={id}";
 
-            using HttpContent serviceRequestContent = new StringContent(serviceParams, Encoding.UTF8, "application/json");
             var response = await httpClient.GetAsync(url);
 
             return await HandleGetApprovalResponseAsync(response);
@@ -48,16 +51,31 @@ public class ApiProposalService : IApiProposalService
         try
         {
             var responseAsString = await response.Content.ReadAsStringAsync();
-            ProposalDto? proposalDto = JsonSerializer.Deserialize<ProposalDto?>(responseAsString, new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            });
+            
 
-            if (response.IsSuccessStatusCode && proposalDto != null)
+            if (response.IsSuccessStatusCode)
             {
+                _logger.LogInformation("Sucesso ao coletar endpoint de proposta");
+                ProposalDto? proposalDto = JsonSerializer.Deserialize<ProposalDto?>(responseAsString, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
                 return Result<ProposalDto>.Success(proposalDto);
             }
             else
+            if(response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                _logger.LogError("404 Proposta não encontrada");
+                return Result.Failure("404", "Servico de propotsa não encontrado");
+            }
+            else
+            if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+            {
+                _logger.LogError("403 Forbiden");
+                return Result.Failure("403", "Forbiden");
+            }
+            else
+
             {
                 if (string.IsNullOrWhiteSpace(responseAsString))
                     throw new Exception("No content response");
@@ -65,8 +83,9 @@ public class ApiProposalService : IApiProposalService
                 return Result.Failure("999");
             }
         }
-        catch
+        catch(Exception e)
         {
+            _logger.LogError(e, "Erro ao processar a resposta da API de Propostas");
             // Log exception here if needed
             throw;
         }
