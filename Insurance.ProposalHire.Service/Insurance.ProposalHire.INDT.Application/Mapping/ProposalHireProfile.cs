@@ -10,6 +10,13 @@ namespace Insurance.ProposalHire.INDT.Application.Mapping
         public ProposalHireProfile()
         {
             CreateMap<ProposalHireDto, ProposalHireEntity>().ReverseMap();
+
+            CreateMap<ProposalHireEntity, ProposalHireDto>()
+            .ForMember(to => to.InsuranceName, opt => opt.MapFrom(from => from.Proposal.Insurance.Name))
+            .ForMember(to => to.Value, opt => opt.MapFrom(from => from.Proposal.Value))
+            .ForMember(to => to.ClientName, opt => opt.MapFrom(from => from.Proposal.Client.Name))
+            .ForMember(to => to.InsuranceId, opt => opt.MapFrom(from => from.Proposal.Insurance.Id));
+             
         }
 
         

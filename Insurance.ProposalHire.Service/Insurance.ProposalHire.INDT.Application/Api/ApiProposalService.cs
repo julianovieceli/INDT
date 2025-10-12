@@ -4,6 +4,7 @@ using Insurance.ProposalHire.INDT.Application.Api;
 using Insurance.ProposalHire.INDT.Application.Settings;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System.Net;
 using System.Text;
 using System.Text.Json;
 
@@ -80,7 +81,12 @@ public class ApiProposalService : IApiProposalService
                 if (string.IsNullOrWhiteSpace(responseAsString))
                     throw new Exception("No content response");
 
-                return Result.Failure("999");
+                var result = JsonSerializer.Deserialize<Result?>(responseAsString, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+                return Result.Failure(result.ErrorCode, result.ErrorMessage, (HttpStatusCode)result.StatusCode);
             }
         }
         catch(Exception e)

@@ -22,7 +22,7 @@ namespace INDT.Common.Insurance.Domain
             
             this.Proposal = proposal;
             
-            
+            this.Description = description;
             if (string.IsNullOrWhiteSpace(description))
                 throw new Exception("Hire Proposal description required!");
 

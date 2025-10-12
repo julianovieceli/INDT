@@ -4,7 +4,7 @@ namespace INDT.Common.Insurance.Domain;
 
 public class Result
 {
-    protected Result() { }
+    public Result() { }
 
     protected Result(string errorCode, string? errorMessage, HttpStatusCode statusCode)
     {

@@ -7,5 +7,13 @@
 
         public DateTime ExpirationDate { get; set; }
 
+        public decimal Value { get; set; }
+
+        public string ClientName { get; set; }
+
+        public string InsuranceName { get; set; }
+
+        public int InsuranceId { get;set; }
+
     }
 }

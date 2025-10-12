@@ -20,37 +20,54 @@ namespace Insurance.ProposalHire.INDT.MySql.Repository
         }
 
 
-        //public async Task<bool> Register(ProposalHire proposal)
-        //{
-        //    try
-        //    {
-        //        var connection = _dbContext.Connect();
+        public async Task<bool> Register(ProposalHireDomain proposalHire)
+        {
+            try
+            {
+                var connection = _dbContext.Connect();
 
-        //        string sql = "insert into Proposal(clientId, insuranceId, value, statusId, expirationDate, creationDate) " +
-        //            "values( @clientId, @insuranceId, @value, @statusId, @expirationDate, @creationDate); ";
+                string sql = "insert into ProposalHire(proposalId, description, expirationDate, creationDate) " +
+                    "values( @proposalId, @description, @expirationDate, @creationDate); ";
 
-        //        var param = new
-        //        {
-        //            clientId = proposal.Client.Id,
-        //            insuranceId = proposal.Insurance.Id,
-        //            creationDate = proposal.CreationDate,
-        //            value = proposal.Value,
-        //            expirationDate = proposal.ExpirationDate,
-        //            statusId = proposal.StatusId
-        //        };
+                var param = new
+                {
+                    proposalId = proposalHire.Proposal .Id,
+                    description = proposalHire.Description,
+                    creationDate = proposalHire.CreationDate,
+                    expirationDate = proposalHire.ExpirationDate
+                };
 
-        //        var result = await connection.ExecuteAsync(sql, param);
+                var result = await connection.ExecuteAsync(sql, param);
 
-        //        return result > 0;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError(ex, "Erro ao criar uma proposta");
-        //        throw;
-        //    }
-        //}
+                return result > 0;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro ao contratar uma proposta");
+                throw;
+            }
+        }
 
+        public async Task<int> GetCounByProposalId(int proposalId)
+        {
+            try
+            {
+                var connection = _dbContext.Connect();
 
+                string sql = "select count(*) from ProposalHire where proposalId = @proposalId; ";
+
+                var param = new { proposalId };
+
+                var total = await connection.ExecuteScalarAsync<int>(sql, param); ;
+
+                return total;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro ao consultar uma contratacao");
+                throw;
+            }
+        }
 
 
         public async Task<List<ProposalHireDomain>> GetAll()
@@ -59,7 +76,7 @@ namespace Insurance.ProposalHire.INDT.MySql.Repository
             {
                 var connection = _dbContext.Connect();
 
-                string sql = "select ph.id, ph.description,  ph.creationDate, ph.expirationDate, p.statusId, p.value, c.name, c.age, " +
+                string sql = "select ph.id, ph.description,  ph.creationDate, ph.expirationDate, ph.proposalId, p.statusId, p.value, p.clientId, c.name, c.age, " +
                     "c.docto, p.insuranceId, i.id, i.name  from Proposal p join Client c on (p.clientId = c.id)" +
                     " join Insurance i on (p.insuranceId = i.id) " +
                     "join ProposalHire ph on (ph.proposalId = p.id)";

@@ -32,7 +32,25 @@ namespace Insurance.HireProposal.INDT.Api.Controllers
                 return BadRequest(result);
             }
             _logger.LogInformation("Ok");
-            return StatusCode(StatusCodes.Status200OK);
+            return StatusCode(StatusCodes.Status201Created);
+        }
+
+        [HttpGet("fetch-all")]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await _proposalHireService.GetAll();
+
+            if (result.IsFailure)
+            {
+                _logger.LogError($"Error{result.ErrorCode}");
+
+                if (result.ErrorCode == "404")
+                    return NotFound("Empty");
+
+                return BadRequest(result.ErrorCode);
+            }
+            _logger.LogInformation("Ok");
+            return Ok(result);
         }
 
 

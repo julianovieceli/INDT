@@ -6,5 +6,7 @@ namespace Insurance.ProposalHire.INDT.Application.Services.Interfaces
     public interface IProposalHireService
     {
         Task<Result> Register(HireProposalDto hireProposalDto);
+
+        Task<Result> GetAll();
     }
 }

@@ -120,7 +120,7 @@ namespace Insurance.INDT.Application.Services
                 Proposal proposal = await _proposalRepository.GetById(id);
 
                 if (proposal is null)
-                    return Result.Failure("404"); //erro nao encontrado
+                    return Result.Failure("404", "Proposta ão encontrada"); //erro nao encontrado
                 else
                 {
                     var proposalDto = _dataMapper.Map<ProposalDto>(proposal);

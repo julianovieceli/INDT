@@ -44,8 +44,11 @@ namespace Insurance.INDT.Application.Services
 
                 Domain.ProposalHire poposalHire = new Domain.ProposalHire(proposal, hireProposalDto.ExpirationDate, hireProposalDto.Description);
 
-                //    if (!await _proposalRepository.Register(proposal))
-                //        return Result.Failure("999");
+                if(await _proposalHireRepository.GetCounByProposalId(hireProposalDto.ProposalId) > 0)
+                    return Result.Failure("400", "Proposta ja contratada", HttpStatusCode.BadRequest);
+
+                if (!await _proposalHireRepository.Register(poposalHire))
+                    return Result.Failure("999");
 
                     return Result.Success;
 
