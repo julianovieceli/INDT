@@ -61,5 +61,10 @@ create table Insurance
     2- Listar propostas contratadas
 
 
+OBSERVACOES:
+ 1- Os testes unitarios foi feito somente da classe de servico ClientServiceTest.cs para se ter um exemplo.
+ 2- Existem VARIAS validacoes a serem feitas, nao foi focado nisso e sim na divisao de responsibilidades das camadas e servicos.
+
+
 
 
