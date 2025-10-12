@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.Proposal.INDT.Api", "Seguros.INDT.Api\Insurance.Proposal.INDT.Api.csproj", "{0FDBB521-81C1-42E0-90DC-7303C17A5BDD}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Domain", "Seguros.INDT.Domain\Insurance.INDT.Domain.csproj", "{3A4D624B-9517-4336-8710-E20BEEFA3580}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Application", "Insurance.INDT.Application\Insurance.INDT.Application.csproj", "{54F02D2E-F6C2-4B0F-8BE9-9551D6F0AC81}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Dto", "Insurance.INDT.Dto\Insurance.INDT.Dto.csproj", "{2141F3E1-D313-4478-9D09-ADC77BB7DF11}"
@@ -18,7 +14,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Readme.txt = Readme.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.Proposal.INDT.Tests", "Insurance.Proposal.INDT.Tests\Insurance.Proposal.INDT.Tests.csproj", "{B4ED3D82-D372-4E46-A564-1B460620639F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.Proposal.INDT.Tests", "Insurance.Proposal.INDT.Tests\Insurance.Proposal.INDT.Tests.csproj", "{B4ED3D82-D372-4E46-A564-1B460620639F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Domain", "Insurance.INDT.Domain\Insurance.INDT.Domain.csproj", "{62AE6AE8-ED85-4F91-9978-D9B04F0AFB10}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.Proposal.INDT.Api", "Insurance.INDT.Api\Insurance.Proposal.INDT.Api.csproj", "{FA64B4B3-2441-4AF8-B190-395B46C57EE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,14 +26,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0FDBB521-81C1-42E0-90DC-7303C17A5BDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0FDBB521-81C1-42E0-90DC-7303C17A5BDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0FDBB521-81C1-42E0-90DC-7303C17A5BDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0FDBB521-81C1-42E0-90DC-7303C17A5BDD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3A4D624B-9517-4336-8710-E20BEEFA3580}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3A4D624B-9517-4336-8710-E20BEEFA3580}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3A4D624B-9517-4336-8710-E20BEEFA3580}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3A4D624B-9517-4336-8710-E20BEEFA3580}.Release|Any CPU.Build.0 = Release|Any CPU
 		{54F02D2E-F6C2-4B0F-8BE9-9551D6F0AC81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{54F02D2E-F6C2-4B0F-8BE9-9551D6F0AC81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54F02D2E-F6C2-4B0F-8BE9-9551D6F0AC81}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -50,6 +42,14 @@ Global
 		{B4ED3D82-D372-4E46-A564-1B460620639F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4ED3D82-D372-4E46-A564-1B460620639F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4ED3D82-D372-4E46-A564-1B460620639F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62AE6AE8-ED85-4F91-9978-D9B04F0AFB10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62AE6AE8-ED85-4F91-9978-D9B04F0AFB10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62AE6AE8-ED85-4F91-9978-D9B04F0AFB10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62AE6AE8-ED85-4F91-9978-D9B04F0AFB10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA64B4B3-2441-4AF8-B190-395B46C57EE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA64B4B3-2441-4AF8-B190-395B46C57EE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA64B4B3-2441-4AF8-B190-395B46C57EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA64B4B3-2441-4AF8-B190-395B46C57EE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
