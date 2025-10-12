@@ -1,5 +1,6 @@
-
+using Insurance.ProposalHire.INDT.Application;
 using Insurance.ProposalHire.INDT.MySql.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddRepositories();
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 

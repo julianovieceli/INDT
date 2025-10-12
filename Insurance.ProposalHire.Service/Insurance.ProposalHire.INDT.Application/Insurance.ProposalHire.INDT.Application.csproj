@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="15.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\INDT.Common\INDT.Common.Insurance.Dto\INDT.Common.Insurance.Dto.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="INDT.Common.Insurance.Domain">
+      <HintPath>..\..\INDT.Common\INDT.Common.Insurance.Domain\obj\Debug\net8.0\ref\INDT.Common.Insurance.Domain.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

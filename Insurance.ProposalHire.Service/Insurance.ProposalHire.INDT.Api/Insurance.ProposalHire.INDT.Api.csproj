@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Insurance.ProposalHire.INDT.Application\Insurance.ProposalHire.INDT.Application.csproj" />
     <ProjectReference Include="..\Insurance.ProposalHire.INDT.MySql.Repository\Insurance.ProposalHire.INDT.MySql.Repository.csproj" />
   </ItemGroup>
 

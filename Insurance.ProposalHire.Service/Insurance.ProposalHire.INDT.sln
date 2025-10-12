@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.ProposalHire.INDT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.ProposalHire.INDT.MySql.Repository", "Insurance.ProposalHire.INDT.MySql.Repository\Insurance.ProposalHire.INDT.MySql.Repository.csproj", "{19B74BA7-2335-4E07-B554-AF7077B34AF7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.ProposalHire.INDT.Application", "Insurance.ProposalHire.INDT.Application\Insurance.ProposalHire.INDT.Application.csproj", "{1310FE2F-0E2C-4A2F-9E54-985B2512766A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{19B74BA7-2335-4E07-B554-AF7077B34AF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19B74BA7-2335-4E07-B554-AF7077B34AF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19B74BA7-2335-4E07-B554-AF7077B34AF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1310FE2F-0E2C-4A2F-9E54-985B2512766A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1310FE2F-0E2C-4A2F-9E54-985B2512766A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1310FE2F-0E2C-4A2F-9E54-985B2512766A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1310FE2F-0E2C-4A2F-9E54-985B2512766A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
