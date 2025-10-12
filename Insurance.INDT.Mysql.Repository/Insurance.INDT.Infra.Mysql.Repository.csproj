@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\INDT.Common\INDT.Common.Insurance.Domain\INDT.Common.Insurance.Domain.csproj" />
+    <ProjectReference Include="..\INDT.Common\INDT.Common.Insurance.Infra.Mysql.Repository\INDT.Common.Insurance.Infra.Mysql.Repository.csproj" />
   </ItemGroup>
 
 </Project>

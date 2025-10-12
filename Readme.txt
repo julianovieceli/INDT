@@ -38,3 +38,11 @@ create table Insurance
    FOREIGN KEY (clientId) REFERENCES Client(id),
    FOREIGN KEY (insuranceId) REFERENCES Insurance(id));
 
+
+     create table ProposalHire
+   (id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   proposalId int not null,
+   description varchar(200) not null,
+   creationDate datetime,
+   expirationDate datetime,
+   FOREIGN KEY (proposalId) REFERENCES Proposal(id));

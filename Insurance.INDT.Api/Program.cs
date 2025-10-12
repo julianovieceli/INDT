@@ -1,6 +1,6 @@
 using Insurance.INDT.Application;
-using Insurance.INDT.Infra.Mysql.Repository;
 using Insurance.Proposal.INDT.Api;
+using Insurance.INDT.Infra.Mysql.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 

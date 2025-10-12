@@ -1,4 +1,4 @@
-﻿namespace Insurance.INDT.Mysql.Repository.Settings
+﻿namespace INDT.Common.Insurance.Infra.Mysql.Repository
 {
     public class MySqlDbcontextSettings
     {

@@ -1,6 +1,6 @@
 ﻿
 using AutoMapper;
-using Insurance.INDT.Mysql.Repository.Settings;
+using INDT.Common.Insurance.Infra.Mysql.Repository;
 using Insurance.INDT.Application.Mapping;
 
 namespace Insurance.Proposal.INDT.Api

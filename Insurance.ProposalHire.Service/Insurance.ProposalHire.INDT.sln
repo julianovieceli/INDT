@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35201.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.ProposalHire.INDT.Api", "Insurance.ProposalHire.INDT.Api\Insurance.ProposalHire.INDT.Api.csproj", "{85350D46-F1DC-4905-AF97-973CD0676C7C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.ProposalHire.INDT.MySql.Repository", "Insurance.ProposalHire.INDT.MySql.Repository\Insurance.ProposalHire.INDT.MySql.Repository.csproj", "{19B74BA7-2335-4E07-B554-AF7077B34AF7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{85350D46-F1DC-4905-AF97-973CD0676C7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85350D46-F1DC-4905-AF97-973CD0676C7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85350D46-F1DC-4905-AF97-973CD0676C7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85350D46-F1DC-4905-AF97-973CD0676C7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19B74BA7-2335-4E07-B554-AF7077B34AF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19B74BA7-2335-4E07-B554-AF7077B34AF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19B74BA7-2335-4E07-B554-AF7077B34AF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19B74BA7-2335-4E07-B554-AF7077B34AF7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6D136590-737A-44AE-A655-1E35E128F7BD}
+	EndGlobalSection
+EndGlobal

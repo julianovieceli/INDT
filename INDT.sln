@@ -5,22 +5,30 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Application", "Insurance.INDT.Application\Insurance.INDT.Application.csproj", "{54F02D2E-F6C2-4B0F-8BE9-9551D6F0AC81}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Infra.Mysql.Repository", "Insurance.INDT.Repository\Insurance.INDT.Infra.Mysql.Repository.csproj", "{35E8F668-C063-49C6-8668-A6054DE6D7BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Api", "Insurance.INDT.Api\Insurance.INDT.Api.csproj", "{FA64B4B3-2441-4AF8-B190-395B46C57EE2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BCAAF928-A6E5-480A-969E-EF849D4C2BFF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{93AFB0E6-645D-40F2-A882-80DA96ECD3DC}"
 	ProjectSection(SolutionItems) = preProject
 		Readme.txt = Readme.txt
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.Proposal.INDT.Tests", "Insurance.Proposal.INDT.Tests\Insurance.Proposal.INDT.Tests.csproj", "{B4ED3D82-D372-4E46-A564-1B460620639F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.Proposal.INDT.Api", "Insurance.INDT.Api\Insurance.Proposal.INDT.Api.csproj", "{FA64B4B3-2441-4AF8-B190-395B46C57EE2}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{93AFB0E6-645D-40F2-A882-80DA96ECD3DC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "INDT.Common.Insurance.Dto", "INDT.Common\INDT.Common.Insurance.Dto\INDT.Common.Insurance.Dto.csproj", "{22CC0058-E300-4633-9DBD-0538494D7289}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "INDT.Common.Insurance.Domain", "INDT.Common\INDT.Common.Insurance.Domain\INDT.Common.Insurance.Domain.csproj", "{AD622AF1-77DC-47CA-9DC7-C3EFAD0BD175}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProposalHireService", "ProposalHireService", "{48840117-E1FD-4820-9B56-C5890E3B2C40}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Infra.Mysql.Repository", "Insurance.INDT.Mysql.Repository\Insurance.INDT.Infra.Mysql.Repository.csproj", "{3D8D29C4-4678-4DFF-9684-AC2108FC7DED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{91372365-B830-4BC0-961E-71AB0FD65BCA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Tests", "Insurance.INDT.Tests\Insurance.INDT.Tests.csproj", "{B771B5C3-7798-4591-89E7-4BC5A423E25B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "INDT.Common.Insurance.Infra.Mysql.Repository", "INDT.Common\INDT.Common.Insurance.Infra.Mysql.Repository\INDT.Common.Insurance.Infra.Mysql.Repository.csproj", "{4B464B00-8B4F-4EB3-942D-BB70A273208A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.ProposalHire.INDT.Api", "Insurance.ProposalHire.Service\Insurance.ProposalHire.INDT.Api\Insurance.ProposalHire.INDT.Api.csproj", "{110F4167-2DFD-4561-BF3D-376253578A7C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.ProposalHire.INDT.MySql.Repository", "Insurance.ProposalHire.Service\Insurance.ProposalHire.INDT.MySql.Repository\Insurance.ProposalHire.INDT.MySql.Repository.csproj", "{5D21B613-4CEE-45B7-B5C2-E1AD0916BD78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,14 +40,6 @@ Global
 		{54F02D2E-F6C2-4B0F-8BE9-9551D6F0AC81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54F02D2E-F6C2-4B0F-8BE9-9551D6F0AC81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54F02D2E-F6C2-4B0F-8BE9-9551D6F0AC81}.Release|Any CPU.Build.0 = Release|Any CPU
-		{35E8F668-C063-49C6-8668-A6054DE6D7BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35E8F668-C063-49C6-8668-A6054DE6D7BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35E8F668-C063-49C6-8668-A6054DE6D7BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35E8F668-C063-49C6-8668-A6054DE6D7BB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B4ED3D82-D372-4E46-A564-1B460620639F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B4ED3D82-D372-4E46-A564-1B460620639F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B4ED3D82-D372-4E46-A564-1B460620639F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B4ED3D82-D372-4E46-A564-1B460620639F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FA64B4B3-2441-4AF8-B190-395B46C57EE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FA64B4B3-2441-4AF8-B190-395B46C57EE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA64B4B3-2441-4AF8-B190-395B46C57EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -52,6 +52,26 @@ Global
 		{AD622AF1-77DC-47CA-9DC7-C3EFAD0BD175}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD622AF1-77DC-47CA-9DC7-C3EFAD0BD175}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD622AF1-77DC-47CA-9DC7-C3EFAD0BD175}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D8D29C4-4678-4DFF-9684-AC2108FC7DED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D8D29C4-4678-4DFF-9684-AC2108FC7DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D8D29C4-4678-4DFF-9684-AC2108FC7DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D8D29C4-4678-4DFF-9684-AC2108FC7DED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B771B5C3-7798-4591-89E7-4BC5A423E25B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B771B5C3-7798-4591-89E7-4BC5A423E25B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B771B5C3-7798-4591-89E7-4BC5A423E25B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B771B5C3-7798-4591-89E7-4BC5A423E25B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B464B00-8B4F-4EB3-942D-BB70A273208A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B464B00-8B4F-4EB3-942D-BB70A273208A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B464B00-8B4F-4EB3-942D-BB70A273208A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B464B00-8B4F-4EB3-942D-BB70A273208A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{110F4167-2DFD-4561-BF3D-376253578A7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{110F4167-2DFD-4561-BF3D-376253578A7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{110F4167-2DFD-4561-BF3D-376253578A7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{110F4167-2DFD-4561-BF3D-376253578A7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D21B613-4CEE-45B7-B5C2-E1AD0916BD78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D21B613-4CEE-45B7-B5C2-E1AD0916BD78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D21B613-4CEE-45B7-B5C2-E1AD0916BD78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D21B613-4CEE-45B7-B5C2-E1AD0916BD78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +79,10 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{22CC0058-E300-4633-9DBD-0538494D7289} = {93AFB0E6-645D-40F2-A882-80DA96ECD3DC}
 		{AD622AF1-77DC-47CA-9DC7-C3EFAD0BD175} = {93AFB0E6-645D-40F2-A882-80DA96ECD3DC}
+		{B771B5C3-7798-4591-89E7-4BC5A423E25B} = {91372365-B830-4BC0-961E-71AB0FD65BCA}
+		{4B464B00-8B4F-4EB3-942D-BB70A273208A} = {93AFB0E6-645D-40F2-A882-80DA96ECD3DC}
+		{110F4167-2DFD-4561-BF3D-376253578A7C} = {48840117-E1FD-4820-9B56-C5890E3B2C40}
+		{5D21B613-4CEE-45B7-B5C2-E1AD0916BD78} = {48840117-E1FD-4820-9B56-C5890E3B2C40}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {25FF1BB3-D5DC-4802-8CC7-CF48703B6BBB}
