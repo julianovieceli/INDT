@@ -41,9 +41,10 @@ public class Result<T> : Result
 {
     public T Value { get; set; }
 
-    protected Result(T value) 
+    protected Result(T value, HttpStatusCode statusCode = HttpStatusCode.OK) 
     {
         this.Value = value;
+        this.StatusCode = (int)statusCode;
     }
 
     public static Result<T> Success(T value) => new(value);
