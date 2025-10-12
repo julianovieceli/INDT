@@ -1,11 +1,11 @@
-﻿using Insurance.INDT.Domain.Interfaces.Repository;
-using Insurance.INDT.Mysql.Repository.Settings;
+﻿using Insurance.INDT.Mysql.Repository.Settings;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MySql.Data.MySqlClient;
 using System.Data;
+using INDT.Common.Insurance.Domain.Interfaces.Repository;
 
-namespace Insurance.INDT.Mysql.Repository
+namespace Insurance.INDT.Infra.Mysql.Repository
 {
     public class MySqlDbcontext: IDisposable, IDbContext
     {

@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using INDT.Common.Insurance.Domain;
+using INDT.Common.Insurance.Domain.Enums;
+using INDT.Common.Insurance.Domain.Interfaces.Repository;
 using INDT.Common.Insurance.Dto.Request;
 using INDT.Common.Insurance.Dto.Response;
 using Insurance.INDT.Application.Services.Interfaces;
-using Insurance.INDT.Domain;
-using Insurance.INDT.Domain.Enums;
-using Insurance.INDT.Domain.Interfaces.Repository;
+using InsuranceDomain = INDT.Common.Insurance.Domain;
 
 namespace Insurance.INDT.Application.Services
 {
@@ -43,17 +44,17 @@ namespace Insurance.INDT.Application.Services
 
                 if (await _proposalRepository.GetByClientIdAndInsuranceId(proposalDto.ClientId, proposalDto.InsuranceId) is null)
                 {
-                    Domain.Insurance insurance = await _insuranceRepository.GetById(proposalDto.InsuranceId);
+                    InsuranceDomain.Insurance insurance = await _insuranceRepository.GetById(proposalDto.InsuranceId);
 
                     if(insurance is null)
                         return Result.Failure("404", "Seguro não encontrado");
 
-                    Domain.Client client = await _clientRepository.GetById(proposalDto.ClientId);
+                    Client client = await _clientRepository.GetById(proposalDto.ClientId);
 
                     if (client is null)
                         return Result.Failure("404", "Cliente não encontrado");
 
-                    Domain.Proposal proposal = new Domain.Proposal(insurance, client, proposalDto.ExpirationDate, proposalDto.Value);
+                    Proposal proposal = new Proposal(insurance, client, proposalDto.ExpirationDate, proposalDto.Value);
 
                     if (!await _proposalRepository.Register(proposal))
                         return Result.Failure("999");
@@ -116,7 +117,7 @@ namespace Insurance.INDT.Application.Services
                 if (id <= 0)
                     throw new ArgumentOutOfRangeException();
 
-                Domain.Proposal proposal = await _proposalRepository.GetById(id);
+                Proposal proposal = await _proposalRepository.GetById(id);
 
                 if (proposal is null)
                     return Result.Failure("404"); //erro nao encontrado

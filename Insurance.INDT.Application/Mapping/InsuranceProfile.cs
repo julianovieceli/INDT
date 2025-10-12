@@ -1,13 +1,14 @@
 ﻿using AutoMapper;
 using INDT.Common.Insurance.Dto.Response;
+using InsuranceDomain = INDT.Common.Insurance.Domain;
 
-namespace Insurance.Proposal.INDT.Application.Mapping
+namespace Insurance.INDT.Application.Mapping
 {
     public class InsuranceProfile : Profile
     {
         public InsuranceProfile()
         {
-            CreateMap<InsuranceDto, Insurance.INDT.Domain.Insurance>().ReverseMap();
+            CreateMap<InsuranceDto, InsuranceDomain.Insurance>().ReverseMap();
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿using Dapper;
-using Insurance.INDT.Domain;
-using Insurance.INDT.Domain.Enums;
-using Insurance.INDT.Domain.Interfaces.Repository;
-using Insurance.INDT.Mysql.Repository;
+using INDT.Common.Insurance.Domain;
+using INDT.Common.Insurance.Domain.Enums;
+using INDT.Common.Insurance.Domain.Interfaces.Repository;
 using Microsoft.Extensions.Logging;
+using InsuranceDomain = INDT.Common.Insurance.Domain;
 
 
-namespace Insurance.INDT.Repository
+namespace Insurance.INDT.Infra.Mysql.Repository
 {
     public class ProposalRepository : IProposalRepository
     {
@@ -19,7 +19,7 @@ namespace Insurance.INDT.Repository
             _logger = logger;
         }
 
-        public async Task<Domain.Proposal> GetByClientIdAndInsuranceId(int clientId, int insuranceId)
+        public async Task<Proposal> GetByClientIdAndInsuranceId(int clientId, int insuranceId)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace Insurance.INDT.Repository
 
                 var param = new { clientId , insuranceId };
 
-                var proposal = await connection.QueryAsync<Proposal, Client, Domain.Insurance, Proposal>
+                var proposal = await connection.QueryAsync<Proposal, Client, InsuranceDomain.Insurance, Proposal>
                     (sql, map: (prop, cl, ins) => {
                         prop.Client = cl;
                         prop.Insurance = ins;
@@ -46,7 +46,7 @@ namespace Insurance.INDT.Repository
             }
         }
 
-        public async Task<Domain.Proposal> GetById(int id)
+        public async Task<Proposal> GetById(int id)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace Insurance.INDT.Repository
 
                 var param = new { id };
 
-                var proposal = await connection.QueryAsync<Proposal, Client, Domain.Insurance, Proposal>
+                var proposal = await connection.QueryAsync<Proposal, Client, InsuranceDomain.Insurance, Proposal>
                     (sql, map: (prop, cl, ins) => {
                         prop.Client = cl;
                         prop.Insurance = ins;
@@ -74,7 +74,7 @@ namespace Insurance.INDT.Repository
             }
         }
 
-        public async Task<bool> Register(Domain.Proposal proposal)
+        public async Task<bool> Register(Proposal proposal)
         {
             try
             {
@@ -105,7 +105,7 @@ namespace Insurance.INDT.Repository
         }
 
 
-        public async Task<List<Domain.Proposal>> GetAll()
+        public async Task<List<Proposal>> GetAll()
         {
             try
             {
@@ -115,7 +115,7 @@ namespace Insurance.INDT.Repository
                     " join Insurance i on (p.insuranceId = i.id)";
 
 
-                var proposal = await connection.QueryAsync<Proposal, Domain.Client, Domain.Insurance, Proposal>
+                var proposal = await connection.QueryAsync<Proposal, Client, InsuranceDomain.Insurance, Proposal>
                     (sql, map: (prop, cl, ins) => {
                         prop.Client = cl;
                         prop.Insurance = ins;

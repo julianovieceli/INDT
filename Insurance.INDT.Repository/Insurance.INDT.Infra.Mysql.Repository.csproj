@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Insurance.INDT.Domain\Insurance.INDT.Domain.csproj" />
+    <ProjectReference Include="..\INDT.Common\INDT.Common.Insurance.Domain\INDT.Common.Insurance.Domain.csproj" />
   </ItemGroup>
 
 </Project>

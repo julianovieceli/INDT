@@ -1,7 +1,7 @@
 ﻿
 using AutoMapper;
 using Insurance.INDT.Mysql.Repository.Settings;
-using Insurance.Proposal.INDT.Application.Mapping;
+using Insurance.INDT.Application.Mapping;
 
 namespace Insurance.Proposal.INDT.Api
 {

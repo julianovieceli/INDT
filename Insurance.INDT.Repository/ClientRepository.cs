@@ -1,10 +1,10 @@
 ﻿using Dapper;
-using Insurance.INDT.Domain;
-using Insurance.INDT.Domain.Interfaces.Repository;
+using INDT.Common.Insurance.Domain;
+using INDT.Common.Insurance.Domain.Interfaces.Repository;
 using Insurance.INDT.Mysql.Repository;
 using Microsoft.Extensions.Logging;
 
-namespace Insurance.INDT.Repository
+namespace Insurance.INDT.Infra.Mysql.Repository
 {
     public class ClientRepository: IClientRepository
     {
@@ -103,7 +103,7 @@ namespace Insurance.INDT.Repository
 
         }
 
-        public async Task<Domain.Client> GetById(int id)
+        public async Task<Client> GetById(int id)
         {
             try
             {
@@ -113,7 +113,7 @@ namespace Insurance.INDT.Repository
 
                 var param = new { id };
 
-                var client = await connection.QueryFirstOrDefaultAsync<Domain.Client>(sql, param); ;
+                var client = await connection.QueryFirstOrDefaultAsync<Client>(sql, param); ;
 
                 return client;
             }

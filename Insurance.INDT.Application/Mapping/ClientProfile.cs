@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using INDT.Common.Insurance.Domain;
 using INDT.Common.Insurance.Dto.Response;
-using Insurance.INDT.Domain;
 
-namespace Insurance.Proposal.INDT.Application.Mapping
+namespace Insurance.INDT.Application.Mapping
 {
     public class ClientProfile: Profile
     {

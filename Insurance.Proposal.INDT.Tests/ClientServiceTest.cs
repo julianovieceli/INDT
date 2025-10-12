@@ -1,14 +1,14 @@
 using AutoFixture;
 using AutoMapper;
 using FluentValidation;
+using INDT.Common.Insurance.Domain;
+using INDT.Common.Insurance.Domain.Interfaces.Repository;
+using INDT.Common.Insurance.Dto.Request;
+using INDT.Common.Insurance.Dto.Response;
 using Insurance.INDT.Application.Services;
 using Insurance.INDT.Application.Services.Interfaces;
-using Insurance.INDT.Domain;
-using Insurance.INDT.Domain.Interfaces.Repository;
+using Insurance.INDT.Application.Mapping;
 using Moq;
-using Insurance.Proposal.INDT.Application.Mapping;
-using INDT.Common.Insurance.Dto.Response;
-using INDT.Common.Insurance.Dto.Request;
 
 namespace Insurance.Proposal.INDT.Tests
 {
@@ -60,7 +60,7 @@ namespace Insurance.Proposal.INDT.Tests
 
             _clientRepositoryMock
                 .Setup(x => x.GetByDocto(It.IsAny<string>()))
-                .Returns(Task.FromResult<Insurance.INDT.Domain.Client>(null));
+                .Returns(Task.FromResult<Client>(null));
 
 
 

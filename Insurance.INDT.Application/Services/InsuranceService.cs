@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using INDT.Common.Insurance.Domain;
+using INDT.Common.Insurance.Domain.Interfaces.Repository;
 using INDT.Common.Insurance.Dto.Request;
 using INDT.Common.Insurance.Dto.Response;
 using Insurance.INDT.Application.Services.Interfaces;
-using Insurance.INDT.Domain;
-using Insurance.INDT.Domain.Interfaces.Repository;
+using InsuranceDomain = INDT.Common.Insurance.Domain;
 
 namespace Insurance.INDT.Application.Services
 {
@@ -36,7 +37,7 @@ namespace Insurance.INDT.Application.Services
                 if (await _insuranceRepository.GetCountByName(registerInsurance.Name) == 0)
                 {
 
-                    Domain.Insurance insurance = new Domain.Insurance(registerInsurance.Name);
+                    InsuranceDomain.Insurance insurance = new InsuranceDomain.Insurance(registerInsurance.Name);
 
                     if (!await _insuranceRepository.Register(insurance))
                         return Result.Failure("999");
@@ -60,7 +61,7 @@ namespace Insurance.INDT.Application.Services
                 ArgumentNullException.ThrowIfNull(name, "name");
 
 
-                Domain.Insurance insurance = await _insuranceRepository.GetByName(name);
+                InsuranceDomain.Insurance insurance = await _insuranceRepository.GetByName(name);
 
                 if (insurance is null)
                     return Result.Failure("404"); //erro nao encontrado

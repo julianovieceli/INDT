@@ -1,10 +1,9 @@
-﻿using Insurance.INDT.Domain.Interfaces.Repository;
-using Insurance.INDT.Mysql.Repository;
+﻿using INDT.Common.Insurance.Domain.Interfaces.Repository;
 using Microsoft.Extensions.DependencyInjection;
 
 
 
-namespace Insurance.INDT.Repository
+namespace Insurance.INDT.Infra.Mysql.Repository
 {
     public static class Ioc
     {

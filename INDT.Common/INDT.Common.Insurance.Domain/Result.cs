@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Insurance.INDT.Domain;
+namespace INDT.Common.Insurance.Domain;
 
 public class Result
 {

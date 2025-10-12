@@ -1,9 +1,9 @@
 ﻿using Dapper;
-using Insurance.INDT.Domain.Interfaces.Repository;
-using Insurance.INDT.Mysql.Repository;
+using INDT.Common.Insurance.Domain.Interfaces.Repository;
 using Microsoft.Extensions.Logging;
+using InsuranceDomain = INDT.Common.Insurance.Domain;
 
-namespace Insurance.INDT.Repository
+namespace Insurance.INDT.Infra.Mysql.Repository
 {
     public class InsuranceRepository : IInsuranceRepository
     {
@@ -16,7 +16,7 @@ namespace Insurance.INDT.Repository
             _logger = logger;
         }
 
-        public async Task<Domain.Insurance> GetByName(string name)
+        public async Task<InsuranceDomain.Insurance> GetByName(string name)
         {
             try
             {
@@ -26,7 +26,7 @@ namespace Insurance.INDT.Repository
 
                 var param = new {name };
 
-                var insurance = await connection.QueryFirstOrDefaultAsync<Domain.Insurance>(sql, param); ;
+                var insurance = await connection.QueryFirstOrDefaultAsync<InsuranceDomain.Insurance>(sql, param); ;
 
                 return insurance;
             }
@@ -37,7 +37,7 @@ namespace Insurance.INDT.Repository
             }
         }
 
-        public async Task<Domain.Insurance> GetById(int id)
+        public async Task<InsuranceDomain.Insurance> GetById(int id)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace Insurance.INDT.Repository
 
                 var param = new { id };
 
-                var insurance = await connection.QueryFirstOrDefaultAsync<Domain.Insurance>(sql, param); ;
+                var insurance = await connection.QueryFirstOrDefaultAsync<InsuranceDomain.Insurance>(sql, param); ;
 
                 return insurance;
             }
@@ -79,7 +79,7 @@ namespace Insurance.INDT.Repository
             }
         }
 
-        public async Task<bool> Register(Domain.Insurance insurance)
+        public async Task<bool> Register(InsuranceDomain.Insurance insurance)
         {
             try
             {
@@ -104,7 +104,7 @@ namespace Insurance.INDT.Repository
             }
         }
 
-        public async Task<List<Domain.Insurance>> GetAll()
+        public async Task<List<InsuranceDomain.Insurance>> GetAll()
         {
             try
             {
@@ -112,7 +112,7 @@ namespace Insurance.INDT.Repository
                 
                 string sql = "select * from Insurance; ";
                 
-                var result = await connection.QueryAsync<Domain.Insurance>(sql);;
+                var result = await connection.QueryAsync<InsuranceDomain.Insurance>(sql);;
                 return result.ToList();
             }
             catch (Exception ex)
