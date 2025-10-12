@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\WeatherForecastController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Insurance.ProposalHire.INDT.MySql.Repository\Insurance.ProposalHire.INDT.MySql.Repository.csproj" />
   </ItemGroup>
 
