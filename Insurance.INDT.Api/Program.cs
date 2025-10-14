@@ -1,6 +1,9 @@
 using Insurance.INDT.Application;
 using Insurance.Proposal.INDT.Api;
 using Insurance.INDT.Infra.Mysql.Repository;
+using System.Configuration;
+using Microsoft.Extensions.Configuration;
+using Insurance.INDT.Application.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,13 +14,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
 builder.Services.AddSettings(builder.Configuration);
 builder.Services.AddApplicationServices();
 builder.Services.AddRepositories();
 builder.Services.AddValidators();
 builder.Services.InitializeDataMapper();
-
+builder.Services.AddServiceBus(builder.Configuration);
+builder.Services.AddBackgroundServices(builder.Configuration);
 
 
 
