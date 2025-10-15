@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  insurance.indt.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      #- ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_URLS=http://+:80
+      #- ASPNETCORE_HTTPS_PORTS=8081
+      - ServiceBus:ServiceBusConnection=Endpoint=sb://localhost;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SAS_KEY_VALUE;UseDevelopmentEmulator=true;
+      - MySqlDbcontext:ConnectionUrl=Server=dbMysql;Database=INDT;User ID=root;Password=admin;
+      - DB_HOST=dbMysql 
+    ports:
+      - "8080:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+  dbMysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin # Replace with a strong password
+      # MYSQL_DATABASE: your_database_name # Optional: a default database to create
+      MYSQL_USER: admin # Optional: a user with superuser privileges
+      # MYSQL_PASSWORD: admin # Optional: password for the user
+    ports:
+      - "3306:3306" # Maps host port 3306 to container port 3306
+    volumes:
+      - db_data:/var/lib/mysql # Persist data in a named volume
+
+volumes:
+  db_data:
