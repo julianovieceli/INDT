@@ -20,7 +20,7 @@ builder.Services.AddRepositories();
 builder.Services.AddValidators();
 builder.Services.InitializeDataMapper();
 builder.Services.AddServiceBus(builder.Configuration);
-//builder.Services.AddBackgroundServices(builder.Configuration);
+builder.Services.AddBackgroundServices(builder.Configuration);
 
 
 
