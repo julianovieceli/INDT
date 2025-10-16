@@ -36,6 +36,7 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{76F8E2F6-255A-4A28-B466-D9E847C64DA3}"
 	ProjectSection(SolutionItems) = preProject
+		Docker\docker-compose-MongoDb.yml = Docker\docker-compose-MongoDb.yml
 		Docker\docker-compose-mysql.yml = Docker\docker-compose-mysql.yml
 		Docker\docker-compose-sbus-emulator.yml = Docker\docker-compose-sbus-emulator.yml
 		Docker\Readme.txt = Docker\Readme.txt
@@ -45,6 +46,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConfigFiles", "ConfigFiles"
 	ProjectSection(SolutionItems) = preProject
 		..\azure-service-bus-emulator-installer\ServiceBus-Emulator\Config\Config.json = ..\azure-service-bus-emulator-installer\ServiceBus-Emulator\Config\Config.json
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "INDT.Common.Insurance.Infra.MongoDb.Repository", "..\INDT.Common.Insurance.Infra.MongoDb.Repository\INDT.Common.Insurance.Infra.MongoDb.Repository.csproj", "{C72696D6-329F-426A-B673-11CD09504DFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -96,6 +99,10 @@ Global
 		{26862410-8268-4526-B2D9-822F305BB9C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26862410-8268-4526-B2D9-822F305BB9C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26862410-8268-4526-B2D9-822F305BB9C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C72696D6-329F-426A-B673-11CD09504DFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C72696D6-329F-426A-B673-11CD09504DFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C72696D6-329F-426A-B673-11CD09504DFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C72696D6-329F-426A-B673-11CD09504DFA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,6 +116,7 @@ Global
 		{5D21B613-4CEE-45B7-B5C2-E1AD0916BD78} = {48840117-E1FD-4820-9B56-C5890E3B2C40}
 		{C8D079AD-6BC4-4D24-8295-D66288BF3A64} = {48840117-E1FD-4820-9B56-C5890E3B2C40}
 		{617007C9-4435-493B-8319-26014B947BA8} = {76F8E2F6-255A-4A28-B466-D9E847C64DA3}
+		{C72696D6-329F-426A-B673-11CD09504DFA} = {93AFB0E6-645D-40F2-A882-80DA96ECD3DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {25FF1BB3-D5DC-4802-8CC7-CF48703B6BBB}
