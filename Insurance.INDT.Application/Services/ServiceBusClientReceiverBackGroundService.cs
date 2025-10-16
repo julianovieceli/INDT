@@ -23,6 +23,10 @@ public class ServiceBusMessageReceiverService : BackgroundService
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         _logger.LogInformation("Service Bus message ExecuteAsync service running.");
+        _logger.LogInformation($"Sbus connection :{_serviceBusSettings.ServiceBusConnection}");
+        _logger.LogInformation($"Sbus Topic :{_serviceBusSettings.TopicName}");
+        _logger.LogInformation($"Sbus subscription :{_serviceBusSettings.SubscriptionName}");
+
         _client = new ServiceBusClient(_serviceBusSettings.ServiceBusConnection);
         _processor = _client.CreateProcessor(_serviceBusSettings.TopicName, _serviceBusSettings.SubscriptionName, new ServiceBusProcessorOptions());
 
@@ -32,9 +36,11 @@ public class ServiceBusMessageReceiverService : BackgroundService
         await _processor.StartProcessingAsync(stoppingToken);
 
         // Keep the service running until cancellation is requested
-        await Task.Delay(Timeout.Infinite, stoppingToken);
+        await Task.Delay( Timeout.Infinite, stoppingToken);
 
-      
+        _logger.LogInformation("ServiceBusMessageReceiverService is stopping.");
+
+
     }
 
     private async Task MessageHandler(ProcessMessageEventArgs args)

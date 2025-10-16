@@ -21,4 +21,8 @@
     <ProjectReference Include="..\INDT.Common\INDT.Common.Insurance.Dto\INDT.Common.Insurance.Dto.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ServiceBus\ConfigEmulator\" />
+  </ItemGroup>
+
 </Project>

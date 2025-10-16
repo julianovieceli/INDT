@@ -1,5 +1,6 @@
 ﻿using Azure.Messaging.ServiceBus;
 using Microsoft.Extensions.Azure;
+using Microsoft.Extensions.Logging;
 using System.Text;
 
 namespace Insurance.INDT.Application.ServiceBus
@@ -9,10 +10,13 @@ namespace Insurance.INDT.Application.ServiceBus
         private readonly IAzureClientFactory<ServiceBusSender> _azureClientFactory;
 
         private readonly ServiceBusSender _serviceBusSender;
-        public ServiceBusClientService(IAzureClientFactory<ServiceBusSender> azureClientFactory)
+
+        private readonly ILogger<ServiceBusClientService> _logger;
+        public ServiceBusClientService(IAzureClientFactory<ServiceBusSender> azureClientFactory, ILogger<ServiceBusClientService> logger)
         {
             _azureClientFactory = azureClientFactory;
             _serviceBusSender = _azureClientFactory.CreateClient("TesteMensagem");
+            _logger = logger;
         }
 
 
@@ -24,6 +28,12 @@ namespace Insurance.INDT.Application.ServiceBus
             sbMessage.Body = new BinaryData(msg);
             sbMessage.ContentType = "application/json";
 
+            _logger.LogInformation($"Enviando msg :{msg}");
+
+
+            _logger.LogInformation($"EntityPath  :{_serviceBusSender.EntityPath.ToString()}");
+            _logger.LogInformation($"FullyQualifiedNamespace:{_serviceBusSender.FullyQualifiedNamespace}");
+            
             await _serviceBusSender.SendMessageAsync(sbMessage);
 
 

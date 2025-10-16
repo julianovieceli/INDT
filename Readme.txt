@@ -1,3 +1,6 @@
+dentro da pasta "..\INDT\Docker"
+
+
  /* Passo 1 Primeiramente subir o container da imagem do mysql: */
 
 /* se noa tiver a imagem na maquina*/

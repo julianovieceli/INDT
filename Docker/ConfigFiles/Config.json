@@ -47,14 +47,7 @@
                       "FilterType": "Correlation",
                       "CorrelationFilter": {
                         "ContentType": "application/json"
-                        // Other supported properties
-                        // "CorrelationId": "id1",
-                        // "Label": "subject1",
-                        // "MessageId": "msgid1",
-                        // "ReplyTo": "someQueue",
-                        // "ReplyToSessionId": "sessionId",
-                        // "SessionId": "session1",
-                        // "To": "xyz"
+                        
                       }
                     }
                   }
