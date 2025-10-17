@@ -1,16 +1,27 @@
-dentro da pasta "..\INDT\Docker"
+/* 1- Para rodar tudo dentro do docker, executar dentro da pasta "..\INDT" */
+    docker compose -f docker-compose.yml down
+    -- docker compose -f docker-compose.yml up -d
+
+    docker compose up --build --force-recreate insurance.indt.api
 
 
- /* Passo 1 Primeiramente subir o container da imagem do mysql: */
 
-/* se noa tiver a imagem na maquina*/
-docker run --name teste-INDT -e MYSQL_ROOT_PASSWORD=admin -p 3306:3306 -d mysql:latest
+/* 2 - Para containers separados(standalone), executar dentro da pasta "..\INDT\Docker" */
 
-/* Se ja tiver, basta subir*/
-docker start teste-INDT
+-- Executar
+
+docker compose -f docker-compose-sbus-emulator.yml down
+docker compose -f docker-compose-sbus-emulator.yml up -d
+
+docker compose -f docker-compose-mysql.yml down
+docker compose -f docker-compose-mysql.yml up -d
+
+docker compose -f docker-compose-MongoDb.yml down
+docker compose -f docker-compose-MongoDb.yml up -d
 
 
-/* Passo 2 Rodar o seguinte Script de BD no MySQL Workbench ou outro cliente MySQL conectado na container */
+
+/* 3 - Passo 3 Rodar o seguinte Script de BD no MySQL Workbench ou outro cliente MySQL conectado na container */
 
 CREATE DATABASE INDT
     DEFAULT CHARACTER SET = 'utf8mb4';
@@ -51,15 +62,15 @@ create table Insurance
    FOREIGN KEY (proposalId) REFERENCES Proposal(id));
 
 
-/* Passo 3 rodar a aplicacao(a mesma ira subir os dois servicos)*/
+/* Passo 4 rodar a aplicacao(a mesma ira subir os dois servicos)*/
 
 
-/* Passo 4 criar nesta nesta ordem no servico Insurance.INDT.Api */
+/* Passo 5 criar nesta nesta ordem no servico Insurance.INDT.Api */
  1- Criar um seguro
  2- Criar um cliente
  3- Criar uma proposta para o cliente e seguro criado
 
-/* Passo 5 Contratar uma proposta no servico Insurance.ProposalHire.INDT.Api */
+/* Passo 6 Contratar uma proposta no servico Insurance.ProposalHire.INDT.Api */
     1- Contratar uma proposta para o cliente e seguro criado no passo 4
     2- Listar propostas contratadas
 
