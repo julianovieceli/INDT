@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\INDT.Common\INDT.Common.Insurance.Infra.MongoDb.Repository\INDT.Common.Insurance.Infra.MongoDb.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

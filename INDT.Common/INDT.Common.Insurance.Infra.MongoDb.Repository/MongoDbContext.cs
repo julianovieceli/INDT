@@ -12,5 +12,10 @@ namespace INDT.Common.Insurance.Infra.MongoDb.Repository
             var client = new MongoClient(connectionString);
             _database = client.GetDatabase(databaseName);
         }
+
+        public IMongoDatabase DataBase
+        {
+            get { return _database; }
+        }
     }
 }

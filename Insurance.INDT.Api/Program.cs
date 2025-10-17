@@ -1,9 +1,7 @@
 using Insurance.INDT.Application;
-using Insurance.Proposal.INDT.Api;
 using Insurance.INDT.Infra.Mysql.Repository;
-using System.Configuration;
-using Microsoft.Extensions.Configuration;
-using Insurance.INDT.Application.Settings;
+using Insurance.Proposal.INDT.Api;
+using INDT.Common.Insurance.Infra.MongoDb.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +19,10 @@ builder.Services.AddValidators();
 builder.Services.InitializeDataMapper();
 builder.Services.AddServiceBus(builder.Configuration);
 builder.Services.AddBackgroundServices(builder.Configuration);
+builder.Services.AddMongoDbContext(
+    builder.Configuration.GetSection("MongoDbSettings:ConnectionString").Value!,
+    builder.Configuration.GetSection("MongoDbSettings:Database").Value!
+    );
 
 
 
