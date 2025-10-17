@@ -5,7 +5,6 @@ using Insurance.ProposalHire.INDT.Application.Settings;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Net;
-using System.Text;
 using System.Text.Json;
 
 namespace Insurance.ProposalHire.INDT.Application;

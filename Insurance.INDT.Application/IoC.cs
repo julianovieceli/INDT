@@ -2,6 +2,7 @@
 using FluentValidation;
 using INDT.Common.Insurance.Application.Validators;
 using INDT.Common.Insurance.Dto.Request;
+using Insurance.INDT.Application.Api;
 using Insurance.INDT.Application.ServiceBus;
 using Insurance.INDT.Application.Services;
 using Insurance.INDT.Application.Services.Interfaces;
@@ -10,7 +11,6 @@ using Insurance.INDT.Application.Validators;
 using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Runtime;
 
 namespace Insurance.INDT.Application
 {
@@ -23,6 +23,8 @@ namespace Insurance.INDT.Application
             services.AddScoped<IServiceBusClientService, ServiceBusClientService>();
 
             services.AddScoped<IClientDomainService, ClientDomainService>();
+
+            services.AddScoped<IApiWebhookSenderService, ApiWebhookSenderService>();
 
             return services.AddScoped<IClientService, ClientService>();
         }
@@ -64,6 +66,23 @@ namespace Insurance.INDT.Application
                 }).WithName("TesteMensagem");
             }); 
 
+
+            return services;
+        }
+
+        public static IServiceCollection AddHttpClient(this IServiceCollection services
+           , IConfiguration configuration)
+        {
+            services.Configure<WebhookSettings>(configuration.GetSection("WebhookSettings"));
+            
+            WebhookSettings webhookSettings = new WebhookSettings();
+            configuration.GetSection("WebhookSettings").Bind(webhookSettings);
+
+
+            services.AddHttpClient(nameof(HttpClientEnum.API_WEBHOOK), httpClient =>
+            {
+                httpClient.BaseAddress = new Uri(webhookSettings.BaseUrl);
+            });
 
             return services;
         }

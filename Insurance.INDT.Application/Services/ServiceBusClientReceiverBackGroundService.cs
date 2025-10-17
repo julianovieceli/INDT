@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Azure.Messaging.ServiceBus;
 using INDT.Common.Insurance.Domain;
+using INDT.Common.Insurance.Dto.Request;
+using Insurance.INDT.Application.Api;
 using Insurance.INDT.Application.Services;
 using Insurance.INDT.Application.Services.Interfaces;
 using Insurance.INDT.Application.Settings;
@@ -69,10 +71,21 @@ public class ServiceBusMessageReceiverService : BackgroundService
 
         ClientDocument cd = _dataMapper.Map<ClientDocument>(client);
 
+
         using (var scope = _serviceProvider.CreateScope())
         {
             var clientDomainService = scope.ServiceProvider.GetRequiredService<IClientDomainService>();
             await clientDomainService.InsertClient(cd);
+
+            var apiWebhookSenderService = scope.ServiceProvider.GetRequiredService<IApiWebhookSenderService>();
+
+            WebhookDto webhookDto = new WebhookDto
+            {
+                ClientName = cd.Name,
+                Age = cd.Age,
+                Status = "SUCESSO"
+            };
+            await apiWebhookSenderService.SendWebhook(webhookDto);
         }
 
 
