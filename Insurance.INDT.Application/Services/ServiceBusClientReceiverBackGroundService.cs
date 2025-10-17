@@ -1,8 +1,15 @@
-﻿using Azure.Messaging.ServiceBus;
+﻿using AutoMapper;
+using Azure.Messaging.ServiceBus;
+using INDT.Common.Insurance.Domain;
+using Insurance.INDT.Application.Services;
+using Insurance.INDT.Application.Services.Interfaces;
 using Insurance.INDT.Application.Settings;
+using Insurance.INDT.Infra.MongoDb.Repository.Domain;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System.Text.Json;
 
 public class ServiceBusMessageReceiverService : BackgroundService
 {
@@ -12,12 +19,20 @@ public class ServiceBusMessageReceiverService : BackgroundService
     private readonly ServiceBusSettings _serviceBusSettings;
     private ServiceBusClient _client;
     private ServiceBusProcessor _processor;
+    private readonly IMapper _dataMapper;
 
-    public ServiceBusMessageReceiverService(ILogger<ServiceBusMessageReceiverService> logger, IOptions<ServiceBusSettings> serviceBusSettings)
+    private readonly IServiceProvider _serviceProvider;
+
+
+
+    public ServiceBusMessageReceiverService(ILogger<ServiceBusMessageReceiverService> logger, IServiceProvider serviceProvider,
+        IMapper dataMapper, IOptions<ServiceBusSettings> serviceBusSettings)
     {
         
         _serviceBusSettings = serviceBusSettings.Value;
         _logger = logger;
+        _serviceProvider = serviceProvider;
+        _dataMapper = dataMapper;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -49,7 +64,18 @@ public class ServiceBusMessageReceiverService : BackgroundService
 
         _logger.LogInformation($"Received message: ID = {args.Message.MessageId}, Body = {body}");
 
-        
+
+        Client client = JsonSerializer.Deserialize<Client>(body);
+
+        ClientDocument cd = _dataMapper.Map<ClientDocument>(client);
+
+        using (var scope = _serviceProvider.CreateScope())
+        {
+            var clientDomainService = scope.ServiceProvider.GetRequiredService<IClientDomainService>();
+            await clientDomainService.InsertClient(cd);
+        }
+
+
         // Complete the message to remove it from the queue
         await args.CompleteMessageAsync(args.Message);
     }

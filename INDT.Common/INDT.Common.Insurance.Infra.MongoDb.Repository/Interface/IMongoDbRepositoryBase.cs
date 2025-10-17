@@ -12,7 +12,7 @@ namespace INDT.Common.Insurance.Infra.MongoDb.Repository.Interface
         Task<IList<TEntity>> GetAllAsync();
 
 
-        Task<IList<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter);
+        Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> filter);
 
     }
 }

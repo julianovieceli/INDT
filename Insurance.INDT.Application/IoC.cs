@@ -22,6 +22,8 @@ namespace Insurance.INDT.Application
             services.AddScoped<IProposalService, ProposalService>();
             services.AddScoped<IServiceBusClientService, ServiceBusClientService>();
 
+            services.AddScoped<IClientDomainService, ClientDomainService>();
+
             return services.AddScoped<IClientService, ClientService>();
         }
 

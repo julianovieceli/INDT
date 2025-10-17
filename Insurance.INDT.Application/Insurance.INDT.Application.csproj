@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\INDT.Common\INDT.Common.Insurance.Domain\INDT.Common.Insurance.Domain.csproj" />
     <ProjectReference Include="..\INDT.Common\INDT.Common.Insurance.Dto\INDT.Common.Insurance.Dto.csproj" />
+    <ProjectReference Include="..\Insurance.INDT.Infra.MongoDb.Repository\Insurance.INDT.Infra.MongoDb.Repository.csproj" />
   </ItemGroup>
 
   <ItemGroup>

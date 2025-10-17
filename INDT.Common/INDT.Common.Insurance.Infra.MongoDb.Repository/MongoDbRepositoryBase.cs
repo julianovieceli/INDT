@@ -58,11 +58,11 @@ namespace INDT.Common.Insurance.Infra.MongoDb.Repository
         }
 
 
-        public async Task<IList<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter)
+        public async Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> filter)
         {
             try
             {
-                return await _collection.Find(filter).ToListAsync();
+                return await _collection.Find(filter).FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {

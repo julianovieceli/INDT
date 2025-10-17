@@ -7,7 +7,6 @@ using INDT.Common.Insurance.Dto.Response;
 using Insurance.INDT.Application.ServiceBus;
 using Insurance.INDT.Application.Services.Interfaces;
 using System.Text.Json;
-using System;
 
 namespace Insurance.INDT.Application.Services
 {

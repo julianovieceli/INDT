@@ -2,6 +2,7 @@ using Insurance.INDT.Application;
 using Insurance.INDT.Infra.Mysql.Repository;
 using Insurance.Proposal.INDT.Api;
 using INDT.Common.Insurance.Infra.MongoDb.Repository;
+using Insurance.INDT.Infra.MongoDb.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,7 @@ builder.Services.AddMongoDbContext(
     builder.Configuration.GetSection("MongoDbSettings:ConnectionString").Value!,
     builder.Configuration.GetSection("MongoDbSettings:Database").Value!
     );
+builder.Services.AddMongoDbRepositories();
 
 
 
