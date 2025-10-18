@@ -6,16 +6,13 @@ using Insurance.INDT.Application.Api;
 using Insurance.INDT.Application.Services.Interfaces;
 using Insurance.INDT.Application.Settings;
 using Insurance.INDT.Infra.MongoDb.Repository.Domain;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Text.Json;
 
-public class ServiceBusMessageReceiverService : BackgroundService
+public class ServiceBusClientReceiverBackGroundServiceWorker : BackgroundService
 {
 
-    private readonly ILogger<ServiceBusMessageReceiverService> _logger;
+    private readonly ILogger<ServiceBusClientReceiverBackGroundServiceWorker> _logger;
 
     private readonly ServiceBusSettings _serviceBusSettings;
     private ServiceBusClient _client;
@@ -26,7 +23,7 @@ public class ServiceBusMessageReceiverService : BackgroundService
 
 
 
-    public ServiceBusMessageReceiverService(ILogger<ServiceBusMessageReceiverService> logger, IServiceProvider serviceProvider,
+    public ServiceBusClientReceiverBackGroundServiceWorker(ILogger<ServiceBusClientReceiverBackGroundServiceWorker> logger, IServiceProvider serviceProvider,
         IMapper dataMapper, IOptions<ServiceBusSettings> serviceBusSettings)
     {
         

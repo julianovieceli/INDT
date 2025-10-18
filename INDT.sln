@@ -51,6 +51,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "INDT.Common.Insurance.Infra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.INDT.Infra.MongoDb.Repository", "Insurance.INDT.Infra.MongoDb.Repository\Insurance.INDT.Infra.MongoDb.Repository.csproj", "{56342533-8665-4EE0-88F3-D9A308ADE6D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.INDT.Worker", "Insurance.INDT.Worker\Insurance.INDT.Worker.csproj", "{94343349-910A-4AFF-9233-752886E54479}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Worker", "Worker", "{9E1712AB-BE4F-49C0-9DF3-5371624DD70E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,6 +113,10 @@ Global
 		{56342533-8665-4EE0-88F3-D9A308ADE6D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56342533-8665-4EE0-88F3-D9A308ADE6D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56342533-8665-4EE0-88F3-D9A308ADE6D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94343349-910A-4AFF-9233-752886E54479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94343349-910A-4AFF-9233-752886E54479}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94343349-910A-4AFF-9233-752886E54479}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94343349-910A-4AFF-9233-752886E54479}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,6 +131,7 @@ Global
 		{C8D079AD-6BC4-4D24-8295-D66288BF3A64} = {48840117-E1FD-4820-9B56-C5890E3B2C40}
 		{617007C9-4435-493B-8319-26014B947BA8} = {76F8E2F6-255A-4A28-B466-D9E847C64DA3}
 		{56431EA8-4410-438C-8D41-324CD8F2670B} = {93AFB0E6-645D-40F2-A882-80DA96ECD3DC}
+		{94343349-910A-4AFF-9233-752886E54479} = {9E1712AB-BE4F-49C0-9DF3-5371624DD70E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {25FF1BB3-D5DC-4802-8CC7-CF48703B6BBB}

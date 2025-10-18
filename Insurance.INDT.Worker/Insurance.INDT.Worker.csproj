@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-Insurance.INDT.Worker-168eaaf6-e513-40ea-ad4c-939c7b1b0ed9</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.20.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\INDT.Common\INDT.Common.Insurance.Domain\INDT.Common.Insurance.Domain.csproj" />
+    <ProjectReference Include="..\Insurance.INDT.Application\Insurance.INDT.Application.csproj" />
+    <ProjectReference Include="..\Insurance.INDT.Infra.MongoDb.Repository\Insurance.INDT.Infra.MongoDb.Repository.csproj" />
+  </ItemGroup>
+</Project>

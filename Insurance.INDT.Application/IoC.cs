@@ -35,7 +35,7 @@ namespace Insurance.INDT.Application
             
             services.AddOptions<ServiceBusSettings>().BindConfiguration("ServiceBus");
 
-            services.AddHostedService<ServiceBusMessageReceiverService>();
+            //services.AddHostedService<ServiceBusMessageReceiverService>();
 
             return services;
         }
