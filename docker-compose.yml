@@ -26,6 +26,12 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:80/health"] # Command to execute for health check
+        interval: 30s # How often to run the health check
+        timeout: 10s # Maximum time allowed for the command to complete
+        retries: 3 # Number of consecutive failures before considering the container unhealthy
+        start_period: 5s # Initial grace period for the container to start up
   dbMysql:
     image: mysql:latest
     restart: always

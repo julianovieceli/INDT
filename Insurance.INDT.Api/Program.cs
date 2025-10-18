@@ -27,7 +27,7 @@ builder.Services.AddMongoDbContext(
     );
 builder.Services.AddMongoDbRepositories();
 builder.Services.AddHttpClient(builder.Configuration);
-
+builder.Services.AddHealthChecks();
 
 
 var app = builder.Build();
@@ -38,6 +38,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseHealthChecks("/health"); // Exposes a health check endpoint at /health
 
 app.UseHttpsRedirection();
 

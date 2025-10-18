@@ -2,7 +2,12 @@
     docker compose -f docker-compose.yml down
     -- docker compose -f docker-compose.yml up -d
 
-    docker compose up --build --force-recreate insurance.indt.api
+    docker compose up --build --force-recreate insurance.indt.api -d
+    OR 
+    docker compose up --build --force-recreate -d  /* all */
+
+    // Sem recriar
+    // docker compose up -d --force-recreate
 
 
 
