@@ -1,8 +1,10 @@
-﻿using Azure.Messaging.ServiceBus;
+﻿using AutoMapper;
+using Azure.Messaging.ServiceBus;
 using FluentValidation;
 using INDT.Common.Insurance.Application.Validators;
 using INDT.Common.Insurance.Dto.Request;
 using Insurance.INDT.Application.Api;
+using Insurance.INDT.Application.Mapping;
 using Insurance.INDT.Application.ServiceBus;
 using Insurance.INDT.Application.Services;
 using Insurance.INDT.Application.Services.Interfaces;
@@ -14,7 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Insurance.INDT.Application
 {
-    public static class Ioc
+    public static class IoC
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
@@ -83,6 +85,23 @@ namespace Insurance.INDT.Application
             {
                 httpClient.BaseAddress = new Uri(webhookSettings.BaseUrl);
             });
+
+            return services;
+        }
+
+        public static IServiceCollection AddAutoMapper(this IServiceCollection services)
+        {
+
+
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<ClientProfile>();
+                cfg.AddProfile<InsuranceProfile>();
+                cfg.AddProfile<ProposalProfile>();
+            });
+
+            IMapper mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
 
             return services;
         }

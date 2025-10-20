@@ -5,7 +5,7 @@ using Insurance.INDT.Application.Mapping;
 
 namespace Insurance.Proposal.INDT.Api
 {
-    public static class Ioc
+    public static class IoC
     {
         public static IServiceCollection AddSettings(this IServiceCollection services, IConfiguration configuration)
         {
@@ -15,20 +15,6 @@ namespace Insurance.Proposal.INDT.Api
         }
 
 
-        public static IServiceCollection InitializeDataMapper(this IServiceCollection services) { 
-         
-
-           var config = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile<ClientProfile>();
-                cfg.AddProfile<InsuranceProfile>();
-                cfg.AddProfile<ProposalProfile>();
-            });
-
-            IMapper mapper = config.CreateMapper();
-            services.AddSingleton(mapper);
-
-            return services;
-        }
+        
     }
 }

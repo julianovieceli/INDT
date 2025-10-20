@@ -18,7 +18,7 @@ builder.Services.AddSettings(builder.Configuration);
 builder.Services.AddApplicationServices();
 builder.Services.AddRepositories();
 builder.Services.AddValidators();
-builder.Services.InitializeDataMapper();
+builder.Services.AddAutoMapper();
 builder.Services.AddServiceBus(builder.Configuration);
 builder.Services.AddBackgroundServices(builder.Configuration);
 builder.Services.AddMongoDbContext(
