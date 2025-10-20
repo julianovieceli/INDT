@@ -1,6 +1,6 @@
-name: dbMysql-standalone
+name: localstack-standalone
 services:
-  localstack:
+  localstack-standalone:
     container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
     image: localstack/localstack
     ports:

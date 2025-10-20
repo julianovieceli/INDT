@@ -86,6 +86,20 @@ services:
       - mongo-data:/data/db
     restart: always
 
+  insurance.indt.worker:
+    image: ${DOCKER_REGISTRY-}insuranceindtworker
+    environment:
+      - ServiceBus:ServiceBusConnection=Endpoint=host.docker.internal;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SAS_KEY_VALUE;UseDevelopmentEmulator=true;
+      - ServiceBus:TopicName=topic.1
+      - ServiceBus:SubscriptionName=subscription.1
+      - "MongoDbSettings:ConnectionString=mongodb://admin:admin@mongoDb:27017"
+      - "MongoDbSettings:Database=INDT"
+      - "WebhookSettings:BaseUrl=https://webhook-test.com/"
+      - "WebhookSettings:Url=c67881e3625d79a75e46708f79d2c7cc"
+    build:
+      context: .
+      dockerfile: Insurance.INDT.Worker/Dockerfile
+
 networks:
   sb-emulator:
 

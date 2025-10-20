@@ -10,4 +10,5 @@ docker compose -f docker-compose-mysql.yml up -d
 docker compose -f docker-compose-MongoDb.yml down
 docker compose -f docker-compose-MongoDb.yml up -d
 
-
+docker compose -f docker-compose-localstack.yml down
+docker compose -f docker-compose-localstack.yml up -d

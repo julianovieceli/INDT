@@ -36,6 +36,7 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{76F8E2F6-255A-4A28-B466-D9E847C64DA3}"
 	ProjectSection(SolutionItems) = preProject
+		Docker\docker-compose-localstack.yml = Docker\docker-compose-localstack.yml
 		Docker\docker-compose-MongoDb.yml = Docker\docker-compose-MongoDb.yml
 		Docker\docker-compose-mysql.yml = Docker\docker-compose-mysql.yml
 		Docker\docker-compose-sbus-emulator.yml = Docker\docker-compose-sbus-emulator.yml

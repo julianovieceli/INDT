@@ -11,11 +11,6 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Insurance.INDT.Worker/Insurance.INDT.Worker.csproj", "Insurance.INDT.Worker/"]
-COPY ["INDT.Common/INDT.Common.Insurance.Domain/INDT.Common.Insurance.Domain.csproj", "INDT.Common/INDT.Common.Insurance.Domain/"]
-COPY ["Insurance.INDT.Application/Insurance.INDT.Application.csproj", "Insurance.INDT.Application/"]
-COPY ["INDT.Common/INDT.Common.Insurance.Dto/INDT.Common.Insurance.Dto.csproj", "INDT.Common/INDT.Common.Insurance.Dto/"]
-COPY ["Insurance.INDT.Infra.MongoDb.Repository/Insurance.INDT.Infra.MongoDb.Repository.csproj", "Insurance.INDT.Infra.MongoDb.Repository/"]
-COPY ["INDT.Common/INDT.Common.Insurance.Infra.MongoDb.Repository/INDT.Common.Insurance.Infra.MongoDb.Repository.csproj", "INDT.Common/INDT.Common.Insurance.Infra.MongoDb.Repository/"]
 RUN dotnet restore "./Insurance.INDT.Worker/Insurance.INDT.Worker.csproj"
 COPY . .
 WORKDIR "/src/Insurance.INDT.Worker"
