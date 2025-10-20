@@ -6,6 +6,7 @@ using INDT.Common.Insurance.Infra.MongoDb.Repository;
 var builder = Host.CreateApplicationBuilder(args);
 
 builder.Services.AddServiceBus(builder.Configuration);
+builder.Services.AddAWSClient(builder.Configuration);
 builder.Services.AddAutoMapper();
 builder.Services.AddWorkerApplicationServices();
 builder.Services.AddHttpClient(builder.Configuration);

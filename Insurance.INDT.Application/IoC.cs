@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Amazon.SQS;
+using AutoMapper;
 using Azure.Messaging.ServiceBus;
 using FluentValidation;
 using INDT.Common.Insurance.Application.Validators;
@@ -71,6 +72,9 @@ namespace Insurance.INDT.Application
 
             return services;
         }
+
+       
+
 
         public static IServiceCollection AddHttpClient(this IServiceCollection services
            , IConfiguration configuration)

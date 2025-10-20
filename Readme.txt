@@ -87,3 +87,6 @@ OBSERVACOES:
 
 
 
+ OBS: 
+   dash p AWS SQS
+   https://app.localstack.cloud/inst/default/resources/sqs
