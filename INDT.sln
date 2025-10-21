@@ -50,9 +50,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConfigFiles", "ConfigFiles"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "INDT.Common.Insurance.Infra.MongoDb.Repository", "INDT.Common\INDT.Common.Insurance.Infra.MongoDb.Repository\INDT.Common.Insurance.Infra.MongoDb.Repository.csproj", "{56431EA8-4410-438C-8D41-324CD8F2670B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.INDT.Infra.MongoDb.Repository", "Insurance.INDT.Infra.MongoDb.Repository\Insurance.INDT.Infra.MongoDb.Repository.csproj", "{56342533-8665-4EE0-88F3-D9A308ADE6D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Infra.MongoDb.Repository", "Insurance.INDT.Infra.MongoDb.Repository\Insurance.INDT.Infra.MongoDb.Repository.csproj", "{56342533-8665-4EE0-88F3-D9A308ADE6D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.INDT.Worker", "Insurance.INDT.Worker\Insurance.INDT.Worker.csproj", "{94343349-910A-4AFF-9233-752886E54479}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.INDT.Worker", "Insurance.INDT.Worker\Insurance.INDT.Worker.csproj", "{94343349-910A-4AFF-9233-752886E54479}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Worker", "Worker", "{9E1712AB-BE4F-49C0-9DF3-5371624DD70E}"
 EndProject

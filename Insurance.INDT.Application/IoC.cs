@@ -3,10 +3,11 @@ using AutoMapper;
 using Azure.Messaging.ServiceBus;
 using FluentValidation;
 using INDT.Common.Insurance.Application.Validators;
+using INDT.Common.Insurance.Domain.Interfaces.Infra;
 using INDT.Common.Insurance.Dto.Request;
 using Insurance.INDT.Application.Api;
 using Insurance.INDT.Application.Mapping;
-using Insurance.INDT.Application.ServiceBus;
+using Insurance.INDT.Application.ServiceBus.Azure;
 using Insurance.INDT.Application.Services;
 using Insurance.INDT.Application.Services.Interfaces;
 using Insurance.INDT.Application.Settings;
@@ -23,8 +24,7 @@ namespace Insurance.INDT.Application
         {
             services.AddScoped<IInsuranceService, InsuranceService>();
             services.AddScoped<IProposalService, ProposalService>();
-            services.AddScoped<IServiceBusClientService, ServiceBusClientService>();
-
+            
             services.AddScoped<IClientDomainService, ClientDomainService>();
 
             services.AddScoped<IApiWebhookSenderService, ApiWebhookSenderService>();
@@ -51,27 +51,7 @@ namespace Insurance.INDT.Application
             return services.AddScoped<IValidator<RegisterInsuranceDto>, RegisterInsuranceDtoValidator>();
         }
 
-        public static IServiceCollection AddServiceBus(this IServiceCollection services, IConfiguration configuration)
-        {
-            var connStringSection = configuration.GetSection("ServiceBus:ServiceBusConnection");
-            
-            var topic = configuration.GetSection("ServiceBus:TopicName");
-
-            services.AddAzureClients(builder =>
-            {
-                builder.AddServiceBusClient(connStringSection.Value);
-
-
-                builder.AddClient<ServiceBusSender, ServiceBusSenderOptions>((options, provider) =>
-                {
-                    var serviceBusClient = provider.GetRequiredService<ServiceBusClient>();
-                    return serviceBusClient.CreateSender(topic.Value);
-                }).WithName("TesteMensagem");
-            }); 
-
-
-            return services;
-        }
+       
 
        
 
@@ -109,5 +89,7 @@ namespace Insurance.INDT.Application
 
             return services;
         }
+
+        
     }
 }

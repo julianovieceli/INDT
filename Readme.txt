@@ -24,6 +24,9 @@ docker compose -f docker-compose-mysql.yml up -d
 docker compose -f docker-compose-MongoDb.yml down
 docker compose -f docker-compose-MongoDb.yml up -d
 
+docker compose -f docker-compose-localstack.yml down
+docker compose -f docker-compose-localstack.yml up -d
+
 
 
 /* 3 - Passo 3 Rodar o seguinte Script de BD no MySQL Workbench ou outro cliente MySQL conectado na container */

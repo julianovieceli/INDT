@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using INDT.Common.Insurance.Domain;
+using INDT.Common.Insurance.Domain.Interfaces.Infra;
 using INDT.Common.Insurance.Domain.Interfaces.Repository;
 using INDT.Common.Insurance.Dto.Request;
 using INDT.Common.Insurance.Dto.Response;
-using Insurance.INDT.Application.ServiceBus;
 using Insurance.INDT.Application.Services.Interfaces;
 using System.Text.Json;
 
@@ -15,17 +15,20 @@ namespace Insurance.INDT.Application.Services
         private readonly IClientRepository _clientRepository;
         private readonly IValidator<RegisterClientDto> _clientValidator;
 
-        private readonly IServiceBusClientService _serviceBusClientService;
+        private readonly IAzureMessagingClientService _azureMessagingClientService;
+
+        private readonly IAWSMessagingClientService _aWSMessagingClientService;
 
         private readonly IMapper _dataMapper;
 
         public ClientService(IClientRepository clientRepository, IValidator<RegisterClientDto> clientValidator, IMapper dataMapper,
-            IServiceBusClientService serviceBusClientService)
+            IAzureMessagingClientService azureMessagingClientService, IAWSMessagingClientService aWSMessagingClientService)
         {
             _clientRepository = clientRepository;
             _clientValidator = clientValidator;
             _dataMapper = dataMapper;
-            _serviceBusClientService = serviceBusClientService;
+            _azureMessagingClientService = azureMessagingClientService;
+            _aWSMessagingClientService = aWSMessagingClientService;
         }
         public async Task<Result> Register(RegisterClientDto registerClient )
         {
@@ -47,10 +50,10 @@ namespace Insurance.INDT.Application.Services
                     if (!await _clientRepository.Register(client))
                         return Result.Failure("999");
 
-                    string jsonString = JsonSerializer.Serialize(client);
 
 
-                    await _serviceBusClientService.SendMessage(jsonString);
+                    await _azureMessagingClientService.SendMessage(client);
+                    await _aWSMessagingClientService.SendMessage(client);
 
                     return Result.Success;
 

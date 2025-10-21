@@ -2,14 +2,14 @@ using AutoFixture;
 using AutoMapper;
 using FluentValidation;
 using INDT.Common.Insurance.Domain;
+using INDT.Common.Insurance.Domain.Interfaces.Infra;
 using INDT.Common.Insurance.Domain.Interfaces.Repository;
 using INDT.Common.Insurance.Dto.Request;
 using INDT.Common.Insurance.Dto.Response;
+using Insurance.INDT.Application.Mapping;
 using Insurance.INDT.Application.Services;
 using Insurance.INDT.Application.Services.Interfaces;
-using Insurance.INDT.Application.Mapping;
 using Moq;
-using Insurance.INDT.Application.ServiceBus;
 
 namespace Insurance.Proposal.INDT.Tests
 {
@@ -19,14 +19,16 @@ namespace Insurance.Proposal.INDT.Tests
         private readonly IMapper _dataMapper;
         private readonly Mock<IValidator<RegisterClientDto>> _registerClientDtoValidatorMock;
         private readonly Fixture _autofixture;
-        private readonly Mock<IServiceBusClientService> _serviceBusClientServiceMock;
+        private readonly Mock<IAzureMessagingClientService> _serviceBusClientServiceMock;
+        private readonly Mock<IAWSMessagingClientService> _awsMessagingClientService;
 
         public ClientServiceTest()
         {
             _clientRepositoryMock = new Mock<IClientRepository>();
             _registerClientDtoValidatorMock = new Mock<IValidator<RegisterClientDto>>();
             _autofixture = new AutoFixture.Fixture ();
-            _serviceBusClientServiceMock = new Mock<IServiceBusClientService>();
+            _serviceBusClientServiceMock = new Mock<IAzureMessagingClientService>();
+            _awsMessagingClientService = new Mock<IAWSMessagingClientService>();    
 
             if (_dataMapper == null)
             {
@@ -45,7 +47,7 @@ namespace Insurance.Proposal.INDT.Tests
             var clientCreated = _autofixture.Create<ClientDto>();
 
             IClientService clienteService = new ClientService(_clientRepositoryMock.Object, _registerClientDtoValidatorMock.Object,
-                _dataMapper, _serviceBusClientServiceMock.Object);
+                _dataMapper, _serviceBusClientServiceMock.Object, _awsMessagingClientService.Object);
 
      
             //Assert
@@ -58,7 +60,7 @@ namespace Insurance.Proposal.INDT.Tests
         {
             
             IClientService clienteService = new ClientService(_clientRepositoryMock.Object, _registerClientDtoValidatorMock.Object,
-                _dataMapper,_serviceBusClientServiceMock.Object);
+                _dataMapper,_serviceBusClientServiceMock.Object, _awsMessagingClientService.Object);
 
             _clientRepositoryMock
                 .Setup(x => x.GetByDocto(It.IsAny<string>()))
@@ -83,7 +85,7 @@ namespace Insurance.Proposal.INDT.Tests
             var clientCreated = _autofixture.Create<Client>();
 
             IClientService clienteService = new ClientService(_clientRepositoryMock.Object, _registerClientDtoValidatorMock.Object,
-                _dataMapper, _serviceBusClientServiceMock.Object);
+                _dataMapper, _serviceBusClientServiceMock.Object, _awsMessagingClientService.Object);
 
             _clientRepositoryMock
                 .Setup(x => x.GetByDocto(It.IsAny<string>()))
@@ -109,7 +111,7 @@ namespace Insurance.Proposal.INDT.Tests
             var clientListCreated = _autofixture.CreateMany<Client>(5);
 
             IClientService clienteService = new ClientService(_clientRepositoryMock.Object, _registerClientDtoValidatorMock.Object,
-                _dataMapper, _serviceBusClientServiceMock.Object);
+                _dataMapper, _serviceBusClientServiceMock.Object, _awsMessagingClientService.Object);
 
             _clientRepositoryMock
                 .Setup(x => x.GetAll())

@@ -24,8 +24,4 @@
     <ProjectReference Include="..\Insurance.INDT.Infra.MongoDb.Repository\Insurance.INDT.Infra.MongoDb.Repository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ServiceBus\ConfigEmulator\" />
-  </ItemGroup>
-
 </Project>
