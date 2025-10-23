@@ -129,7 +129,8 @@ namespace Insurance.Proposal.INDT.Tests
             string CPF = "168.483";
 
             _autofixture.Customize<RegisterClientDto>(composer =>
-            composer.With(p => p.Docto, CPF));
+            composer.With(p => p.Docto, CPF)
+            .With(p => p.Age, 30));
 
             var clientToRegister = _autofixture.Create<RegisterClientDto>();
 
@@ -145,9 +146,13 @@ namespace Insurance.Proposal.INDT.Tests
                 Returns(new FluentValidation.Results.ValidationResult());
 
 
+            //Action
+            var result = await clienteService.Register(clientToRegister);
+
+
             //Assert
-            var exception = await Assert.ThrowsAsync<Exception>(() => clienteService.Register(clientToRegister));
-            Assert.Contains("Documento invalido", exception.Message);
+            Assert.True(result.IsFailure);
+            Assert.Contains("Invalid Document", result.ErrorMessage);
 
 
 
