@@ -2,9 +2,21 @@
 {
     public class Client: BaseClass
     {
+        private string _docto;
+
         public string Name { get; set; }
 
-        public string Docto { get; set; }
+        public string Docto 
+        {
+            get { return _docto; }
+            set
+            {
+               if(!DocumentValidator.IsCpfCnpjValid(value))
+                    throw new Exception("Invalid Document!");
+
+                _docto = value;
+            }
+        }
         public int Age { get; set; }
 
         public Client()
