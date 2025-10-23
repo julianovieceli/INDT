@@ -9,7 +9,9 @@ using INDT.Common.Insurance.Dto.Response;
 using Insurance.INDT.Application.Mapping;
 using Insurance.INDT.Application.Services;
 using Insurance.INDT.Application.Services.Interfaces;
+using MongoDB.Driver.Core.Misc;
 using Moq;
+using System;
 
 namespace Insurance.Proposal.INDT.Tests
 {
@@ -22,6 +24,16 @@ namespace Insurance.Proposal.INDT.Tests
         private readonly Mock<IAzureMessagingClientService> _serviceBusClientServiceMock;
         private readonly Mock<IAWSMessagingClientService> _awsMessagingClientService;
 
+
+
+        private readonly IList<string> CPFList = new List<string>
+        {
+            "363.560.390-27",
+            "625.340.220-08",
+            "694.572.870-61",
+            "074.741.230-88",
+            "848.130.250-00",
+        };
         public ClientServiceTest()
         {
             _clientRepositoryMock = new Mock<IClientRepository>();
@@ -82,17 +94,23 @@ namespace Insurance.Proposal.INDT.Tests
         [Fact]
         public async Task GetByDoctoTestClientSuccess()
         {
+            string CPF = CPFList.First();
+
+            _autofixture.Customize<Client>(composer =>
+            composer.With(p => p.Docto, CPFList.First()));
+
             var clientCreated = _autofixture.Create<Client>();
 
+            
             IClientService clienteService = new ClientService(_clientRepositoryMock.Object, _registerClientDtoValidatorMock.Object,
                 _dataMapper, _serviceBusClientServiceMock.Object, _awsMessagingClientService.Object);
 
             _clientRepositoryMock
-                .Setup(x => x.GetByDocto(It.IsAny<string>()))
+                .Setup(x => x.GetByDocto(CPF))
                 .Returns(Task.FromResult<Client>(clientCreated));
           
 
-            var result = await clienteService.GetByDocto("umDocto");
+            var result = await clienteService.GetByDocto(CPF);
 
 
 
@@ -106,9 +124,49 @@ namespace Insurance.Proposal.INDT.Tests
         }
 
         [Fact]
+        public async Task RegisterClientInvalidDoctoException()
+        {
+            string CPF = "168.483";
+
+            _autofixture.Customize<RegisterClientDto>(composer =>
+            composer.With(p => p.Docto, CPF));
+
+            var clientToRegister = _autofixture.Create<RegisterClientDto>();
+
+
+            IClientService clienteService = new ClientService(_clientRepositoryMock.Object, _registerClientDtoValidatorMock.Object,
+                _dataMapper, _serviceBusClientServiceMock.Object, _awsMessagingClientService.Object);
+
+            _clientRepositoryMock
+                           .Setup(x => x.GetByDocto(CPF))
+                           .Returns(Task.FromResult<Client?>(null));
+
+            _registerClientDtoValidatorMock.Setup(x => x.Validate(clientToRegister)).
+                Returns(new FluentValidation.Results.ValidationResult());
+
+
+            //Assert
+            var exception = await Assert.ThrowsAsync<Exception>(() => clienteService.Register(clientToRegister));
+            Assert.Contains("Documento invalido", exception.Message);
+
+
+
+        }
+
+        [Fact]
         public async Task GetAllTestClientSuccess()
         {
+
+            Random random = new Random();
+            
+            string CPF = CPFList[random.Next(CPFList.Count)];
+
+            _autofixture.Customize<Client>(composer =>
+      composer.With(x => x.Docto, CPFList[random.Next(CPFList.Count)]));
+
             var clientListCreated = _autofixture.CreateMany<Client>(5);
+
+
 
             IClientService clienteService = new ClientService(_clientRepositoryMock.Object, _registerClientDtoValidatorMock.Object,
                 _dataMapper, _serviceBusClientServiceMock.Object, _awsMessagingClientService.Object);
