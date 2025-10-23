@@ -32,7 +32,7 @@ namespace Insurance.Proposal.INDT.Tests
             "625.340.220-08",
             "694.572.870-61",
             "074.741.230-88",
-            "848.130.250-00",
+            "203.859.280-25",
         };
         public ClientServiceTest()
         {
@@ -164,8 +164,7 @@ namespace Insurance.Proposal.INDT.Tests
 
             Random random = new Random();
             
-            string CPF = CPFList[random.Next(CPFList.Count)];
-
+   
             _autofixture.Customize<Client>(composer =>
       composer.With(x => x.Docto, CPFList[random.Next(CPFList.Count)]));
 
