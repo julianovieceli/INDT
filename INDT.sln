@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{93AFB0E6-645D-40F2-A882-80DA96ECD3DC}"
 	ProjectSection(SolutionItems) = preProject
 		Readme.txt = Readme.txt
+		testeK6.js = testeK6.js
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "INDT.Common.Insurance.Dto", "INDT.Common\INDT.Common.Insurance.Dto\INDT.Common.Insurance.Dto.csproj", "{22CC0058-E300-4633-9DBD-0538494D7289}"
