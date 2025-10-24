@@ -50,11 +50,22 @@ namespace Insurance.INDT.Application.ServiceBus.AWS
                     };
 
                     response = await _s3Client.PutObjectAsync(putObjectRequest);
-
-                    
                 }
 
-                string url = _s3Client.Config.ServiceURL + _amazonS3Config.BucketName + "/" + file.FileName;
+                //TimeSpan duration = TimeSpan.FromMinutes(5); // URL valid for 5 minutes
+
+                //var request = new GetPreSignedUrlRequest
+                //{
+                //    BucketName = _amazonS3Config.BucketName,
+                //    Key = file.FileName,
+                //    Expires = DateTime.UtcNow.Add(duration),
+                //    Protocol = Protocol.HTTP, // Or Protocol.HTTP if needed
+                //    Verb = HttpVerb.GET // The operation the URL allows
+                //};
+
+                //string url = _s3Client.GetPreSignedURL(request);
+
+                string url = _amazonS3Config.BaaseUrlToGetFile + _amazonS3Config.BucketName + "/" + file.FileName;
 
                 UploadedFileResponseDto uploadedFileResponseDto = new UploadedFileResponseDto()
                 {
