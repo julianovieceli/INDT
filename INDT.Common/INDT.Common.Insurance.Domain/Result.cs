@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Text.Json.Serialization;
 
 namespace INDT.Common.Insurance.Domain;
 
@@ -22,9 +23,14 @@ public class Result
         StatusCode = statusCode;
     }
 
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string ErrorCode { get; set; }
+
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? ErrorMessage { get; set; }
     public int StatusCode { get; set; }
+
+    [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
     public bool IsFailure { get; init; }
     
     public static Result Success => new();

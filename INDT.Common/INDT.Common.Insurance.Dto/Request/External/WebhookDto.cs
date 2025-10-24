@@ -8,7 +8,9 @@
 
         public int Age { get; set; }
 
-        
+        public string Docto { get; set; }
+
+
     }
 
 

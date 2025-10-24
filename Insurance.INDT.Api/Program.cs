@@ -3,9 +3,9 @@ using Insurance.INDT.Infra.Mysql.Repository;
 using Insurance.Proposal.INDT.Api;
 using INDT.Common.Insurance.Infra.MongoDb.Repository;
 using Insurance.INDT.Infra.MongoDb.Repository;
-using Insurance.INDT.Application;
 using Insurance.INDT.Application.ServiceBus.AWS;
 using Insurance.INDT.Application.ServiceBus.Azure;
+using Amazon.S3;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +23,9 @@ builder.Services.AddValidators();
 builder.Services.AddAutoMapper();
 builder.Services.AddAzureMessagingClientService(builder.Configuration);
 builder.Services.AddAWSMessagingClientService(builder.Configuration);
+builder.Services.AddAWSStorageService(builder.Configuration);
 builder.Services.AddBackgroundServices(builder.Configuration);
+
 builder.Services.AddMongoDbContext(
     builder.Configuration.GetSection("MongoDbSettings:ConnectionString").Value!,
     builder.Configuration.GetSection("MongoDbSettings:Database").Value!

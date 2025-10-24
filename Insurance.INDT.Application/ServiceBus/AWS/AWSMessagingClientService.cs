@@ -1,12 +1,10 @@
 ﻿using Amazon.SQS;
 using Amazon.SQS.Model;
 using INDT.Common.Insurance.Domain.Interfaces.Infra;
-using Insurance.INDT.Application.ServiceBus.Azure;
 using Insurance.INDT.Application.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using MongoDB.Bson.IO;
 using System.Text.Json;
 
 namespace Insurance.INDT.Application.ServiceBus.AWS

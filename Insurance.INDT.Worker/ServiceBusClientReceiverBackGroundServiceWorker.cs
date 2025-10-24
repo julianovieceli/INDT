@@ -79,6 +79,7 @@ public class ServiceBusClientReceiverBackGroundServiceWorker : BackgroundService
             {
                 ClientName = cd.Name,
                 Age = cd.Age,
+                Docto = cd.Docto,
                 Status = "SUCESSO"
             };
             await apiWebhookSenderService.SendWebhook(webhookDto);

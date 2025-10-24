@@ -27,7 +27,15 @@ docker compose -f docker-compose-MongoDb.yml up -d
 docker compose -f docker-compose-localstack.yml down
 docker compose -f docker-compose-localstack.yml up -d
 
+ -- Criar a queue no localstack
 
+ aws sqs create-queue --queue-name QueueTest --endpoint-url http://localhost:4566 --region us-east-1
+
+ --lista buckets locais
+ aws s3api list-buckets --endpoint-url http://localhost:4566 --region us-east-1
+
+ --criar bucket local 
+ aws s3api create-bucket --bucket indt-test-files --endpoint-url http://localhost:4566 --region us-east-1
 
 /* 3 - Passo 3 Rodar o seguinte Script de BD no MySQL Workbench ou outro cliente MySQL conectado na container */
 
