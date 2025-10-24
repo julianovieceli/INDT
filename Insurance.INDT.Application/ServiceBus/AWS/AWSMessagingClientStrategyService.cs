@@ -9,13 +9,13 @@ using System.Text.Json;
 
 namespace Insurance.INDT.Application.ServiceBus.AWS
 {
-    public class AWSMessagingClientService: IAWSMessagingClientService
+    public class AWSMessagingClientStrategyService: IAWSMessagingClientStrategyService
     {
         private readonly IAmazonSQS _sqsClient;
-        private readonly ILogger<AWSMessagingClientService> _logger;
+        private readonly ILogger<AWSMessagingClientStrategyService> _logger;
         private const string QueueName = "QueueTest"; // Replace with your queue name
 
-        public AWSMessagingClientService(IAmazonSQS sqsClient, ILogger<AWSMessagingClientService> logger)
+        public AWSMessagingClientStrategyService(IAmazonSQS sqsClient, ILogger<AWSMessagingClientStrategyService> logger)
         {
             _sqsClient = sqsClient;
             _logger = logger;
@@ -78,7 +78,7 @@ namespace Insurance.INDT.Application.ServiceBus.AWS
             });
 
 
-            services.AddScoped<IAWSMessagingClientService, AWSMessagingClientService>();
+            services.AddScoped<IAWSMessagingClientStrategyService, AWSMessagingClientStrategyService>();
             return services;
         }
     }

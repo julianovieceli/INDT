@@ -1,6 +1,6 @@
 ﻿namespace INDT.Common.Insurance.Domain.Interfaces.Infra
 {
-    public interface IMessagingClientService
+    public interface IMessagingClientStrategyService
     {
         Task SendMessage<T>(T msg);
     }

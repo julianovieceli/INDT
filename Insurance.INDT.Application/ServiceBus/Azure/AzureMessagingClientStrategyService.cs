@@ -9,14 +9,14 @@ using System.Text.Json;
 
 namespace Insurance.INDT.Application.ServiceBus.Azure
 {
-    public class AzureMessagingClientService : IAzureMessagingClientService
+    public class AzureMessagingClientStrategyService : IAzureMessagingClientStrategyService
     {
         private readonly IAzureClientFactory<ServiceBusSender> _azureClientFactory;
 
         private readonly ServiceBusSender _serviceBusSender;
 
-        private readonly ILogger<AzureMessagingClientService> _logger;
-        public AzureMessagingClientService(IAzureClientFactory<ServiceBusSender> azureClientFactory, ILogger<AzureMessagingClientService> logger)
+        private readonly ILogger<AzureMessagingClientStrategyService> _logger;
+        public AzureMessagingClientStrategyService(IAzureClientFactory<ServiceBusSender> azureClientFactory, ILogger<AzureMessagingClientStrategyService> logger)
         {
             _azureClientFactory = azureClientFactory;
             _serviceBusSender = _azureClientFactory.CreateClient("TesteMensagem");
@@ -71,7 +71,7 @@ namespace Insurance.INDT.Application.ServiceBus.Azure
                 }).WithName("TesteMensagem");
             });
 
-            services.AddScoped<IAzureMessagingClientService, AzureMessagingClientService>();
+            services.AddScoped<IAzureMessagingClientStrategyService, AzureMessagingClientStrategyService>();
 
 
             return services;

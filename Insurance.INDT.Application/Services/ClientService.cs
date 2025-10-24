@@ -15,14 +15,14 @@ namespace Insurance.INDT.Application.Services
         private readonly IClientRepository _clientRepository;
         private readonly IValidator<RegisterClientDto> _clientValidator;
 
-        private readonly IAzureMessagingClientService _azureMessagingClientService;
+        private readonly IAzureMessagingClientStrategyService _azureMessagingClientService;
 
-        private readonly IAWSMessagingClientService _aWSMessagingClientService;
+        private readonly IAWSMessagingClientStrategyService _aWSMessagingClientService;
 
         private readonly IMapper _dataMapper;
 
         public ClientService(IClientRepository clientRepository, IValidator<RegisterClientDto> clientValidator, IMapper dataMapper,
-            IAzureMessagingClientService azureMessagingClientService, IAWSMessagingClientService aWSMessagingClientService)
+            IAzureMessagingClientStrategyService azureMessagingClientService, IAWSMessagingClientStrategyService aWSMessagingClientService)
         {
             _clientRepository = clientRepository;
             _clientValidator = clientValidator;

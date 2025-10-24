@@ -21,8 +21,8 @@ namespace Insurance.Proposal.INDT.Tests
         private readonly IMapper _dataMapper;
         private readonly Mock<IValidator<RegisterClientDto>> _registerClientDtoValidatorMock;
         private readonly Fixture _autofixture;
-        private readonly Mock<IAzureMessagingClientService> _serviceBusClientServiceMock;
-        private readonly Mock<IAWSMessagingClientService> _awsMessagingClientService;
+        private readonly Mock<IAzureMessagingClientStrategyService> _serviceBusClientServiceMock;
+        private readonly Mock<IAWSMessagingClientStrategyService> _awsMessagingClientService;
 
 
 
@@ -39,8 +39,8 @@ namespace Insurance.Proposal.INDT.Tests
             _clientRepositoryMock = new Mock<IClientRepository>();
             _registerClientDtoValidatorMock = new Mock<IValidator<RegisterClientDto>>();
             _autofixture = new AutoFixture.Fixture ();
-            _serviceBusClientServiceMock = new Mock<IAzureMessagingClientService>();
-            _awsMessagingClientService = new Mock<IAWSMessagingClientService>();    
+            _serviceBusClientServiceMock = new Mock<IAzureMessagingClientStrategyService>();
+            _awsMessagingClientService = new Mock<IAWSMessagingClientStrategyService>();    
 
             if (_dataMapper == null)
             {
