@@ -19,6 +19,13 @@ services:
       - "MongoDbSettings:Database=INDT"
       - "WebhookSettings:BaseUrl=https://webhook-test.com/"
       - "WebhookSettings:Url=c67881e3625d79a75e46708f79d2c7cc"
+      - "AWS:Region=us-east-1"
+      - "AWS:ServiceURL=http://localstack:4566"
+      - "AWS:ForcePathStyle=true"
+      - "AmazonLocalS3Config:BucketName=indt-test-files"
+      - "AWS_ACCESS_KEY_ID=test"
+      - "AWS_SECRET_ACCESS_KEY=test"
+      - "AWS_REGION=us-east-1"
     ports:
       - "8080:80"
     depends_on:
@@ -96,9 +103,26 @@ services:
       - "MongoDbSettings:Database=INDT"
       - "WebhookSettings:BaseUrl=https://webhook-test.com/"
       - "WebhookSettings:Url=c67881e3625d79a75e46708f79d2c7cc"
+      - "AmazonSQSConfig:ServiceURL=http://localhost:4566"
+      - "AmazonSQSConfig:AuthenticationRegion=us-east-1"
+      - "AmazonSQSConfig:awsAccessKeyId=test"
+      - "AmazonSQSConfig:awsSecretAccessKey=test"
     build:
       context: .
       dockerfile: Insurance.INDT.Worker/Dockerfile
+
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+    environment:
+      # LocalStack configuration: https://docs.localstack.cloud/references/configuration/
+      - DEBUG=${DEBUG:-0}
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
 
 networks:
   sb-emulator:
