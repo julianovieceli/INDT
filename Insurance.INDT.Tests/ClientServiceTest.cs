@@ -2,7 +2,7 @@ using AutoFixture;
 using AutoMapper;
 using FluentValidation;
 using INDT.Common.Insurance.Domain;
-using INDT.Common.Insurance.Domain.Interfaces.Infra;
+using INDT.Common.Insurance.Infra.Interfaces.Azure;
 using INDT.Common.Insurance.Domain.Interfaces.Repository;
 using INDT.Common.Insurance.Dto.Request;
 using INDT.Common.Insurance.Dto.Response;
@@ -12,6 +12,7 @@ using Insurance.INDT.Application.Services.Interfaces;
 using MongoDB.Driver.Core.Misc;
 using Moq;
 using System;
+using INDT.Common.Insurance.Infra.Interfaces.AWS;
 
 namespace Insurance.Proposal.INDT.Tests
 {

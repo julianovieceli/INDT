@@ -1,18 +1,13 @@
-﻿using Amazon.SQS;
-using AutoMapper;
-using Azure.Messaging.ServiceBus;
+﻿using AutoMapper;
 using FluentValidation;
 using INDT.Common.Insurance.Application.Validators;
-using INDT.Common.Insurance.Domain.Interfaces.Infra;
 using INDT.Common.Insurance.Dto.Request;
 using Insurance.INDT.Application.Api;
 using Insurance.INDT.Application.Mapping;
-using Insurance.INDT.Application.ServiceBus.Azure;
 using Insurance.INDT.Application.Services;
 using Insurance.INDT.Application.Services.Interfaces;
 using Insurance.INDT.Application.Settings;
 using Insurance.INDT.Application.Validators;
-using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

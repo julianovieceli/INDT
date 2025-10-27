@@ -1,6 +1,7 @@
 using INDT.Common.Insurance.Dto.Request;
-using Insurance.INDT.Application.ServiceBus.AWS;
+using INDT.Common.Insurance.Infra.Interfaces.Azure;
 using Insurance.INDT.Application.Services.Interfaces;
+using Insurance.INDT.Application.Storage.Azure;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Insurance.Proposal.INDT.Api.Controllers
@@ -13,15 +14,13 @@ namespace Insurance.Proposal.INDT.Api.Controllers
 
         private readonly IClientService _clientService;
 
-        private readonly IAWSStorageService _AWSStorageService;
-
+        
         public ClientController(ILogger<ClientController> logger,
-            IClientService clientService, IAWSStorageService AWSStorageService)
+            IClientService clientService)
         {
             _logger = logger;
-            _clientService = clientService; 
-            _AWSStorageService = AWSStorageService; 
-    }
+            _clientService = clientService;
+        }
 
         [HttpGet("fetch")]
         public async Task<IActionResult> GetClient([FromQuery] string docto)
@@ -73,22 +72,6 @@ namespace Insurance.Proposal.INDT.Api.Controllers
             return StatusCode(StatusCodes.Status201Created);
         }
 
-        [HttpPost("upload")]
-        // The [FromForm] attribute is crucial for multipart/form-data binding
-        public async Task<IActionResult> UploadFile([FromForm] IFormFile file)
-        {
-
-            var result = await _AWSStorageService.UploadFile(file);
-
-            if (result.IsFailure)
-            {
-                _logger.LogError($"Error{result.ErrorCode}");
-                return BadRequest(result);
-            }
-            _logger.LogInformation("Ok");
-            return Ok(result);
-
-        
-        }
+       
     }
 }

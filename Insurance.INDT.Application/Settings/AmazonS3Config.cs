@@ -1,7 +1,7 @@
 ﻿
 namespace Insurance.INDT.Application.Settings
 {
-    public class AmazonLocalS3Config
+    public class AmazonS3Config
     {
         public string BucketName { get; set; }
 

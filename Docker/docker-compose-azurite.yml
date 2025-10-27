@@ -1,0 +1,12 @@
+name: azurite-standalone
+services:
+    azurite:
+      container_name: azurite
+      image: mcr.microsoft.com/azure-storage/azurite
+      ports:
+        - "10000:10000" # Blob service
+        - "10001:10001" # Queue service
+        - "10002:10002" # Table service
+      volumes:
+        - ./data:/data # Optional: Persist data to a local directory
+

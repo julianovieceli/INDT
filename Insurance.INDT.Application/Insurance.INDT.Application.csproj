@@ -13,6 +13,8 @@
 	  <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="4.0.3.8" />
 
 	  <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.20.1" />
+
+	  <PackageReference Include="Azure.Storage.Blobs" Version="12.26.0" />
     <PackageReference Include="FluentValidation" Version="12.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
     <PackageReference Include="Microsoft.Extensions.Azure" Version="1.13.0" />
@@ -25,6 +27,7 @@
   <ItemGroup>
     <ProjectReference Include="..\INDT.Common\INDT.Common.Insurance.Domain\INDT.Common.Insurance.Domain.csproj" />
     <ProjectReference Include="..\INDT.Common\INDT.Common.Insurance.Dto\INDT.Common.Insurance.Dto.csproj" />
+    <ProjectReference Include="..\INDT.Common\INDT.Common.Insurance.Infra\INDT.Common.Insurance.Infra.csproj" />
     <ProjectReference Include="..\Insurance.INDT.Infra.MongoDb.Repository\Insurance.INDT.Infra.MongoDb.Repository.csproj" />
   </ItemGroup>
 

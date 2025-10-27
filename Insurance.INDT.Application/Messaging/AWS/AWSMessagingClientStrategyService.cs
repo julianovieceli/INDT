@@ -1,13 +1,13 @@
 ﻿using Amazon.SQS;
 using Amazon.SQS.Model;
-using INDT.Common.Insurance.Domain.Interfaces.Infra;
+using INDT.Common.Insurance.Infra.Interfaces.AWS;
 using Insurance.INDT.Application.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
 
-namespace Insurance.INDT.Application.ServiceBus.AWS
+namespace Insurance.INDT.Application.Messaging.AWS
 {
     public class AWSMessagingClientStrategyService: IAWSMessagingClientStrategyService
     {

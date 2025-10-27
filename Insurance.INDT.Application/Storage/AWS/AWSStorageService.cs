@@ -1,27 +1,26 @@
 ﻿using Amazon.S3;
 using Amazon.S3.Model;
-using Amazon.SQS;
-using Azure.Core;
 using INDT.Common.Insurance.Domain;
 using INDT.Common.Insurance.Dto.Response;
-using Insurance.INDT.Application.ServiceBus.AWS;
+using INDT.Common.Insurance.Infra.Interfaces.AWS;
 using Insurance.INDT.Application.Settings;
+using Insurance.INDT.Application.Storage.AWS;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Insurance.INDT.Application.ServiceBus.AWS
+namespace Insurance.INDT.Application.Storage.AWS
 {
     public class AWSStorageService : IAWSStorageService
     {
         private readonly IAmazonS3 _s3Client;
         private readonly string _bucketName = "indt-test-files";
         private readonly ILogger<AWSStorageService> _logger;
-        private readonly AmazonLocalS3Config _amazonS3Config;
+        private readonly Settings.AmazonS3Config _amazonS3Config;
 
-        public AWSStorageService(ILogger<AWSStorageService> logger, IOptions<AmazonLocalS3Config> amazonS3Config, IAmazonS3 s3Client)
+        public AWSStorageService(ILogger<AWSStorageService> logger, IOptions<Settings.AmazonS3Config> amazonS3Config, IAmazonS3 s3Client)
         {
             _logger = logger;
             _s3Client = s3Client;
@@ -74,7 +73,7 @@ namespace Insurance.INDT.Application.ServiceBus.AWS
 
 
                 string successMsg = $"File '{file.FileName}' uploaded successfully to S3. HttpStatusCode: {response.HttpStatusCode}";
-                _logger. LogInformation(successMsg);
+                _logger.LogInformation(successMsg);
 
                 return Result<UploadedFileResponseDto>.Success(uploadedFileResponseDto);
             }
@@ -84,7 +83,7 @@ namespace Insurance.INDT.Application.ServiceBus.AWS
                 _logger.LogError(s3Error);
                 return Result.Failure("500", s3Error);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 string internalServerError = $"S3 error: {ex.Message}";
                 _logger.LogError(internalServerError);
@@ -101,8 +100,8 @@ public static class IoC
 {
     public static IServiceCollection AddAWSStorageService(this IServiceCollection services, IConfiguration configuration)
     {
-        
-        services.AddOptions<AmazonLocalS3Config>().BindConfiguration(nameof(AmazonLocalS3Config));
+
+        services.AddOptions<Insurance.INDT.Application.Settings.AmazonS3Config>().BindConfiguration(nameof(Insurance.INDT.Application.Settings.AmazonS3Config));
 
         services.AddAWSService<IAmazonS3>();
         services.AddDefaultAWSOptions(configuration.GetAWSOptions());

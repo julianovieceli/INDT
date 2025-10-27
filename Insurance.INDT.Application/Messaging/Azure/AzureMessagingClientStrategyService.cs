@@ -1,5 +1,5 @@
 ﻿using Azure.Messaging.ServiceBus;
-using INDT.Common.Insurance.Domain.Interfaces.Infra;
+using INDT.Common.Insurance.Infra.Interfaces.Azure;
 using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using System.Text;
 using System.Text.Json;
 
-namespace Insurance.INDT.Application.ServiceBus.Azure
+namespace Insurance.INDT.Application.Messaging.Azure
 {
     public class AzureMessagingClientStrategyService : IAzureMessagingClientStrategyService
     {

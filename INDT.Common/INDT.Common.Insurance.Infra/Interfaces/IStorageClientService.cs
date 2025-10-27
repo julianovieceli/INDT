@@ -1,9 +1,10 @@
 ﻿using INDT.Common.Insurance.Domain;
 
-namespace Insurance.INDT.Application.ServiceBus.AWS
+namespace INDT.Common.Insurance.Infra.Interfaces
 {
-    public interface IAWSStorageService
+    public interface IStorageClientService
     {
+
         Task<Result> UploadFile(Microsoft.AspNetCore.Http.IFormFile file);
     }
 }
