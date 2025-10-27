@@ -1,0 +1,25 @@
+name: rabbitmq-standalone
+services:
+  rabbitmq-standalone:
+    image: rabbitmq:3.13-management # Use the image with the management plugin
+    hostname: my-rabbit
+    container_name: rabbitmq
+    ports:
+      - "5673:5673" # Standard AMQP port
+      - "15672:15672" # Management UI port
+    environment:
+      RABBITMQ_DEFAULT_USER: guest # Default username
+      RABBITMQ_DEFAULT_PASS: guest # Default password
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq/mnesia # Persist data
+      - rabbitmq_log:/var/log/rabbitmq # Persist logs
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+
+volumes:
+  rabbitmq_data:
+  rabbitmq_log:
+

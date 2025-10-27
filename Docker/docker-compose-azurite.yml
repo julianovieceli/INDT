@@ -1,6 +1,6 @@
 name: azurite-standalone
 services:
-    azurite:
+    azurite-standalone:
       container_name: azurite
       image: mcr.microsoft.com/azure-storage/azurite
       ports:

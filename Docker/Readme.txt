@@ -16,4 +16,7 @@ docker compose -f docker-compose-localstack.yml up -d
 docker compose -f docker-compose-azurite.yml down
 docker compose -f docker-compose-azurite.yml up -d
 
+docker compose -f docker-compose-rabbitmq.yml down
+docker compose -f docker-compose-rabbitmq.yml up -d
+
 
