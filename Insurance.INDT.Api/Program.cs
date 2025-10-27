@@ -5,6 +5,7 @@ using Insurance.INDT.Application.Messaging.Azure;
 using Insurance.INDT.Infra.MongoDb.Repository;
 using Insurance.INDT.Infra.Mysql.Repository;
 using Insurance.Proposal.INDT.Api;
+using Insurance.INDT.Application.Storage.Azure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,7 @@ builder.Services.AddAutoMapper();
 builder.Services.AddAzureMessagingClientService(builder.Configuration);
 builder.Services.AddAWSMessagingClientService(builder.Configuration);
 builder.Services.AddAWSStorageService(builder.Configuration);
+builder.Services.AddAzureStorageService(builder.Configuration);
 builder.Services.AddBackgroundServices(builder.Configuration);
 
 builder.Services.AddMongoDbContext(

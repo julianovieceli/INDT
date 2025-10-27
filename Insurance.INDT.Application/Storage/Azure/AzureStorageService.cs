@@ -1,17 +1,17 @@
-﻿using Amazon.S3;
-using Amazon.S3.Model;
+﻿using Azure;
 using Azure.Storage.Blobs;
 using INDT.Common.Insurance.Domain;
 using INDT.Common.Insurance.Dto.Response;
 using INDT.Common.Insurance.Infra.Interfaces.Azure;
 using Insurance.INDT.Application.Settings;
 using Insurance.INDT.Application.Storage.AWS;
-using Insurance.INDT.Application.Storage.Azure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System.IO;
+using System.Net;
 
 namespace Insurance.INDT.Application.Storage.Azure
 {
@@ -31,68 +31,84 @@ namespace Insurance.INDT.Application.Storage.Azure
 
         public async Task<Result> UploadFile(IFormFile file)
         {
-            return Task.FromResult(Result.Success).Result;
-
+            
             if (file == null || file.Length == 0)
             {
                 _logger.LogError("No file uploaded or file is empty.");
                 return Result.Failure("400", "No file uploaded or file is empty.");
             }
 
-            //try
-            //{
-            //    PutObjectResponse response = null;
-            //    using (var stream = file.OpenReadStream())
-            //    {
-            //        var putObjectRequest = new PutObjectRequest
-            //        {
-            //            BucketName = _amazonS3Config.BucketName,
-            //            Key = file.FileName, // Use the original file name as the S3 key
-            //            InputStream = stream,
-            //            ContentType = file.ContentType
-            //        };
+            string url = string.Empty;
+            int httpStatusCodeResponse = (int)HttpStatusCode.BadRequest;
 
-            //        response = await _s3Client.PutObjectAsync(putObjectRequest);
-            //    }
+            try
+            {
+                using (var stream = file.OpenReadStream())
+                {
+                    var containerClient = _blobServiceClient.GetBlobContainerClient(_azureLocalBlobStorageConfig.ContainerName);
+                    await containerClient.CreateIfNotExistsAsync();
+                    var blobClient = containerClient.GetBlobClient(file.FileName);
+                    var response = await blobClient.UploadAsync(stream, overwrite: true);
+                    url = blobClient.Uri.ToString();
 
-            //    //TimeSpan duration = TimeSpan.FromMinutes(5); // URL valid for 5 minutes
+                    httpStatusCodeResponse = response.GetRawResponse().Status;
+                }
 
-            //    //var request = new GetPreSignedUrlRequest
-            //    //{
-            //    //    BucketName = _amazonS3Config.BucketName,
-            //    //    Key = file.FileName,
-            //    //    Expires = DateTime.UtcNow.Add(duration),
-            //    //    Protocol = Protocol.HTTP, // Or Protocol.HTTP if needed
-            //    //    Verb = HttpVerb.GET // The operation the URL allows
-            //    //};
-
-            //    //string url = _s3Client.GetPreSignedURL(request);
-
-            //    string url = _amazonS3Config.BaaseUrlToGetFile + _amazonS3Config.BucketName + "/" + file.FileName;
-
-            //    UploadedFileResponseDto uploadedFileResponseDto = new UploadedFileResponseDto()
-            //    {
-            //        Url = url
-            //    };
+                UploadedFileResponseDto uploadedFileResponseDto = new UploadedFileResponseDto()
+                {
+                    Url = url
+                };
 
 
-            //    string successMsg = $"File '{file.FileName}' uploaded successfully to S3. HttpStatusCode: {response.HttpStatusCode}";
-            //    _logger.LogInformation(successMsg);
+                string successMsg = $"File '{file.FileName}' uploaded successfully to S3. HttpStatusCode: {httpStatusCodeResponse}";
+                _logger.LogInformation(successMsg);
 
-            //    return Result<UploadedFileResponseDto>.Success(uploadedFileResponseDto);
-            //}
-            //catch (AmazonS3Exception s3Ex)
-            //{
-            //    string s3Error = $"S3 error: {s3Ex.Message}";
-            //    _logger.LogError(s3Error);
-            //    return Result.Failure("500", s3Error);
-            //}
-            //catch (Exception ex)
-            //{
-            //    string internalServerError = $"S3 error: {ex.Message}";
-            //    _logger.LogError(internalServerError);
-            //    return Result.Failure("500", internalServerError);
-            //}
+                return Result<UploadedFileResponseDto>.Success(uploadedFileResponseDto, (System.Net.HttpStatusCode)httpStatusCodeResponse);
+            }
+            catch (Exception ex)
+            {
+                string internalServerError = $"S3 error: {ex.Message}";
+                _logger.LogError(internalServerError);
+                return Result.Failure("500", internalServerError, HttpStatusCode.InternalServerError);
+            }
+
+        }
+
+        public async Task<Result> DownloadFile(string fileName)
+        {
+            ArgumentNullException.ThrowIfNullOrWhiteSpace(fileName, "fileName");
+
+            
+            try
+            {
+                var containerClient = _blobServiceClient.GetBlobContainerClient(_azureLocalBlobStorageConfig.ContainerName);
+                if (await containerClient.ExistsAsync())
+                {
+                    var blobClient = containerClient.GetBlobClient(fileName);
+                    var response = await blobClient.DownloadToAsync($"C:\\{fileName}");
+                }
+                else
+                    return Result.Failure("400", $"Container not found: {_azureLocalBlobStorageConfig.ContainerName}");
+
+                return Result.Success;
+            }
+            catch(RequestFailedException azEx)
+            {
+                string s3Error = $"Azure Blob error: {azEx.Message}";
+                _logger.LogError(s3Error);
+
+                if (azEx.Status == 404)
+                    return Result.Failure("404", $"File not found: {fileName}");
+
+                return Result.Failure("400", s3Error);
+            }
+
+            catch (Exception ex)
+            {
+                string internalServerError = $"S3 error: {ex.Message}";
+                _logger.LogError(internalServerError);
+                return Result.Failure("500",internalServerError, HttpStatusCode.InternalServerError);
+            }
 
         }
     }
@@ -104,8 +120,10 @@ namespace Insurance.INDT.Application.Storage.Azure
 
             services.AddOptions<AzureBlobStorageConfig>().BindConfiguration(nameof(AzureBlobStorageConfig));
 
-            var connectionString = configuration.GetConnectionString("AzureBlobStorage:ConnectionString");
-            services.AddSingleton(new BlobServiceClient(connectionString));
+            var azureBlobStorageConnString = configuration.GetSection("AzureBlobStorageConfig:ConnectionString");
+
+            
+            services.AddSingleton(new BlobServiceClient(azureBlobStorageConnString.Value));
             return services.AddScoped<IAzureStorageService, AzureStorageService>();
         }
     }

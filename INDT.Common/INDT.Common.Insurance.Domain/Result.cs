@@ -53,7 +53,7 @@ public class Result<T> : Result
         this.StatusCode = (int)statusCode;
     }
 
-    public static Result<T> Success(T value) => new(value);
+    public static Result<T> Success(T value, HttpStatusCode statusCode = HttpStatusCode.OK) => new(value, statusCode);
 }
 
 

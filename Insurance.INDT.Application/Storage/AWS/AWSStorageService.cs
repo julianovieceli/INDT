@@ -3,13 +3,13 @@ using Amazon.S3.Model;
 using INDT.Common.Insurance.Domain;
 using INDT.Common.Insurance.Dto.Response;
 using INDT.Common.Insurance.Infra.Interfaces.AWS;
-using Insurance.INDT.Application.Settings;
 using Insurance.INDT.Application.Storage.AWS;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System.Net;
 
 namespace Insurance.INDT.Application.Storage.AWS
 {
@@ -51,18 +51,7 @@ namespace Insurance.INDT.Application.Storage.AWS
                     response = await _s3Client.PutObjectAsync(putObjectRequest);
                 }
 
-                //TimeSpan duration = TimeSpan.FromMinutes(5); // URL valid for 5 minutes
-
-                //var request = new GetPreSignedUrlRequest
-                //{
-                //    BucketName = _amazonS3Config.BucketName,
-                //    Key = file.FileName,
-                //    Expires = DateTime.UtcNow.Add(duration),
-                //    Protocol = Protocol.HTTP, // Or Protocol.HTTP if needed
-                //    Verb = HttpVerb.GET // The operation the URL allows
-                //};
-
-                //string url = _s3Client.GetPreSignedURL(request);
+     
 
                 string url = _amazonS3Config.BaaseUrlToGetFile + _amazonS3Config.BucketName + "/" + file.FileName;
 
@@ -87,7 +76,7 @@ namespace Insurance.INDT.Application.Storage.AWS
             {
                 string internalServerError = $"S3 error: {ex.Message}";
                 _logger.LogError(internalServerError);
-                return Result.Failure("500", internalServerError);
+                return Result.Failure("500", internalServerError, HttpStatusCode.InternalServerError);
             }
 
         }
