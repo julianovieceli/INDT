@@ -1,13 +1,12 @@
-﻿using Amazon.SQS.Model;
-using INDT.Common.Insurance.Infra.Interfaces.Rabbit;
+﻿using INDT.Common.Insurance.Infra.Interfaces.Rabbit;
 using Insurance.INDT.Application.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Channels;
 
 namespace Insurance.INDT.Application.Messaging.Rabbit
 {
@@ -62,10 +61,28 @@ namespace Insurance.INDT.Application.Messaging.Rabbit
 
         }
 
+        public void StartConsuming()
+        {
+            _logger.LogInformation("RabbitMQ consumer started.");
+            var consumer = new EventingBasicConsumer(_channel);
+            consumer.Received += (model, ea) =>
+            {
+                var body = ea.Body.ToArray();
+                var message = Encoding.UTF8.GetString(body);
+                _logger.LogInformation($"Received message: {message}");
+                // Process the message here
+                _channel.BasicAck(ea.DeliveryTag, false); // Acknowledge message
+            };
+            _channel.BasicConsume(queue: QueueName,
+                                 autoAck: false, // Handle acknowledgment manually
+                                 consumer: consumer);
+        }
+
         public void Dispose()
         {
-            _channel.Dispose();
-            _connection.Dispose();
+            _channel?.Close();
+            _channel?.Dispose();
+            
         }
     }
 
@@ -95,6 +112,9 @@ namespace Insurance.INDT.Application.Messaging.Rabbit
             return services;
         }
 
-        
+       
+
+
+
     }
 }

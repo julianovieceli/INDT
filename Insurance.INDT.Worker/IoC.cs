@@ -1,8 +1,6 @@
-﻿using Amazon.SQS;
-using Insurance.INDT.Application.Api;
+﻿using Insurance.INDT.Application.Api;
 using Insurance.INDT.Application.Services;
 using Insurance.INDT.Application.Services.Interfaces;
-using Insurance.INDT.Application.Settings;
 
 namespace Insurance.INDT.Worker
 {
