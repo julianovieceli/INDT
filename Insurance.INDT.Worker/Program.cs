@@ -10,7 +10,7 @@ var builder = Host.CreateApplicationBuilder(args);
 
 builder.Services.AddAzureMessagingClientService(builder.Configuration);
 builder.Services.AddAWSMessagingClientService(builder.Configuration);
-builder.Services.AddRabbitMqClientService(builder.Configuration);
+builder.Services.AddRabbitMqConsumerService(builder.Configuration);
 builder.Services.AddAutoMapper();
 builder.Services.AddWorkerApplicationServices();
 builder.Services.AddHttpClient(builder.Configuration);

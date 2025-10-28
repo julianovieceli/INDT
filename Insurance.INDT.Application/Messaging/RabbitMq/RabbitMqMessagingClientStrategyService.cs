@@ -61,23 +61,7 @@ namespace Insurance.INDT.Application.Messaging.Rabbit
 
         }
 
-        public void StartConsuming()
-        {
-            _logger.LogInformation("RabbitMQ consumer started.");
-            var consumer = new EventingBasicConsumer(_channel);
-            consumer.Received += (model, ea) =>
-            {
-                var body = ea.Body.ToArray();
-                var message = Encoding.UTF8.GetString(body);
-                _logger.LogInformation($"Received message: {message}");
-                // Process the message here
-                _channel.BasicAck(ea.DeliveryTag, false); // Acknowledge message
-            };
-            _channel.BasicConsume(queue: QueueName,
-                                 autoAck: false, // Handle acknowledgment manually
-                                 consumer: consumer);
-        }
-
+        
         public void Dispose()
         {
             _channel?.Close();

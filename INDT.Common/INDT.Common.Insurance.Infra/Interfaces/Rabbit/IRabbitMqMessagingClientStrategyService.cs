@@ -2,6 +2,6 @@
 {
     public interface IRabbitMqMessagingClientStrategyService : IMessagingClientService
     {
-        void StartConsuming();
+        
     }
 }

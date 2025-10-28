@@ -27,7 +27,7 @@ namespace Insurance.INDT.Worker
                 {
                     using (var scope = _scopeFactory.CreateScope())
                     {
-                        var consumerService = scope.ServiceProvider.GetRequiredService<IRabbitMqMessagingClientStrategyService>();
+                        var consumerService = scope.ServiceProvider.GetRequiredService<IRabbitMqConsumerService>();
                         consumerService.StartConsuming();
                     }
                     // You might want to add a delay here or rely on the consumer's event-driven nature
