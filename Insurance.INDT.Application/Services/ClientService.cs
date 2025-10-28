@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using INDT.Common.Insurance.Domain;
-using INDT.Common.Insurance.Infra.Interfaces.Azure;
 using INDT.Common.Insurance.Domain.Interfaces.Repository;
 using INDT.Common.Insurance.Dto.Request;
 using INDT.Common.Insurance.Dto.Response;
-using Insurance.INDT.Application.Services.Interfaces;
-using System.Text.Json;
 using INDT.Common.Insurance.Infra.Interfaces.AWS;
+using INDT.Common.Insurance.Infra.Interfaces.Azure;
+using INDT.Common.Insurance.Infra.Interfaces.Rabbit;
+using Insurance.INDT.Application.Services.Interfaces;
 
 namespace Insurance.INDT.Application.Services
 {
@@ -20,16 +20,20 @@ namespace Insurance.INDT.Application.Services
 
         private readonly IAWSMessagingClientStrategyService _aWSMessagingClientService;
 
+        private readonly IRabbitMqMessagingClientStrategyService _rabbitMqMessagingClientStrategyService;
+
         private readonly IMapper _dataMapper;
 
         public ClientService(IClientRepository clientRepository, IValidator<RegisterClientDto> clientValidator, IMapper dataMapper,
-            IAzureMessagingClientStrategyService azureMessagingClientService, IAWSMessagingClientStrategyService aWSMessagingClientService)
+            IAzureMessagingClientStrategyService azureMessagingClientService, IAWSMessagingClientStrategyService aWSMessagingClientService,
+            IRabbitMqMessagingClientStrategyService rabbitMqMessagingClientStrategyService)
         {
             _clientRepository = clientRepository;
             _clientValidator = clientValidator;
             _dataMapper = dataMapper;
             _azureMessagingClientService = azureMessagingClientService;
             _aWSMessagingClientService = aWSMessagingClientService;
+            _rabbitMqMessagingClientStrategyService = rabbitMqMessagingClientStrategyService;
         }
         public async Task<Result> Register(RegisterClientDto registerClient )
         {
@@ -52,9 +56,10 @@ namespace Insurance.INDT.Application.Services
                         return Result.Failure("999");
 
 
-
+                    await _rabbitMqMessagingClientStrategyService.SendMessage(client);
                     await _azureMessagingClientService.SendMessage(client);
                     await _aWSMessagingClientService.SendMessage(client);
+                    
 
                     return Result.Success;
 

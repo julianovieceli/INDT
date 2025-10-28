@@ -44,7 +44,7 @@ namespace Insurance.INDT.Application.Messaging.AWS
 
                 var sendMessageResponse = await _sqsClient.SendMessageAsync(sendMessageRequest);
                 
-                _logger.LogInformation($"Message sent successfully to queue '{QueueName}'. Message ID: {sendMessageResponse.MessageId}");
+                _logger.LogInformation($"Message sent to AWS successfully to queue '{QueueName}'. Message ID: {sendMessageResponse.MessageId}");
                 
 
             }

@@ -6,6 +6,7 @@ using Insurance.INDT.Infra.MongoDb.Repository;
 using Insurance.INDT.Infra.Mysql.Repository;
 using Insurance.Proposal.INDT.Api;
 using Insurance.INDT.Application.Storage.Azure;
+using Insurance.INDT.Application.Messaging.Rabbit;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,7 @@ builder.Services.AddValidators();
 builder.Services.AddAutoMapper();
 builder.Services.AddAzureMessagingClientService(builder.Configuration);
 builder.Services.AddAWSMessagingClientService(builder.Configuration);
+builder.Services.AddRabbitMqClientService(builder.Configuration);
 builder.Services.AddAWSStorageService(builder.Configuration);
 builder.Services.AddAzureStorageService(builder.Configuration);
 builder.Services.AddBackgroundServices(builder.Configuration);

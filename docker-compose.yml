@@ -29,7 +29,10 @@ services:
       - "AWS_REGION=us-east-1"
       - "AzureBlobStorageConfig:ConnectionString=UseDevelopmentStorage=true"
       - "AzureBlobStorageConfig:ContainerName=indt-test-files"
-      
+      - "RabbitMqConfig:Hostname=host.docker.internal"
+      - "RabbitMqConfig:Port=5673"
+      - "RabbitMqConfig:User=guest"
+      - "RabbitMqConfig:Password=guest"
     ports:
       - "8080:80"
     depends_on:

@@ -1,4 +1,5 @@
-﻿using Azure.Messaging.ServiceBus;
+﻿using Amazon.SQS.Model;
+using Azure.Messaging.ServiceBus;
 using INDT.Common.Insurance.Infra.Interfaces.Azure;
 using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Configuration;
@@ -26,22 +27,30 @@ namespace Insurance.INDT.Application.Messaging.Azure
 
         public async Task SendMessage<T>(T msg)
         {
-            string messageBody = JsonSerializer.Serialize(msg);
+            try
+            {
+                string messageBody = JsonSerializer.Serialize(msg);
 
-            ServiceBusMessage sbMessage = new ServiceBusMessage(Encoding.UTF8.GetBytes(messageBody));
+                ServiceBusMessage sbMessage = new ServiceBusMessage(Encoding.UTF8.GetBytes(messageBody));
 
-            sbMessage.To = "subscription.1";
-            sbMessage.Body = new BinaryData(messageBody);
-            sbMessage.ContentType = "application/json";
+                sbMessage.To = "subscription.1";
+                sbMessage.Body = new BinaryData(messageBody);
+                sbMessage.ContentType = "application/json";
 
-            _logger.LogInformation($"Enviando msg :{messageBody}");
+                _logger.LogInformation($"Enviando msg :{messageBody}");
 
 
-            _logger.LogInformation($"EntityPath  :{_serviceBusSender.EntityPath.ToString()}");
-            _logger.LogInformation($"FullyQualifiedNamespace:{_serviceBusSender.FullyQualifiedNamespace}");
+                _logger.LogInformation($"EntityPath  :{_serviceBusSender.EntityPath.ToString()}");
+                _logger.LogInformation($"FullyQualifiedNamespace:{_serviceBusSender.FullyQualifiedNamespace}");
 
-            await _serviceBusSender.SendMessageAsync(sbMessage);
+                await _serviceBusSender.SendMessageAsync(sbMessage);
 
+                _logger.LogInformation($"Message sent to Azure successfully to queue '{sbMessage.To}'. Message ID: {sbMessage.MessageId}");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"An error occurred: {ex.Message}");
+            }
 
 
 
