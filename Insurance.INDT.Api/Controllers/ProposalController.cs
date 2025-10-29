@@ -2,12 +2,14 @@ using INDT.Common.Insurance.Domain;
 using INDT.Common.Insurance.Dto.Request;
 using INDT.Common.Insurance.Dto.Response;
 using Insurance.INDT.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Insurance.Proposal.INDT.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class ProposalController : ControllerBase
     {
         private readonly ILogger<ProposalController> _logger;

@@ -1,5 +1,6 @@
 ﻿using INDT.Common.Insurance.Infra.Interfaces.AWS;
 using INDT.Common.Insurance.Infra.Interfaces.Azure;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Insurance.INDT.Api.Controllers
@@ -7,6 +8,7 @@ namespace Insurance.INDT.Api.Controllers
 
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class StorageController : Controller
     {
         private readonly ILogger<StorageController> _logger;

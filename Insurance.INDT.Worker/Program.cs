@@ -1,3 +1,4 @@
+using INDT.Common.Insurance.Application;
 using INDT.Common.Insurance.Infra.MongoDb.Repository;
 using Insurance.INDT.Application;
 using Insurance.INDT.Application.Messaging.AWS;

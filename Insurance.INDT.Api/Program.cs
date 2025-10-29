@@ -7,6 +7,7 @@ using Insurance.INDT.Infra.Mysql.Repository;
 using Insurance.Proposal.INDT.Api;
 using Insurance.INDT.Application.Storage.Azure;
 using Insurance.INDT.Application.Messaging.Rabbit;
+using INDT.Common.Insurance.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +38,10 @@ builder.Services.AddMongoDbRepositories();
 builder.Services.AddHttpClient(builder.Configuration);
 builder.Services.AddHealthChecks();
 
+builder.Services.AddJwtConfigurations(builder.Configuration);
+builder.Services.AddBasicAuthentication(builder.Configuration);
+
+
 
 var app = builder.Build();
 
@@ -51,6 +56,8 @@ app.UseHealthChecks("/health"); // Exposes a health check endpoint at /health
 
 app.UseHttpsRedirection();
 
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

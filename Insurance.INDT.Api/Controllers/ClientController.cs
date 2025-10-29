@@ -1,13 +1,13 @@
 using INDT.Common.Insurance.Dto.Request;
-using INDT.Common.Insurance.Infra.Interfaces.Azure;
 using Insurance.INDT.Application.Services.Interfaces;
-using Insurance.INDT.Application.Storage.Azure;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Insurance.Proposal.INDT.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class ClientController : ControllerBase
     {
         private readonly ILogger<ClientController> _logger;

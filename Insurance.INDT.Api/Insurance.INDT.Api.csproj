@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\INDT.Common\INDT.Common.Insurance.Infra.MongoDb.Repository\INDT.Common.Insurance.Infra.MongoDb.Repository.csproj" />
     <ProjectReference Include="..\Insurance.INDT.Application\Insurance.INDT.Application.csproj" />
+    <ProjectReference Include="..\Insurance.INDT.Common.Insurance.Application\INDT.Common.Insurance.Application.csproj" />
     <ProjectReference Include="..\Insurance.INDT.Mysql.Repository\Insurance.INDT.Infra.Mysql.Repository.csproj" />
   </ItemGroup>
 
