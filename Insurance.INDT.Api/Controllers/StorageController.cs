@@ -2,13 +2,15 @@
 using INDT.Common.Insurance.Infra.Interfaces.Azure;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static BasicAuthenticationHandler;
 
 namespace Insurance.INDT.Api.Controllers
 {
 
     [ApiController]
     [Route("[controller]")]
-    [Authorize]
+    [Authorize(AuthenticationSchemes = BasicAuthenticationOptions.DefaultScheme)]
+
     public class StorageController : Controller
     {
         private readonly ILogger<StorageController> _logger;

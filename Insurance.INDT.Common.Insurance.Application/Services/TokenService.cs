@@ -18,10 +18,13 @@ namespace INDT.Common.Insurance.Application.Services
         }
 
     
-        public Result GenerateToken(string userName)
+        public Result GenerateToken(string userName, bool admin)
         {
             try
             {
+                string role = "Guest";
+                if (admin)
+                    role = "Admin";
 
                 var secretKey = _jwtSettings.Key;
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
@@ -33,17 +36,17 @@ namespace INDT.Common.Insurance.Application.Services
                 var claims = new[]
                 {
                     new Claim(ClaimTypes.Name, userName),
-                    new Claim(ClaimTypes.Role, "Admin"),
+                     new Claim(ClaimTypes.Role, role),
                 };
 
                 // 4) criar token
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(claims),
-                    Expires = DateTime.UtcNow.AddHours(1),
+                    Expires = DateTime.UtcNow.AddMinutes(_jwtSettings.ExpireMinutes),
                     SigningCredentials = creds,
-                    //Issuer = "your-app",
-                    Audience = "teste"
+                    Issuer = _jwtSettings.Issuer,
+                    Audience = _jwtSettings.Audience
                 };
 
                 var handler = new JwtSecurityTokenHandler();

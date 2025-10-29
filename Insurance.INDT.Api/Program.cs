@@ -40,6 +40,7 @@ builder.Services.AddHealthChecks();
 
 builder.Services.AddJwtConfigurations(builder.Configuration);
 builder.Services.AddBasicAuthentication(builder.Configuration);
+builder.Services.AddJwtAuthentication(builder.Configuration);
 
 
 

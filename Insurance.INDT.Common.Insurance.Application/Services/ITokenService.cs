@@ -4,6 +4,6 @@ namespace INDT.Common.Insurance.Application.Services
 {
     public interface ITokenService
     {
-        Result GenerateToken(string userName);
+        Result GenerateToken(string userName, bool admin);
     }
 }

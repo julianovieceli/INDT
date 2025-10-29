@@ -2,12 +2,14 @@ using INDT.Common.Insurance.Dto.Request;
 using Insurance.INDT.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static BasicAuthenticationHandler;
 
 namespace Insurance.Proposal.INDT.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [Authorize]
+    [Authorize(AuthenticationSchemes = BasicAuthenticationOptions.DefaultScheme)]
+
     public class InsuranceController : ControllerBase
     {
         private readonly ILogger<InsuranceController> _logger;
