@@ -13,5 +13,7 @@
     <None Include="ConfigFiles\Config.json" />
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
+    <None Include="Secrets\user_authentication_pass.txt" />
+    <None Include="secrets\jwt_secret.txt" />
   </ItemGroup>
 </Project>

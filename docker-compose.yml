@@ -33,6 +33,13 @@ services:
       - "RabbitMqConfig:Port=5673"
       - "RabbitMqConfig:User=guest"
       - "RabbitMqConfig:Password=guest"
+      - JwtSettings:Key=/app/secrets/jwt_secret
+      - UserAuthentication:Password=/app/secrets/user_authentication_pass
+    secrets:
+       - source: jwt_secret
+         target: /app/secrets/jwt_secret # This is the path the app will read
+       - source: user_authentication_pass
+         target: /app/secrets/user_authentication_pass     
     ports:
       - "8080:80"
     depends_on:
@@ -137,3 +144,9 @@ networks:
 volumes:
   db_data:
   mongo-data:   
+
+secrets:
+  jwt_secret:
+    file: secrets/jwt_secret.txt
+  user_authentication_pass:
+    file: secrets/user_authentication_pass.txt

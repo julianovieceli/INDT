@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
@@ -37,6 +36,7 @@ public class BasicAuthenticationHandler : AuthenticationHandler<BasicAuthenticat
 
         try
         {
+            
             var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
             if (authHeader.Scheme != "Basic")
                 return Task.FromResult(AuthenticateResult.Fail("Invalid Authorization Scheme"));
@@ -57,15 +57,19 @@ public class BasicAuthenticationHandler : AuthenticationHandler<BasicAuthenticat
                 var principal = new ClaimsPrincipal(identity);
                 var ticket = new AuthenticationTicket(principal, Scheme.Name);
 
+                base.Logger.LogInformation("Autenticou OK");
+
                 return Task.FromResult(AuthenticateResult.Success(ticket));
             }
             else
             {
+                base.Logger.LogError("Failed login attempt for user: {Username}", username);
                 return Task.FromResult(AuthenticateResult.Fail("Invalid Username or Password"));
             }
         }
         catch
         {
+            base.Logger.LogError("Invalid Authorization Header Format");
             return Task.FromResult(AuthenticateResult.Fail("Invalid Authorization Header Format"));
         }
     }

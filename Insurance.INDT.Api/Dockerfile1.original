@@ -7,6 +7,12 @@ WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
+# Instala o curl para o HEALTHCHECK
+USER root
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
+USER app
+
 
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
@@ -17,9 +23,7 @@ COPY ["INDT.Common/INDT.Common.Insurance.Infra.MongoDb.Repository/INDT.Common.In
 COPY ["INDT.Common/INDT.Common.Insurance.Domain/INDT.Common.Insurance.Domain.csproj", "INDT.Common/INDT.Common.Insurance.Domain/"]
 COPY ["Insurance.INDT.Application/Insurance.INDT.Application.csproj", "Insurance.INDT.Application/"]
 COPY ["INDT.Common/INDT.Common.Insurance.Dto/INDT.Common.Insurance.Dto.csproj", "INDT.Common/INDT.Common.Insurance.Dto/"]
-COPY ["INDT.Common/INDT.Common.Insurance.Infra/INDT.Common.Insurance.Infra.csproj", "INDT.Common/INDT.Common.Insurance.Infra/"]
 COPY ["Insurance.INDT.Infra.MongoDb.Repository/Insurance.INDT.Infra.MongoDb.Repository.csproj", "Insurance.INDT.Infra.MongoDb.Repository/"]
-COPY ["Insurance.INDT.Common.Insurance.Application/INDT.Common.Insurance.Application.csproj", "Insurance.INDT.Common.Insurance.Application/"]
 COPY ["Insurance.INDT.Mysql.Repository/Insurance.INDT.Infra.Mysql.Repository.csproj", "Insurance.INDT.Mysql.Repository/"]
 COPY ["INDT.Common/INDT.Common.Insurance.Infra.Mysql.Repository/INDT.Common.Insurance.Infra.Mysql.Repository.csproj", "INDT.Common/INDT.Common.Insurance.Infra.Mysql.Repository/"]
 RUN dotnet restore "./Insurance.INDT.Api/Insurance.INDT.Api.csproj"

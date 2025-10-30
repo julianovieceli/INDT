@@ -26,6 +26,7 @@ namespace INDT.Common.Insurance.Application.Services
                 if (admin)
                     role = "Admin";
 
+                
                 var secretKey = _jwtSettings.Key;
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
 

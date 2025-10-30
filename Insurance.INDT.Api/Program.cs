@@ -8,6 +8,7 @@ using Insurance.Proposal.INDT.Api;
 using Insurance.INDT.Application.Storage.Azure;
 using Insurance.INDT.Application.Messaging.Rabbit;
 using INDT.Common.Insurance.Application;
+using Microsoft.IdentityModel.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,6 +50,9 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    // Enable PII logging only in development environments
+    IdentityModelEventSource.ShowPII = true;
+
     app.UseSwagger();
     app.UseSwaggerUI();
 }
