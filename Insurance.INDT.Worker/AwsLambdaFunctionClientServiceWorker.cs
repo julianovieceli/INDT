@@ -1,13 +1,20 @@
-﻿namespace Insurance.INDT.Worker
+﻿using INDT.Common.Insurance.Dto;
+using INDT.Common.Insurance.Infra.Interfaces.AWS;
+
+namespace Insurance.INDT.Worker
 {
     public class AwsLambdaFunctionClientServiceWorker: BackgroundService
     {
 
         private readonly ILogger<AwsLambdaFunctionClientServiceWorker> _logger;
-        public AwsLambdaFunctionClientServiceWorker(ILogger<AwsLambdaFunctionClientServiceWorker> logger)
+        private readonly IServiceScopeFactory _scopeFactory;
+
+        public AwsLambdaFunctionClientServiceWorker(ILogger<AwsLambdaFunctionClientServiceWorker> logger,
+            IServiceScopeFactory scopeFactory)
         {
             _logger = logger;
-     
+            _scopeFactory = scopeFactory;
+
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -18,7 +25,15 @@
             while (await timer.WaitForNextTickAsync(stoppingToken))
             {
                 _logger.LogInformation("Executing scheduled task at: {time}", DateTime.UtcNow);
-                // Add your scheduled work here
+
+                using (var scope = _scopeFactory.CreateScope())
+                {
+                    var consumerService = scope.ServiceProvider.GetRequiredService<IAWSLambdaFunctionClientService>();
+                    await consumerService.InvokeLambdaAsync(new RequestLambdaTestDto
+                    {
+                        Nome = "Nome-" + Guid.NewGuid().ToString(),
+                    });
+                }
             }
         }
     }

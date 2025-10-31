@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\INDT.Common.Insurance.Domain\INDT.Common.Insurance.Domain.csproj" />
+    <ProjectReference Include="..\INDT.Common.Insurance.Dto\INDT.Common.Insurance.Dto.csproj" />
 	<PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
   </ItemGroup>
 

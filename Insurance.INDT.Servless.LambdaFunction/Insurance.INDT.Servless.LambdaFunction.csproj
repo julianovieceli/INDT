@@ -11,4 +11,8 @@
     <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.4.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\INDT.Common\INDT.Common.Insurance.Dto\INDT.Common.Insurance.Dto.csproj" />
+  </ItemGroup>
+
 </Project>

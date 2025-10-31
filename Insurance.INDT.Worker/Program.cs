@@ -1,4 +1,3 @@
-using INDT.Common.Insurance.Application;
 using INDT.Common.Insurance.Infra.MongoDb.Repository;
 using Insurance.INDT.Application;
 using Insurance.INDT.Application.Messaging.AWS;
@@ -6,6 +5,7 @@ using Insurance.INDT.Application.Messaging.Azure;
 using Insurance.INDT.Application.Messaging.Rabbit;
 using Insurance.INDT.Infra.MongoDb.Repository;
 using Insurance.INDT.Worker;
+using Insurance.INDT.Application.Servless.AWS;
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -21,9 +21,12 @@ builder.Services.AddMongoDbContext(
     builder.Configuration.GetSection("MongoDbSettings:Database").Value!
     );
 builder.Services.AddMongoDbRepositories();
+builder.Services.AddAWSLambdaClientService();
 builder.Services.AddHostedService<ServiceBusClientReceiverBackGroundServiceWorker>();
 builder.Services.AddHostedService<SqsMessageReceiverServiceWorker>();
 builder.Services.AddHostedService<RabbitMqMessageReceiverServiceWorker>();
+builder.Services.AddHostedService<AwsLambdaFunctionClientServiceWorker>();
+
 
 
 var host = builder.Build();
