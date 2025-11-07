@@ -1,11 +1,11 @@
-using INDT.Common.Insurance.Infra.MongoDb.Repository;
 using Insurance.INDT.Application;
 using Insurance.INDT.Application.Messaging.AWS;
 using Insurance.INDT.Application.Messaging.Azure;
 using Insurance.INDT.Application.Messaging.Rabbit;
-using Insurance.INDT.Infra.MongoDb.Repository;
-using Insurance.INDT.Worker;
 using Insurance.INDT.Application.Servless.AWS;
+using Insurance.INDT.Infra.MongoDb.Repository;
+using Personal.Common.MongoDb.Repository;
+using Insurance.INDT.Worker;
 
 var builder = Host.CreateApplicationBuilder(args);
 

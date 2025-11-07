@@ -20,4 +20,10 @@
     <ProjectReference Include="..\Insurance.INDT.Application\Insurance.INDT.Application.csproj" />
     <ProjectReference Include="..\Insurance.INDT.Infra.MongoDb.Repository\Insurance.INDT.Infra.MongoDb.Repository.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Personal.Common.MongoDb.Repository">
+      <HintPath>..\Libs\Personal.Common.MongoDb.Repository.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

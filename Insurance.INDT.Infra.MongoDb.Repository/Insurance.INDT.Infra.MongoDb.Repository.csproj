@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\INDT.Common\INDT.Common.Insurance.Infra.MongoDb.Repository\INDT.Common.Insurance.Infra.MongoDb.Repository.csproj" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Personal.Common.MongoDb.Repository">
+      <HintPath>..\Libs\Personal.Common.MongoDb.Repository.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

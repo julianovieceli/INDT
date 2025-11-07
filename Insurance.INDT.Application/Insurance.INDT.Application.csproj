@@ -22,6 +22,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.9" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.9" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.9" />
+    <PackageReference Include="MongoDB.Bson" Version="3.5.0" />
     <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
     <PackageReference Include="System.Runtime" Version="4.3.0" />
   </ItemGroup>
@@ -31,6 +32,12 @@
     <ProjectReference Include="..\INDT.Common\INDT.Common.Insurance.Dto\INDT.Common.Insurance.Dto.csproj" />
     <ProjectReference Include="..\INDT.Common\INDT.Common.Insurance.Infra\INDT.Common.Insurance.Infra.csproj" />
     <ProjectReference Include="..\Insurance.INDT.Infra.MongoDb.Repository\Insurance.INDT.Infra.MongoDb.Repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Personal.Common.MongoDb.Repository">
+      <HintPath>..\Libs\Personal.Common.MongoDb.Repository.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

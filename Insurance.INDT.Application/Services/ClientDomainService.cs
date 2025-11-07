@@ -3,7 +3,6 @@ using Insurance.INDT.Application.Services.Interfaces;
 using Insurance.INDT.Infra.MongoDb.Repository.Domain;
 using Insurance.INDT.Infra.MongoDb.Repository.Interface;
 using Microsoft.Extensions.Logging;
-using System.Text.Json;
 
 namespace Insurance.INDT.Application.Services
 {
