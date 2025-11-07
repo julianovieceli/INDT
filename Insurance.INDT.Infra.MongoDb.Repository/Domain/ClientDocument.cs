@@ -1,5 +1,5 @@
 ﻿
-using Personal.Common.MongoDb.Repository;
+using Personal.Common.Infra.MongoDb.Repository.Repository;
 
 namespace Insurance.INDT.Infra.MongoDb.Repository.Domain
 {

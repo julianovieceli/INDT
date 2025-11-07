@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Personal.Common.MongoDb.Repository">
-      <HintPath>..\Libs\Personal.Common.MongoDb.Repository.dll</HintPath>
+    <Reference Include="Personal.Common.Infra.MongoDb.Repository">
+      <HintPath>..\Libs\Personal.Common.Infra.MongoDb.Repository.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

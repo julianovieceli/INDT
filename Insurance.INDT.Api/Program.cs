@@ -8,7 +8,7 @@ using Insurance.INDT.Infra.MongoDb.Repository;
 using Insurance.INDT.Infra.Mysql.Repository;
 using Insurance.Proposal.INDT.Api;
 using Microsoft.IdentityModel.Logging;
-using Personal.Common.MongoDb.Repository;
+using Personal.Common.Infra.MongoDb.Repository.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 

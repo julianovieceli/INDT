@@ -1,7 +1,7 @@
 ﻿using Insurance.INDT.Infra.MongoDb.Repository.Domain;
 using Insurance.INDT.Infra.MongoDb.Repository.Interface;
-using Personal.Common.MongoDb.Repository;
-using Personal.Common.MongoDb.Repository.Interfaces;
+using Personal.Common.Infra.MongoDb.Repository.Interfaces;
+using Personal.Common.Infra.MongoDb.Repository.Repository;
 
 namespace Insurance.INDT.Infra.MongoDb.Repository
 {
