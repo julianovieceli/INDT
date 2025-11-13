@@ -8,6 +8,7 @@ using INDT.Common.Insurance.Infra.Interfaces.AWS;
 using INDT.Common.Insurance.Infra.Interfaces.Azure;
 using INDT.Common.Insurance.Infra.Interfaces.Rabbit;
 using Insurance.INDT.Application.Services.Interfaces;
+using Personal.Common.Domain;
 
 namespace Insurance.INDT.Application.Services
 {
@@ -25,8 +26,8 @@ namespace Insurance.INDT.Application.Services
         private readonly IMapper _dataMapper;
 
         public ClientService(IClientRepository clientRepository, IValidator<RegisterClientDto> clientValidator, IMapper dataMapper,
-            IAzureMessagingClientStrategyService azureMessagingClientService, IAWSMessagingClientStrategyService aWSMessagingClientService,
-            IRabbitMqMessagingClientStrategyService rabbitMqMessagingClientStrategyService)
+            IAzureMessagingClientStrategyService azureMessagingClientService, IAWSMessagingClientStrategyService aWSMessagingClientService
+            ,            IRabbitMqMessagingClientStrategyService rabbitMqMessagingClientStrategyService)
         {
             _clientRepository = clientRepository;
             _clientValidator = clientValidator;
@@ -69,7 +70,7 @@ namespace Insurance.INDT.Application.Services
             }
             catch(Exception e)
             {
-                return Result.Failure("999", e.Message, System.Net.HttpStatusCode.InternalServerError);
+                return Result.Failure("999", e.Message);
             }
         }
 
@@ -92,7 +93,7 @@ namespace Insurance.INDT.Application.Services
                 }
             }catch
             {
-                return Result.Failure("999", System.Net.HttpStatusCode.InternalServerError);
+                return Result.Failure("999");
             }
         }
 
@@ -105,7 +106,7 @@ namespace Insurance.INDT.Application.Services
             if (clientList is null)
                 return Result.Failure("999");
             else if (clientList.Count == 0)
-                return Result.Failure("404", System.Net.HttpStatusCode.NotFound);
+                return Result.Failure("404");
 
 
             IList<ClientDto> list = clientList.Select(c =>_dataMapper.Map<ClientDto>(c)).ToList();

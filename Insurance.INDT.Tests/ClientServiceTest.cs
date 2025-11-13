@@ -12,6 +12,7 @@ using Insurance.INDT.Application.Mapping;
 using Insurance.INDT.Application.Services;
 using Insurance.INDT.Application.Services.Interfaces;
 using Moq;
+using Personal.Common.Domain;
 
 namespace Insurance.Proposal.INDT.Tests
 {
@@ -88,7 +89,6 @@ namespace Insurance.Proposal.INDT.Tests
 
             //Assert
             Assert.True(result.IsFailure);
-            Assert.True(result.StatusCode == 400);
             Assert.True(result.ErrorCode == "404");
 
         }
@@ -118,9 +118,8 @@ namespace Insurance.Proposal.INDT.Tests
 
             //Assert
             Assert.False(result.IsFailure);
-            Assert.True(result.StatusCode == 200);
-            Assert.True(((Result<ClientDto>)result).Value.Name == clientCreated.Name);
-            Assert.True(((Result<ClientDto>)result).Value.Docto == clientCreated.Docto);
+            Assert.True(((Result<ClientDto>)result).Response.Name == clientCreated.Name);
+            Assert.True(((Result<ClientDto>)result).Response.Docto == clientCreated.Docto);
 
 
         }
@@ -188,9 +187,8 @@ namespace Insurance.Proposal.INDT.Tests
 
             //Assert
             Assert.False(resultList.IsFailure);
-            Assert.True(resultList.StatusCode == 200);
-
-            Assert.True(((Result<IList<ClientDto>>)resultList).Value.Count == clientListCreated.Count());
+            
+            Assert.True(((Result<IList<ClientDto>>)resultList).Response.Count == clientListCreated.Count());
 
 
 

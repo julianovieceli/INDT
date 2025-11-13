@@ -6,6 +6,7 @@ using INDT.Common.Insurance.Domain.Interfaces.Repository;
 using INDT.Common.Insurance.Dto.Request;
 using INDT.Common.Insurance.Dto.Response;
 using Insurance.INDT.Application.Services.Interfaces;
+using Personal.Common.Domain;
 using InsuranceDomain = INDT.Common.Insurance.Domain;
 
 namespace Insurance.INDT.Application.Services
@@ -67,7 +68,7 @@ namespace Insurance.INDT.Application.Services
             }
             catch
             {
-                return Result.Failure("999", System.Net.HttpStatusCode.InternalServerError);
+                return Result.Failure("999");
             }
         }
 
@@ -106,7 +107,7 @@ namespace Insurance.INDT.Application.Services
             }
             catch
             {
-                return Result.Failure("999", System.Net.HttpStatusCode.InternalServerError);
+                return Result.Failure("999");
             }
         }
 
@@ -130,7 +131,7 @@ namespace Insurance.INDT.Application.Services
             }
             catch
             {
-                return Result.Failure("999", System.Net.HttpStatusCode.InternalServerError);
+                return Result.Failure("999");
             }
         }
 
@@ -143,7 +144,7 @@ namespace Insurance.INDT.Application.Services
             if (proposalList is null)
                 return Result.Failure("999");
             else if (proposalList.Count == 0)
-                return Result.Failure("404", System.Net.HttpStatusCode.NotFound);
+                return Result.Failure("404");
 
 
             IList<ProposalDto> list = proposalList.Select(c => _dataMapper.Map<ProposalDto>(c)).ToList();

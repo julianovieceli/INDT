@@ -1,6 +1,8 @@
-﻿namespace INDT.Common.Insurance.Domain
+﻿using Personal.Common.Domain;
+
+namespace INDT.Common.Insurance.Domain
 {
-    public class Insurance: BaseClass
+    public class Insurance: BaseDomain
     {
         public string Name { get; set; }
         public DateTime CreationDate { get; set; }

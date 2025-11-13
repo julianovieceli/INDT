@@ -1,6 +1,5 @@
 ﻿using Azure;
 using Azure.Storage.Blobs;
-using INDT.Common.Insurance.Domain;
 using INDT.Common.Insurance.Dto.Response;
 using INDT.Common.Insurance.Infra.Interfaces.Azure;
 using Insurance.INDT.Application.Settings;
@@ -10,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System.IO;
+using Personal.Common.Domain;
 using System.Net;
 
 namespace Insurance.INDT.Application.Storage.Azure
@@ -63,13 +62,13 @@ namespace Insurance.INDT.Application.Storage.Azure
                 string successMsg = $"File '{file.FileName}' uploaded successfully to S3. HttpStatusCode: {httpStatusCodeResponse}";
                 _logger.LogInformation(successMsg);
 
-                return Result<UploadedFileResponseDto>.Success(uploadedFileResponseDto, (System.Net.HttpStatusCode)httpStatusCodeResponse);
+                return Result<UploadedFileResponseDto>.Success(uploadedFileResponseDto);
             }
             catch (Exception ex)
             {
                 string internalServerError = $"S3 error: {ex.Message}";
                 _logger.LogError(internalServerError);
-                return Result.Failure("500", internalServerError, HttpStatusCode.InternalServerError);
+                return Result.Failure("500", internalServerError);
             }
 
         }
@@ -107,7 +106,7 @@ namespace Insurance.INDT.Application.Storage.Azure
             {
                 string internalServerError = $"S3 error: {ex.Message}";
                 _logger.LogError(internalServerError);
-                return Result.Failure("500",internalServerError, HttpStatusCode.InternalServerError);
+                return Result.Failure("500",internalServerError);
             }
 
         }

@@ -1,13 +1,15 @@
 ﻿using Insurance.INDT.Infra.MongoDb.Repository.Domain;
 using Insurance.INDT.Infra.MongoDb.Repository.Interface;
+using Microsoft.Extensions.Logging;
+using Personal.Common.Infra.MongoDb.Repository;
 using Personal.Common.Infra.MongoDb.Repository.Interfaces;
-using Personal.Common.Infra.MongoDb.Repository.Repository;
 
 namespace Insurance.INDT.Infra.MongoDb.Repository
 {
     public class ClientDocumentRepository : MongoDbRepositoryBase<ClientDocument>, IClientDocumentRepository
     {
-        public ClientDocumentRepository(IMongoDbcontext dbcontext) : base(dbcontext, "Client")
+        
+        public ClientDocumentRepository(IMongoDbcontext dbcontext, ILogger<ClientDocument> logger) : base(dbcontext, "Client", logger)
         {
 
         }
@@ -16,7 +18,7 @@ namespace Insurance.INDT.Infra.MongoDb.Repository
         {
             try
             {
-                return await base.FindAsync(d => d.Docto == docto);
+                return await base.FindOneAsync(d => d.Docto == docto);
             }
             catch
             (Exception ex)

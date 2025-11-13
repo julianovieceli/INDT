@@ -1,7 +1,8 @@
 ﻿using Dapper;
 using INDT.Common.Insurance.Domain.Interfaces.Repository;
-using INDT.Common.Insurance.Infra.Mysql.Repository;
 using Microsoft.Extensions.Logging;
+using Personal.Common.Domain.Interfaces.Repository;
+using Personal.Common.Infra.Mysql.Repository;
 using InsuranceDomain = INDT.Common.Insurance.Domain;
 
 namespace Insurance.INDT.Infra.Mysql.Repository

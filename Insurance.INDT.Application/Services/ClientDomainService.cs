@@ -3,6 +3,7 @@ using Insurance.INDT.Application.Services.Interfaces;
 using Insurance.INDT.Infra.MongoDb.Repository.Domain;
 using Insurance.INDT.Infra.MongoDb.Repository.Interface;
 using Microsoft.Extensions.Logging;
+using Personal.Common.Domain;
 
 namespace Insurance.INDT.Application.Services
 {
@@ -44,7 +45,7 @@ namespace Insurance.INDT.Application.Services
             catch(Exception e)
             {
                 _logger.LogError(e.Message);
-                return Result.Failure("999", System.Net.HttpStatusCode.InternalServerError);
+                return Result.Failure("999");
         
             }
         }

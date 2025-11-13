@@ -11,4 +11,13 @@
     <ProjectReference Include="..\..\INDT.Common\INDT.Common.Insurance.Infra.Mysql.Repository\INDT.Common.Insurance.Infra.Mysql.Repository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Personal.Common.Domain">
+      <HintPath>..\..\Libs\Personal.Common.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="Personal.Common.Infra.Mysql.Repository">
+      <HintPath>..\..\Libs\Personal.Common.Infra.Mysql.Repository.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

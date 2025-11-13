@@ -1,6 +1,5 @@
 ﻿using Amazon.S3;
 using Amazon.S3.Model;
-using INDT.Common.Insurance.Domain;
 using INDT.Common.Insurance.Dto.Response;
 using INDT.Common.Insurance.Infra.Interfaces.AWS;
 using Insurance.INDT.Application.Storage.AWS;
@@ -9,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Personal.Common.Domain;
 using System.Net;
 
 namespace Insurance.INDT.Application.Storage.AWS
@@ -76,7 +76,7 @@ namespace Insurance.INDT.Application.Storage.AWS
             {
                 string internalServerError = $"S3 error: {ex.Message}";
                 _logger.LogError(internalServerError);
-                return Result.Failure("500", internalServerError, HttpStatusCode.InternalServerError);
+                return Result.Failure("500", internalServerError);
             }
 
         }

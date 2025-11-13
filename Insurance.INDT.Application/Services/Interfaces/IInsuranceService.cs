@@ -1,5 +1,5 @@
-﻿using INDT.Common.Insurance.Domain;
-using INDT.Common.Insurance.Dto.Request;
+﻿using INDT.Common.Insurance.Dto.Request;
+using Personal.Common.Domain;
 
 namespace Insurance.INDT.Application.Services.Interfaces
 {

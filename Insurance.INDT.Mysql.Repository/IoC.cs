@@ -1,6 +1,6 @@
 ﻿using INDT.Common.Insurance.Domain.Interfaces.Repository;
-using INDT.Common.Insurance.Infra.Mysql.Repository;
 using Microsoft.Extensions.DependencyInjection;
+using Personal.Common.Infra.Mysql.Repository;
 
 
 
@@ -14,11 +14,9 @@ namespace Insurance.INDT.Infra.Mysql.Repository
 
             services.AddScoped<IInsuranceRepository, InsuranceRepository>();
 
-            services.AddScoped<IProposalRepository, ProposalRepository>();
+            services.AddMySqlDbContext();
 
-            
-
-            return services.AddScoped<IDbContext, MySqlDbcontext>();
+            return services.AddScoped<IProposalRepository, ProposalRepository>();
         }
     }
 }

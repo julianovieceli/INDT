@@ -22,4 +22,17 @@
     <ProjectReference Include="..\INDT.Common\INDT.Common.Insurance.Domain\INDT.Common.Insurance.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Personal.Common">
+      <HintPath>..\Libs\Personal.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Personal.Common.Domain">
+      <HintPath>..\Libs\Personal.Common.Domain.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

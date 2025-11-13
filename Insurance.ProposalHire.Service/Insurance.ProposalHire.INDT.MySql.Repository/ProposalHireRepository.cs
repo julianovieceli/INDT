@@ -1,10 +1,11 @@
-﻿using INDT.Common.Insurance.Domain;
+﻿using Dapper;
+using INDT.Common.Insurance.Domain;
 using INDT.Common.Insurance.Domain.Interfaces.Repository;
-using INDT.Common.Insurance.Infra.Mysql.Repository;
 using Microsoft.Extensions.Logging;
-using ProposalHireDomain = INDT.Common.Insurance.Domain.ProposalHire;
+using Personal.Common.Domain.Interfaces.Repository;
+using Personal.Common.Infra.Mysql.Repository;
 using InsuranceDomain = INDT.Common.Insurance.Domain;
-using Dapper;
+using ProposalHireDomain = INDT.Common.Insurance.Domain.ProposalHire;
 
 namespace Insurance.ProposalHire.INDT.MySql.Repository
 {

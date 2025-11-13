@@ -5,6 +5,7 @@ using INDT.Common.Insurance.Dto.Request;
 using INDT.Common.Insurance.Dto.Response;
 using Insurance.ProposalHire.INDT.Application.Api;
 using Insurance.ProposalHire.INDT.Application.Services.Interfaces;
+using Personal.Common.Domain;
 using System.Net;
 using Domain = INDT.Common.Insurance.Domain;
 
@@ -38,14 +39,14 @@ namespace Insurance.INDT.Application.Services
 
                 var proposalResponse = await _apiProposalService.GetProposalById(hireProposalDto.ProposalId);
                 if(proposalResponse.IsFailure)
-                    return Result.Failure(proposalResponse.ErrorCode, proposalResponse.ErrorMessage, (HttpStatusCode)proposalResponse.StatusCode);
+                    return Result.Failure(proposalResponse.ErrorCode, proposalResponse.ErrorMessage);
 
-                Proposal proposal = _dataMapper.Map<Proposal>(((Result<ProposalDto>)proposalResponse).Value);
+                Proposal proposal = _dataMapper.Map<Proposal>(((Result<ProposalDto>)proposalResponse).Response);
 
                 Domain.ProposalHire poposalHire = new Domain.ProposalHire(proposal, hireProposalDto.ExpirationDate, hireProposalDto.Description);
 
                 if(await _proposalHireRepository.GetCounByProposalId(hireProposalDto.ProposalId) > 0)
-                    return Result.Failure("400", "Proposta ja contratada", HttpStatusCode.BadRequest);
+                    return Result.Failure("400", "Proposta ja contratada");
 
                 if (!await _proposalHireRepository.Register(poposalHire))
                     return Result.Failure("999");
@@ -55,7 +56,7 @@ namespace Insurance.INDT.Application.Services
             }
             catch(Exception e)
             {
-                return Result.Failure("999", e.Message, System.Net.HttpStatusCode.InternalServerError);
+                return Result.Failure("999", e.Message);
             }
         }
 
@@ -69,7 +70,7 @@ namespace Insurance.INDT.Application.Services
             if (proposalList is null)
                 return Result.Failure("999");
             else if (proposalList.Count == 0)
-                return Result.Failure("404", System.Net.HttpStatusCode.NotFound);
+                return Result.Failure("404");
 
 
             IList<ProposalHireDto> list = proposalList.Select(c => _dataMapper.Map<ProposalHireDto>(c)).ToList();

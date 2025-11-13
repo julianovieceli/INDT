@@ -12,4 +12,10 @@
 	<PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Personal.Common.Domain">
+      <HintPath>..\..\Libs\Personal.Common.Domain.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

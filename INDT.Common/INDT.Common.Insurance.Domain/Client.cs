@@ -1,6 +1,8 @@
-﻿namespace INDT.Common.Insurance.Domain
+﻿using Personal.Common.Domain;
+
+namespace INDT.Common.Insurance.Domain
 {
-    public class Client: BaseClass
+    public class Client: BaseDomain
     {
         private string _docto;
 

@@ -19,6 +19,9 @@
     <Reference Include="INDT.Common.Insurance.Domain">
       <HintPath>..\..\INDT.Common\INDT.Common.Insurance.Domain\obj\Debug\net8.0\ref\INDT.Common.Insurance.Domain.dll</HintPath>
     </Reference>
+    <Reference Include="Personal.Common.Domain">
+      <HintPath>..\..\Libs\Personal.Common.Domain.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

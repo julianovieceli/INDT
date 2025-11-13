@@ -1,4 +1,4 @@
-﻿using INDT.Common.Insurance.Domain;
+﻿using Personal.Common.Domain;
 
 namespace INDT.Common.Insurance.Infra.Interfaces
 {

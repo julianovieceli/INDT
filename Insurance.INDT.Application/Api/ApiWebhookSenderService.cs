@@ -4,6 +4,7 @@ using INDT.Common.Insurance.Dto.Response;
 using Insurance.INDT.Application.Settings;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Personal.Common.Domain;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
@@ -84,7 +85,7 @@ namespace Insurance.INDT.Application.Api
                         PropertyNameCaseInsensitive = true
                     });
 
-                    return Result.Failure(result.ErrorCode, result.ErrorMessage, (HttpStatusCode)result.StatusCode);
+                    return Result.Failure(result.ErrorCode, result.ErrorMessage);
                 }
             }
             catch (Exception e)

@@ -1,5 +1,4 @@
 using INDT.Common.Insurance.Dto.Request;
-using Insurance.INDT.Application.Services;
 using Insurance.ProposalHire.INDT.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

@@ -4,6 +4,7 @@ using INDT.Common.Insurance.Dto.Response;
 using Insurance.INDT.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Personal.Common.Domain;
 using static BasicAuthenticationHandler;
 
 namespace Insurance.Proposal.INDT.Api.Controllers
@@ -36,7 +37,7 @@ namespace Insurance.Proposal.INDT.Api.Controllers
                 return BadRequest(result);
             }
             _logger.LogInformation("Ok");
-            return Ok(((Result < ProposalDto > )result).Value);
+            return Ok(((Result < ProposalDto > )result).Response);
         }
 
         [HttpPost(Name = "PostProposal")]

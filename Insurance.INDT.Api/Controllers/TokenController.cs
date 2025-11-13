@@ -1,6 +1,6 @@
-﻿using INDT.Common.Insurance.Application.Services;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Personal.Common.Domain.Interfaces.Services;
 using static BasicAuthenticationHandler;
 
 namespace Insurance.INDT.Api.Controllers
@@ -27,7 +27,7 @@ namespace Insurance.INDT.Api.Controllers
             var username = User.Identity?.Name;
 
 
-            var result = _tokenService.GenerateToken(username, admin);
+            var result = _tokenService.GenerateToken(username);
 
             if (result.IsFailure)
             {

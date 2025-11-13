@@ -1,8 +1,9 @@
 ﻿using INDT.Common.Insurance.Domain.Enums;
+using Personal.Common.Domain;
 
 namespace INDT.Common.Insurance.Domain
 {
-    public class Proposal: BaseClass
+    public class Proposal: BaseDomain
     {
         public Insurance Insurance { get; set; }
 

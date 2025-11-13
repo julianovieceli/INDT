@@ -1,5 +1,5 @@
-﻿using INDT.Common.Insurance.Domain;
-using Insurance.INDT.Infra.MongoDb.Repository.Domain;
+﻿using Insurance.INDT.Infra.MongoDb.Repository.Domain;
+using Personal.Common.Domain;
 
 namespace Insurance.INDT.Application.Services.Interfaces
 {

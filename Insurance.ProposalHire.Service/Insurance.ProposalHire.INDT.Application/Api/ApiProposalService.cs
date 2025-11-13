@@ -4,6 +4,7 @@ using Insurance.ProposalHire.INDT.Application.Api;
 using Insurance.ProposalHire.INDT.Application.Settings;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Personal.Common.Domain;
 using System.Net;
 using System.Text.Json;
 
@@ -85,7 +86,7 @@ public class ApiProposalService : IApiProposalService
                     PropertyNameCaseInsensitive = true
                 });
 
-                return Result.Failure(result.ErrorCode, result.ErrorMessage, (HttpStatusCode)result.StatusCode);
+                return Result.Failure(result.ErrorCode, result.ErrorMessage);
             }
         }
         catch(Exception e)

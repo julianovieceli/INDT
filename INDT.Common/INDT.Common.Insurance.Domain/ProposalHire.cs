@@ -1,8 +1,9 @@
 ﻿using INDT.Common.Insurance.Domain.Enums;
+using Personal.Common.Domain;
 
 namespace INDT.Common.Insurance.Domain
 {
-    public class ProposalHire : BaseClass
+    public class ProposalHire : BaseDomain
     {
         public Proposal Proposal { get; set; }
 

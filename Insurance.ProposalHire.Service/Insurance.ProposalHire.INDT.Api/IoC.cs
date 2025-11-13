@@ -1,7 +1,7 @@
 ﻿
 using AutoMapper;
-using INDT.Common.Insurance.Infra.Mysql.Repository;
 using Insurance.ProposalHire.INDT.Application.Mapping;
+using Personal.Common.Infra.Mysql.Repository.Settings;
 
 namespace Insurance.ProposalHire.INDT.Api;
 

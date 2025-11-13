@@ -8,7 +8,8 @@ using Insurance.INDT.Infra.MongoDb.Repository;
 using Insurance.INDT.Infra.Mysql.Repository;
 using Insurance.Proposal.INDT.Api;
 using Microsoft.IdentityModel.Logging;
-using Personal.Common.Infra.MongoDb.Repository.Repository;
+using Personal.Common.Infra.MongoDb.Repository;
+using Personal.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,7 +40,7 @@ builder.Services.AddMongoDbRepositories();
 builder.Services.AddHttpClient(builder.Configuration);
 builder.Services.AddHealthChecks();
 
-builder.Services.AddJwtConfigurations(builder.Configuration);
+builder.Services.AddJwtTokenConfigurations(builder.Configuration);
 builder.Services.AddBasicAuthentication(builder.Configuration);
 builder.Services.AddJwtAuthentication(builder.Configuration);
 
