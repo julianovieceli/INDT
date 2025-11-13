@@ -35,6 +35,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Personal.AWS.SNS">
+      <HintPath>..\Libs\Personal.AWS.SNS.dll</HintPath>
+    </Reference>
     <Reference Include="Personal.Common.Domain">
       <HintPath>..\Libs\Personal.Common.Domain.dll</HintPath>
     </Reference>

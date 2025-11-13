@@ -13,6 +13,7 @@ using Insurance.INDT.Application.Services;
 using Insurance.INDT.Application.Services.Interfaces;
 using Moq;
 using Personal.Common.Domain;
+using Personal.Common.Domain.Interfaces.Services.Message;
 
 namespace Insurance.Proposal.INDT.Tests
 {
@@ -25,6 +26,7 @@ namespace Insurance.Proposal.INDT.Tests
         private readonly Mock<IAzureMessagingClientStrategyService> _serviceBusClientServiceMock;
         private readonly Mock<IAWSMessagingClientStrategyService> _awsMessagingClientService;
         private readonly Mock<IRabbitMqMessagingClientStrategyService> _rabbitMqMessagingClientStrategyService;
+        private readonly Mock<IMessageTopicService> _messageTopicMockService;
 
 
 
@@ -44,6 +46,7 @@ namespace Insurance.Proposal.INDT.Tests
             _serviceBusClientServiceMock = new Mock<IAzureMessagingClientStrategyService>();
             _awsMessagingClientService = new Mock<IAWSMessagingClientStrategyService>();
             _rabbitMqMessagingClientStrategyService = new Mock<IRabbitMqMessagingClientStrategyService>();
+            _messageTopicMockService = new Mock<IMessageTopicService>();
 
             if (_dataMapper == null)
             {
@@ -62,7 +65,8 @@ namespace Insurance.Proposal.INDT.Tests
             var clientCreated = _autofixture.Create<ClientDto>();
 
             IClientService clienteService = new ClientService(_clientRepositoryMock.Object, _registerClientDtoValidatorMock.Object,
-                _dataMapper, _serviceBusClientServiceMock.Object, _awsMessagingClientService.Object, _rabbitMqMessagingClientStrategyService.Object);
+                _dataMapper, _serviceBusClientServiceMock.Object, _awsMessagingClientService.Object, _rabbitMqMessagingClientStrategyService.Object,
+                _messageTopicMockService.Object);
 
      
             //Assert
@@ -75,7 +79,8 @@ namespace Insurance.Proposal.INDT.Tests
         {
             
             IClientService clienteService = new ClientService(_clientRepositoryMock.Object, _registerClientDtoValidatorMock.Object,
-                _dataMapper,_serviceBusClientServiceMock.Object, _awsMessagingClientService.Object, _rabbitMqMessagingClientStrategyService.Object);
+                _dataMapper,_serviceBusClientServiceMock.Object, _awsMessagingClientService.Object, _rabbitMqMessagingClientStrategyService.Object,
+                _messageTopicMockService.Object);
 
             _clientRepositoryMock
                 .Setup(x => x.GetByDocto(It.IsAny<string>()))
@@ -105,7 +110,8 @@ namespace Insurance.Proposal.INDT.Tests
 
             
             IClientService clienteService = new ClientService(_clientRepositoryMock.Object, _registerClientDtoValidatorMock.Object,
-                _dataMapper, _serviceBusClientServiceMock.Object, _awsMessagingClientService.Object, _rabbitMqMessagingClientStrategyService.Object);
+                _dataMapper, _serviceBusClientServiceMock.Object, _awsMessagingClientService.Object, _rabbitMqMessagingClientStrategyService.Object,
+                _messageTopicMockService.Object);
 
             _clientRepositoryMock
                 .Setup(x => x.GetByDocto(CPF))
@@ -127,6 +133,9 @@ namespace Insurance.Proposal.INDT.Tests
         [Fact]
         public async Task RegisterClientInvalidDoctoException()
         {
+
+
+        
             string CPF = "168.483";
 
             _autofixture.Customize<RegisterClientDto>(composer =>
@@ -137,7 +146,8 @@ namespace Insurance.Proposal.INDT.Tests
 
 
             IClientService clienteService = new ClientService(_clientRepositoryMock.Object, _registerClientDtoValidatorMock.Object,
-                _dataMapper, _serviceBusClientServiceMock.Object, _awsMessagingClientService.Object, _rabbitMqMessagingClientStrategyService.Object);
+                _dataMapper, _serviceBusClientServiceMock.Object, _awsMessagingClientService.Object, _rabbitMqMessagingClientStrategyService.Object,
+                _messageTopicMockService.Object);
 
             _clientRepositoryMock
                            .Setup(x => x.GetByDocto(CPF))
@@ -174,7 +184,8 @@ namespace Insurance.Proposal.INDT.Tests
 
 
             IClientService clienteService = new ClientService(_clientRepositoryMock.Object, _registerClientDtoValidatorMock.Object,
-                _dataMapper, _serviceBusClientServiceMock.Object, _awsMessagingClientService.Object, _rabbitMqMessagingClientStrategyService.Object);
+                _dataMapper, _serviceBusClientServiceMock.Object, _awsMessagingClientService.Object, _rabbitMqMessagingClientStrategyService.Object,
+                _messageTopicMockService.Object);
 
             _clientRepositoryMock
                 .Setup(x => x.GetAll())

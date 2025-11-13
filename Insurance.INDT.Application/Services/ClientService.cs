@@ -9,6 +9,7 @@ using INDT.Common.Insurance.Infra.Interfaces.Azure;
 using INDT.Common.Insurance.Infra.Interfaces.Rabbit;
 using Insurance.INDT.Application.Services.Interfaces;
 using Personal.Common.Domain;
+using Personal.Common.Domain.Interfaces.Services.Message;
 
 namespace Insurance.INDT.Application.Services
 {
@@ -25,9 +26,12 @@ namespace Insurance.INDT.Application.Services
 
         private readonly IMapper _dataMapper;
 
+        private readonly IMessageTopicService _messageTopicService;
+
         public ClientService(IClientRepository clientRepository, IValidator<RegisterClientDto> clientValidator, IMapper dataMapper,
             IAzureMessagingClientStrategyService azureMessagingClientService, IAWSMessagingClientStrategyService aWSMessagingClientService
-            ,            IRabbitMqMessagingClientStrategyService rabbitMqMessagingClientStrategyService)
+            ,            IRabbitMqMessagingClientStrategyService rabbitMqMessagingClientStrategyService,
+            IMessageTopicService messageTopicService)
         {
             _clientRepository = clientRepository;
             _clientValidator = clientValidator;
@@ -35,11 +39,18 @@ namespace Insurance.INDT.Application.Services
             _azureMessagingClientService = azureMessagingClientService;
             _aWSMessagingClientService = aWSMessagingClientService;
             _rabbitMqMessagingClientStrategyService = rabbitMqMessagingClientStrategyService;
+
+            _messageTopicService = messageTopicService;
         }
         public async Task<Result> Register(RegisterClientDto registerClient )
         {
             try
             {
+                await _messageTopicService.PublishMessageAsync("arn:aws:sns:us-east-1:000000000000:Topic_Teste", registerClient);
+
+                
+
+
                 ArgumentNullException.ThrowIfNull(registerClient, "registerClient");
 
                 var validatorResult = _clientValidator.Validate(registerClient);

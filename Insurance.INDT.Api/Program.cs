@@ -1,4 +1,3 @@
-using INDT.Common.Insurance.Application;
 using Insurance.INDT.Application;
 using Insurance.INDT.Application.Messaging.AWS;
 using Insurance.INDT.Application.Messaging.Azure;
@@ -8,8 +7,9 @@ using Insurance.INDT.Infra.MongoDb.Repository;
 using Insurance.INDT.Infra.Mysql.Repository;
 using Insurance.Proposal.INDT.Api;
 using Microsoft.IdentityModel.Logging;
-using Personal.Common.Infra.MongoDb.Repository;
+using Personal.AWS.SNS;
 using Personal.Common;
+using Personal.Common.Infra.MongoDb.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +27,7 @@ builder.Services.AddValidators();
 builder.Services.AddAutoMapper();
 builder.Services.AddAzureMessagingClientService(builder.Configuration);
 builder.Services.AddAWSMessagingClientService(builder.Configuration);
+builder.Services.AddAWSSnsService();
 builder.Services.AddRabbitMqClientService(builder.Configuration);
 builder.Services.AddAWSStorageService(builder.Configuration);
 builder.Services.AddAzureStorageService(builder.Configuration);
